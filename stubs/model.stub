@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace {{ namespace }};
 
-use App\Models\Traits\Tenantable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Tenantable;
 
-class Company extends Model
+class {{ class }} extends Model
 {
     use HasFactory;
     use Tenantable;

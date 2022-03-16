@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Scopes\TenantScope;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -12,8 +13,13 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+   
+
+
     public function index()
     {
+        // dd(session());
         return Company::all();
     }
 
@@ -95,4 +101,6 @@ class CompanyController extends Controller
         $company->delete();
         return response($company, 200);
     }
+
+  
 }

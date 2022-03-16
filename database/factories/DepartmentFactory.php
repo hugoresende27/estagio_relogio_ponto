@@ -20,7 +20,9 @@ class DepartmentFactory extends Factory
         return [
             
             'name' => $this->faker->word(),
-            'company_id'=>Company::factory(),
+            // 'company_id'=>Company::factory(),
+            'company_id'=>1,
+            'tenant_id'=>1
         ];
     }
 }

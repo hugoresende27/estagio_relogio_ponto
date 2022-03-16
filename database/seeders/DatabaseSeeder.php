@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tenant;
 use App\Models\Company;
 use App\Models\Department;
 use Illuminate\Database\Seeder;
@@ -16,8 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Tenant::factory(1)->create();
          \App\Models\User::factory(10)->create();
+         
         //  \App\Models\Company::factory(10)->create();
-         \App\Models\Department::factory(10)->create();
+        //  \App\Models\Department::factory(10)->create();
     }
 }
