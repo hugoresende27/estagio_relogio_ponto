@@ -59,6 +59,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
       
+        session_start();
+       
         $fields = $request->validate([
             
             'email'=>'required|string',
@@ -81,6 +83,7 @@ class AuthController extends Controller
             'token' => $token
         ];
         
+        // dd(session()->tenant_id);
         return response($response, 200);
     }
 

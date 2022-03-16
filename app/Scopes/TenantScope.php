@@ -2,9 +2,10 @@
  
 namespace App\Scopes;
  
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Database\Eloquent\Builder;
  
 class TenantScope implements Scope
 {
@@ -21,7 +22,9 @@ class TenantScope implements Scope
         // {
         //     $builder->where('tenant_id', session('tenant_id'));
         // }
-        $builder->where('tenant_id', 1);
+        
+            // dd($tenantId);
+        // $builder->where('tenant_id', 1);
         
     }
 }
