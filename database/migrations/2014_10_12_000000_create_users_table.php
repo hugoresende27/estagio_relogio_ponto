@@ -21,17 +21,6 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->string('role')->default('user');
-            $table->string('nif')->nullable();
-            $table->string('contato_eme')->nullable();
-            $table->string('bi_cc')->nullable();
-
-            $table->unsignedBigInteger('empresa_id')->nullable();
-            $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('set null');
-
-            $table->unsignedBigInteger('departamento_id')->nullable();
-            $table->foreign('departamento_id')->references('id')->on('departamentos')->onDelete('set null');
         });
     }
 
