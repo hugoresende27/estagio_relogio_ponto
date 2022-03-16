@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +16,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        
+
+        $employees = User::all();
+
+        return response()->json($employees, 200);
+
     }
 
     /**
@@ -25,10 +32,15 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+
+        
+        $tenantId = Auth::user()->tenant_id;
+        // dd($tenantId);
+
         $fields = $request->validate([
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
-            'password'=>'required|string|confirmed',
+            'password'=>'required|string',
             'nif'=>'string',
             'emer_contact'=>'string',
             'bi_cc'=>'string',
@@ -44,7 +56,7 @@ class EmployeeController extends Controller
             'emer_contact'=>$request['emer_contact'],
             'bi_cc'=>$request['bi_cc'],
 
-            'tenant_id'=>$request['tenant_id'],
+            'tenant_id'=>$tenantId,
             'company_id'=>$request['company_id'],
             'department_id'=>$request['department_id'],
             
@@ -52,7 +64,7 @@ class EmployeeController extends Controller
         ]);
 
 
-        return response($response, 201);
+        return response($user, 201);
     }
 
     /**
@@ -63,7 +75,11 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee = User::find($id);
+        if (is_null($employee)){
+            return response()->json(['message'=>'Employee not found',404] );
+        }
+        return response()->json($employee = User::find($id), 200);
     }
 
     /**
@@ -75,7 +91,24 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $employee = User::find($id);
+        if (is_null($employee)){
+            return response()->json(['message'=>'Employee not found',404] );
+        }
+        // dd($employee);
+        $fields = $request->validate([
+            
+            'name'=>'required|string',
+            'email'=>'required|string|unique:users,email',
+            'password'=>'required|string',
+            'nif'=>'string',
+            'emer_contact'=>'string',
+            'bi_cc'=>'string',
+        ]);
+        
+
+        $employee->update($fields);
+        return response($employee, 200);
     }
 
     /**

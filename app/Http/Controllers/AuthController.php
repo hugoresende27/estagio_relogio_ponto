@@ -39,6 +39,7 @@ class AuthController extends Controller
             'bi_cc'=>$request['bi_cc'],
 
             'tenant_id'=>$tenant['id'],
+            
             'company_id'=>$request['company_id'],
             'department_id'=>$request['department_id'],
             

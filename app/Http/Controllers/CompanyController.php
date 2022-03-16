@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Scopes\TenantScope;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -35,14 +36,17 @@ class CompanyController extends Controller
     {
         $fields = $request->validate([
             
-            'name'=>'required|string',
+            'name'=>'required|string|unique:companies,name',
             'email'=>'required|string',
+            
         ]);
         
+        $tenantId = Auth::user()->tenant_id;
        
         $company = Company::create([
             'name'=>$fields['name'],
             'email'=>$fields['email'],
+            'tenant_id'=>$tenantId
         ]);
         
         return response($company, 201);
@@ -80,7 +84,7 @@ class CompanyController extends Controller
         $fields = $request->validate([
             
             'name'=>'required|string',
-            'email'=>'required|string',
+            'email'=>'string',
         ]);
         
 
