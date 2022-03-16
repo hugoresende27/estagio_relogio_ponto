@@ -3,6 +3,7 @@
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DepartmentController;
 
@@ -17,12 +18,22 @@ use App\Http\Controllers\DepartmentController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('register', [AuthController::class,'register']);
+
+Route::post('login', [AuthController::class,'login']);
+
+Route::group(['middleware'=>['auth:sanctum']], function () {
+
+
+    Route::post('logout', [AuthController::class,'logout']);
+
+    Route::resource('/companies', CompanyController::class);
+
+    Route::resource('/departments', DepartmentController::class);
+
 });
-
-
-
-Route::resource('/companies', CompanyController::class);
-Route::resource('/departments', DepartmentController::class);
 
