@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
 
         //  \App\Models\User::factory(5)->create();
 
+        
+        
         for ($i = 1; $i<3;$i++)
         {
             \DB::table('tenants')->insert([
@@ -33,12 +35,12 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        \DB::table('users')->insert([
-            'name' => 'Administrador',
-            'email' => 'admin@admin',
-            'role' => 'admin',
-            'password' => bcrypt('admin'),
-        ]);
+        // \DB::table('users')->insert([
+        //     'name' => 'Administrador',
+        //     'email' => 'admin@admin',
+        //     'role' => 'admin',
+        //     'password' => bcrypt('admin'),
+        // ]);
 
         \DB::table('users')->insert([
             'name' => 'user1',
@@ -56,22 +58,36 @@ class DatabaseSeeder extends Seeder
             'tenant_id'=>2,
         ]);
 
-        for ($i = 1; $i<3;$i++)
+         ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        for ($i = 1; $i<4;$i++)
         {
             \DB::table('companies')->insert([
-                'name' => 'Empresa'.$i,
-                'email' => 'e@e'.$i,
+                'name' => 'Empresa'.$i.'TEN1',
+                'email' => 'e@e'.$i.'TEN1',
                 'tenant_id'=> 1,
             ]);
+        }
+
+         ///////////////////////////////////////////////////////////////////////////////////////////////
+
+        for ($i = 1; $i<4;$i++)
+        {
             \DB::table('companies')->insert([
-                'name' => 'Empresa'.$i*3,
-                'email' => 'e@e'.$i,
+                'name' => 'Empresa'.$i.'TEN2',
+                'email' => 'e@e'.$i.'TEN2',
                 'tenant_id'=> 2,
             ]);
+        }
 
-            \DB::table('users')->insert([
-                'name' => 'func'.$i,
-                'email' => 'func1'.$i,
+         ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        for ($i = 1; $i<5;$i++)
+        {
+            \DB::table('employees')->insert([
+                'name' => 'ze'.$i,
+                'email' => 'ze'.$i,
                 'email_verified_at' => now(),
                 'password' => bcrypt('1111'), // password
                 'remember_token' => Str::random(10),
@@ -79,14 +95,15 @@ class DatabaseSeeder extends Seeder
                 'nif'=>rand(111111111,999999999),
                 'emer_contact'=>rand(91111111,96222222),
                 'bi_cc'=>rand(111111,999999),
-                'company_id'=> $i,
+                // 'company_id'=> $i,
                 // 'department_id'=> $i,
                 // 'tenant_id'=>Tenant::factory()
-                'tenant_id'=>1
+                'tenant_id'=>1,
+                'start_date'=>now()
             ]);
-            \DB::table('users')->insert([
-                'name' => 'func'.$i*3,
-                'email' => 'func2'.$i*3,
+            \DB::table('employees')->insert([
+                'name' => 'maria'.$i*3,
+                'email' => 'maria'.$i*3,
                 'email_verified_at' => now(),
                 'password' => bcrypt('1111'), // password
                 'remember_token' => Str::random(10),
@@ -94,14 +111,30 @@ class DatabaseSeeder extends Seeder
                 'nif'=>rand(111111111,999999999),
                 'emer_contact'=>rand(91111111,96222222),
                 'bi_cc'=>rand(111111,999999),
-                'company_id'=> $i,
+                // 'company_id'=> $i,
                 // 'department_id'=> $i,
                 // 'tenant_id'=>Tenant::factory()
-                'tenant_id'=>2
+                'tenant_id'=>2,
+                'start_date'=>now()
             ]);
             
         }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////
     
+        for ($i=1; $i<10; $i++)
+        {
+            \DB::table('locations')->insert([
+                'tenant_id'=>1,
+                'country'=>'Cazakistan',
+                'city'=>'Kiev',
+                'street'=>'Flower street, 2'.$i,
+                'zip_code'=>'5556-123',
+                'company_id'=>1,
+                // 'department_id'=>1
+            ]);
+        }
       
     }
 }

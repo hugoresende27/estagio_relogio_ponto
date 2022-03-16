@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DepartmentController;
 
 /*
@@ -39,6 +40,8 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::resource('/departments', DepartmentController::class);
 
     Route::resource('/employees', EmployeeController::class);
+
+    Route::resource('/locations', LocationController::class);
 
 });
 

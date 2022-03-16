@@ -1,34 +1,27 @@
 <?php
 
-// namespace App\Models;
-
-// use App\Models\Traits\Tenantable;
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use Illuminate\Database\Eloquent\Model;
-
-// class Tenant extends Model
-// {
-//     use HasFactory;
-//     use Tenantable;
-
-//     protected $guarded = ['id'];
-// }
-
-
-
-
 namespace App\Models;
 
-use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
+use App\Models\Company;
+use App\Models\Traits\Tenantable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-use Stancl\Tenancy\Contracts\TenantWithDatabase;
-use Stancl\Tenancy\Database\Concerns\HasDatabase;
-use Stancl\Tenancy\Database\Concerns\HasDomains;
-
-
-class Tenant extends BaseTenant implements TenantWithDatabase
+class Tenant extends Model
 {
-    use HasDatabase, HasDomains, HasFactory;
-    protected $guarded = [];
+    use HasFactory;
+    use Tenantable;
+
+    protected $guarded = ['id'];
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class);
+    }
+
+     
 }
+
+
+
+

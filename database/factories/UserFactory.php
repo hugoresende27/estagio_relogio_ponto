@@ -30,8 +30,8 @@ class UserFactory extends Factory
             'nif'=>rand(111111111,999999999),
             'emer_contact'=>rand(91111111,96222222),
             'bi_cc'=>rand(111111,999999),
-            'company_id'=> Company::factory(),
-            'department_id'=> Department::factory(),
+            // 'company_id'=> Company::factory(),
+            // 'department_id'=> Department::factory(),
             // 'tenant_id'=>Tenant::factory()
             'tenant_id'=>1
         ];

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tenants', function (Blueprint $table) {
-            $table->id();
-            // $table->bigIncrements('id')->unique();
-            $table->string('name');
-            $table->timestamps();
-            $table->json('data')->nullable();
+        Schema::create('company_tenant', function (Blueprint $table) {
+            //
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tenants');
+        Schema::dropIfExists('company_tenant');
     }
 };

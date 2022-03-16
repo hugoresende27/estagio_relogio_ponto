@@ -41,6 +41,7 @@ class CompanyController extends Controller
             
         ]);
         
+        //TENANT_ID 
         $tenantId = Auth::user()->tenant_id;
        
         $company = Company::create([
@@ -48,6 +49,9 @@ class CompanyController extends Controller
             'email'=>$fields['email'],
             'tenant_id'=>$tenantId
         ]);
+
+        //ATTACH TO PIVOT TABLE COMPANY_TENANT
+        $company->tenant()->attach($tenantId);
         
         return response($company, 201);
     }
@@ -83,7 +87,7 @@ class CompanyController extends Controller
 
         $fields = $request->validate([
             
-            'name'=>'required|string',
+            'name'=>'string',
             'email'=>'string',
         ]);
         

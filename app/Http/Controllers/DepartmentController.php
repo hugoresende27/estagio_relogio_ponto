@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
@@ -28,13 +29,16 @@ class DepartmentController extends Controller
         $fields = $request->validate([
             
             'name'=>'required|string',
+            'company_id'=>'required|string', 
             
         ]);
         
+        $tenantId = Auth::user()->tenant_id;
        
         $department = Department::create([
             'name'=>$fields['name'],
-            'company_id'=>1,            //HARD CODED 
+            'company_id'=>$fields['company_id'],            
+            'tenant_id'=>$tenantId
         ]);
         
         return response($department, 201);
@@ -71,7 +75,7 @@ class DepartmentController extends Controller
 
         $fields = $request->validate([
             
-            'name'=>'required|string',
+            'name'=>'string',
             
         ]);
         

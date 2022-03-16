@@ -22,7 +22,7 @@ class AuthController extends Controller
             
         ]);
 
-        
+        // dd($fields);
        $tenant = Tenant::create([
             'name'=> $fields['name'].'.tenant'
         ]);
