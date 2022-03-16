@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Tenant;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,6 +23,7 @@ class DepartmentFactory extends Factory
             'name' => $this->faker->word(),
             // 'company_id'=>Company::factory(),
             'company_id'=>1,
+            // 'tenant_id'=>Tenant::factory()
             'tenant_id'=>1
         ];
     }

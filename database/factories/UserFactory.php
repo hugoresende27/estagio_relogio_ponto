@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Tenant;
 use App\Models\Company;
 use App\Models\Department;
 use Illuminate\Support\Str;
@@ -31,6 +32,7 @@ class UserFactory extends Factory
             'bi_cc'=>rand(111111,999999),
             'company_id'=> Company::factory(),
             'department_id'=> Department::factory(),
+            // 'tenant_id'=>Tenant::factory()
             'tenant_id'=>1
         ];
     }

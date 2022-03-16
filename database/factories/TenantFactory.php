@@ -17,6 +17,7 @@ class TenantFactory extends Factory
     public function definition()
     {
         return [
+            // 'id'=>1,
             'name' => 'tenant1',
         ];
     }

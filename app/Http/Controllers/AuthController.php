@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -15,14 +16,32 @@ class AuthController extends Controller
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
             'password'=>'required|string|confirmed',
+            'nif'=>'string',
+            'emer_contact'=>'string',
+            'bi_cc'=>'string',
             
         ]);
 
+        
+       $tenant = Tenant::create([
+            'name'=> $fields['name'].'.tenant'
+        ]);
+
+       
+       
         $user = User::create([
             'name' => $fields['name'],
             'email'=>$fields['email'],
             'password'=>bcrypt($fields['password']),
-            'role'=>'user',
+            'role'=>'user',           
+            'nif'=>$request['nif'],
+            'emer_contact'=>$request['emer_contact'],
+            'bi_cc'=>$request['bi_cc'],
+
+            'tenant_id'=>$tenant['id'],
+            'company_id'=>$request['company_id'],
+            'department_id'=>$request['department_id'],
+            
             
         ]);
 

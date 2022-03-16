@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Company;
+use App\Models\Traits\Tenantable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,18 +13,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    use Tenantable;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $guarded = [];
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = ['id'];
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'tenant_id'
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,9 +47,18 @@ class User extends Authenticatable
     ];
 
 
-    public function companies() {
-		return $this->belongsToMany(Company::class);
+    public function companies() 
+    {
+		return $this->belongsToMany(Company::class, );
 	}
+
+    
+    //função para usar para ir buscar departamentos, empresas, etc
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
 
     
 }
