@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use App\Models\Traits\Tenantable;
 use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +19,7 @@ class EmployeeController extends Controller
     public function index()
     {
         
-
+        
         $employees = User::all();
 
         return response()->json($employees, 200);

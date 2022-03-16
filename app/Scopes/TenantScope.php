@@ -18,13 +18,10 @@ class TenantScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        // if (session()->has('tenant_id') && !is_null(session()->get('tenant_id')))
-        // {
-        //     $builder->where('tenant_id', session('tenant_id'));
-        // }
         
-            // dd($tenantId);
-        // $builder->where('tenant_id', 1);
-        
+        if (Auth::check()) {
+            $builder->where('tenant_id', Auth::user()->tenant_id);
+        }
+       
     }
 }
