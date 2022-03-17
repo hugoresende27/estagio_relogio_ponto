@@ -80,7 +80,24 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $location = Location::find($id);
+        if (is_null($location)){
+            return response()->json(['message'=>'Location not found',404] );
+        }
+        // dd($employee);
+        $fields = $request->validate([
+            
+            'country'=>'required|string',
+            'city'=>'required|string',
+            'street'=>'required|string',
+            'zip_code'=>'required|string',
+            'company_id'=>'required', 
+         
+        ]);
+        
+
+        $location->update($fields);
+        return response($location, 200);
     }
 
     /**
@@ -91,6 +108,11 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = Location::find($id);
+        if (is_null($location)){
+            return response()->json(['message'=>'Location not found',404] );
+        }
+        $location->delete();
+        return response($location, 200);
     }
 }

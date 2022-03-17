@@ -87,8 +87,8 @@ class CompanyController extends Controller
 
         $fields = $request->validate([
             
-            'name'=>'string',
-            'email'=>'string',
+            'name'=>'string|required',
+            'email'=>'string|required',
         ]);
         
 

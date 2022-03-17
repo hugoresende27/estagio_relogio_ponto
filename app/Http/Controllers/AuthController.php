@@ -16,13 +16,16 @@ class AuthController extends Controller
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
             'password'=>'required|string|confirmed',
+            'role'=>'required|string',
+
             'nif'=>'string',
             'emer_contact'=>'string',
             'bi_cc'=>'string',
             
+            
         ]);
 
-        // dd($fields);
+
        $tenant = Tenant::create([
             'name'=> $fields['name'].'.tenant'
         ]);
@@ -33,15 +36,18 @@ class AuthController extends Controller
             'name' => $fields['name'],
             'email'=>$fields['email'],
             'password'=>bcrypt($fields['password']),
-            'role'=>'user',           
-            'nif'=>$request['nif'],
-            'emer_contact'=>$request['emer_contact'],
-            'bi_cc'=>$request['bi_cc'],
+            'role'=>$fields['role'],  
+
+            //REQUEST
+            'nif'=>$request['nif'],                    
+            'emer_contact'=>$request['emer_contact'],  
+            'bi_cc'=>$request['bi_cc'],                
+            'company_id'=>$request['company_id'],
+            'department_id'=>$request['department_id'],
 
             'tenant_id'=>$tenant['id'],
             
-            'company_id'=>$request['company_id'],
-            'department_id'=>$request['department_id'],
+           
             
             
         ]);
@@ -59,7 +65,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
       
-        session_start();
+       // session_start();
        
         $fields = $request->validate([
             

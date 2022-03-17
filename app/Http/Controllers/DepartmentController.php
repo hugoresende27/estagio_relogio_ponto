@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
+use App\Models\Company;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,11 +31,16 @@ class DepartmentController extends Controller
         $fields = $request->validate([
             
             'name'=>'required|string',
-            'company_id'=>'required|string', 
+            'company_id'=>'required', 
             
         ]);
         
         $tenantId = Auth::user()->tenant_id;
+
+  
+    //    $tenant_companies = Company::all();
+    
+    //    dd($tenant_companies);
        
         $department = Department::create([
             'name'=>$fields['name'],
@@ -75,8 +82,8 @@ class DepartmentController extends Controller
 
         $fields = $request->validate([
             
-            'name'=>'string',
-            
+            'name'=>'string|required',
+            'company_id'=>'required|string', 
         ]);
         
 

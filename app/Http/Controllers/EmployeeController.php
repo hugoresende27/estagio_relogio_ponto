@@ -45,7 +45,7 @@ class EmployeeController extends Controller
             'email'=>'required|string|unique:employees,email',
             'password'=>'required|string|confirmed',
             'nif'=>'required|string',
-            'emer_contact'=>'string',
+            'emer_contact'=>'required|string',
             'bi_cc'=>'required|string',
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
             'department_id'=>'required'     //REQUIRED ATM, CAN BE CHANGED
@@ -107,11 +107,13 @@ class EmployeeController extends Controller
         $fields = $request->validate([
             
             'name'=>'required|string',
-            'email'=>'required|string|unique:users,email',
+            'email'=>'required|string',
             'password'=>'required|string',
-            'nif'=>'string',
-            'emer_contact'=>'string',
-            'bi_cc'=>'string',
+            'nif'=>'required|string',
+            'emer_contact'=>'required|string',
+            'bi_cc'=>'required|string',
+            'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
+            'department_id'=>'required' 
         ]);
         
 
@@ -127,6 +129,11 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        if (is_null($employee)){
+            return response()->json(['message'=>'Employee not found',404] );
+        }
+        $employee->delete();
+        return response($employee, 200);
     }
 }
