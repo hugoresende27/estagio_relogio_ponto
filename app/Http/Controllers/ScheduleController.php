@@ -40,6 +40,13 @@ class ScheduleController extends Controller
         ]);
         
         $tenantId = Auth::user()->tenant_id;
+
+        $total_shift = $fields['shift_end']-$fields['shift_start'];
+
+        if ($total_shift<0)
+        {
+            $total_shift = $fields['shift_start']-240000-$fields['shift_end'];
+        }
        
         $schedules = Schedule::create([
                                  
@@ -50,6 +57,7 @@ class ScheduleController extends Controller
             'shift_start'=>$fields['shift_start'],
             'shift_end'=>$fields['shift_end'],
             'shift_type'=>$fields['shift_type'],
+            'shift_total'=>abs($total_shift),
 
         ]);
         

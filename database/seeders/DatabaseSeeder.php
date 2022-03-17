@@ -181,6 +181,7 @@ class DatabaseSeeder extends Seeder
                 'department_id'=>$i,
                 'shift_start'=>100000,
                 'shift_end'=>180000,
+                'shift_total'=>180000-100000,
                 'shift_type'=>'day'.$i,
             ]);
         }
