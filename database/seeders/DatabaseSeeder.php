@@ -123,8 +123,18 @@ class DatabaseSeeder extends Seeder
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
     
-        for ($i=1; $i<10; $i++)
+        for ($i=1; $i<5; $i++)
         {
+
+            \DB::table('departments')->insert([
+                'tenant_id'=>1,
+                'name'=>'Human Resources'.$i,
+            
+                'company_id'=>1,
+               
+            ]);
+
+
             \DB::table('locations')->insert([
                 'tenant_id'=>1,
                 'country'=>'Cazakistan',
@@ -132,7 +142,16 @@ class DatabaseSeeder extends Seeder
                 'street'=>'Flower street, 2'.$i,
                 'zip_code'=>'5556-123',
                 'company_id'=>1,
-                // 'department_id'=>1
+                'department_id'=>1
+            ]);
+          
+            \DB::table('schedules')->insert([
+                'tenant_id'=>1, 
+                'company_id'=>1,
+                'department_id'=>1,
+                'shift_start'=>100000,
+                'shift_end'=>180000,
+                'shift_type'=>'day',
             ]);
         }
       

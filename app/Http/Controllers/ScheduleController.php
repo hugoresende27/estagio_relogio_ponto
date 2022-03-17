@@ -64,7 +64,11 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        if (is_null($schedule)){
+            return response()->json(['message'=>'Location not found',404] );
+        }
+        return response()->json($schedule = Schedule::find($id), 200);
     }
 
     /**
@@ -76,7 +80,25 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $schedule = Schedule::find($id);
+        if (is_null($schedule)){
+            return response()->json(['message'=>'Schedulle not found',404] );
+        }
+    
+        $fields = $request->validate([
+
+            'company_id'=>'required',
+            'department_id'=>'required',
+            'shift_start'=>'required',
+            'shift_end'=>'required',
+            'shift_type'=>'required'
+           
+         
+        ]);
+        
+
+        $schedule->update($fields);
+        return response($schedule, 200);
     }
 
     /**
@@ -87,6 +109,11 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $schedule = Schedule::find($id);
+        if (is_null($schedule)){
+            return response()->json(['message'=>'Location not found',404] );
+        }
+        $schedule->delete();
+        return response($schedule, 200);
     }
 }
