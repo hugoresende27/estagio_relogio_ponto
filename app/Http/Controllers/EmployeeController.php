@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Tenant;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -48,31 +49,48 @@ class EmployeeController extends Controller
             'emer_contact'=>'required|string',
             'bi_cc'=>'required|string',
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
+
+            'image_path'=>'string',
             
          
             
         ]);
 
-        $employees = Employee::create([
+        $employee = Employee::create([
+
+            'tenant_id'=>$tenantId,
+
             'name' => $fields['name'],
             'email'=>$fields['email'],
             'password'=>bcrypt($fields['password']),
             'role'=>'user',           
-            'nif'=>$request['nif'],
-            'emer_contact'=>$request['emer_contact'],
-            'bi_cc'=>$request['bi_cc'],
+            'nif'=>$fields['nif'],
+            'emer_contact'=>$fields['emer_contact'],
+            'bi_cc'=>$fields['bi_cc'],
+            'company_id'=>$fields['company_id'],
 
-            'tenant_id'=>$tenantId,
-            'company_id'=>$request['company_id'],
+            //REQUEST
+            
             'department_id'=>$request['department_id'],
             'schedule_id'=>$request['schedule_id'],
             'start_date'=>$request['start_date'],
             
             
+            
+        ]);
+        // dd($employee['id']);
+           
+        $image = Image::create([
+            'tenant_id'=>$tenantId,
+            'image_path'=>$request['image_path'],
+            'employee_id'=>$employee['id'],
         ]);
 
+        $employee->image_id = $image['id'];
+        $employee->save();
 
-        return response($employees, 201);
+
+        return response($employee, 201);
     }
 
     /**

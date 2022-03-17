@@ -22,7 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->string('role')->default('user');
+            $table->string('role')->nullable();
             $table->string('nif')->nullable();
             $table->string('emer_contact')->nullable();
             $table->string('bi_cc')->nullable();
