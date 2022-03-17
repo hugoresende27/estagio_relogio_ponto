@@ -4,6 +4,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LocationController;
@@ -37,14 +38,21 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('logout', [AuthController::class,'logout']);
 
     Route::resource('/companies', CompanyController::class);
+    Route::post('/companies/{id}/showemployees', [CompanyController::class, 'showEmployees']);
+    Route::post('/companies/{id}/showdepartments',[CompanyController::class, 'showDepartments']);
 
     Route::resource('/departments', DepartmentController::class);
+    Route::post('/departments/{id}/showemployees', [DepartmentController::class, 'showEmployees']);
+    
 
     Route::resource('/employees', EmployeeController::class);
+   
 
     Route::resource('/locations', LocationController::class);
 
     Route::resource('/schedules', ScheduleController::class);
+
+    Route::resource('/admin', AdminController::class);
 
 });
 

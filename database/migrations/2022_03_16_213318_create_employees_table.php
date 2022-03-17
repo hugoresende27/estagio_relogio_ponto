@@ -18,14 +18,15 @@ return new class extends Migration
            
 
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('email')->nullable();
+     
             $table->timestamps();
 
             $table->string('role')->nullable();
             $table->string('nif')->nullable();
+            $table->string('niss')->nullable();
+            $table->string('iban')->nullable();
+            $table->string('details')->nullable();
             $table->string('emer_contact')->nullable();
             $table->string('bi_cc')->nullable();
             $table->date('start_date')->nullable();

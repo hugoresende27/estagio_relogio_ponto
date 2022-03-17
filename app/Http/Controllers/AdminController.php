@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Image;
-use App\Models\Tenant;
-use App\Models\Employee;
+
 use Illuminate\Http\Request;
-use App\Models\Traits\Tenantable;
 use Illuminate\Support\Facades\Auth;
 
-class EmployeeController extends Controller
+class AdminController extends Controller
 {
-   
     /**
      * Display a listing of the resource.
      *
@@ -20,12 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        
-        
-        $employees = Employee::all();
-
-        return response()->json($employees, 200);
-
+        //
     }
 
     /**
@@ -36,68 +28,76 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-
-        
         $tenantId = Auth::user()->tenant_id;
-        // dd($tenantId);
 
         $fields = $request->validate([
             'name'=>'required|string',
-            'email'=>'required|string|',
-            
-            'nif'=>'required|string',
-            'niss'=>'required|string',
-            'emer_contact'=>'required|string',
-            'bi_cc'=>'required|string',
-            'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
+            'email'=>'required|string|unique:users,email',
+            'password'=>'required|string|confirmed',
 
+            'nif'=>'string',
+            'iban'=>'string',
+            'details'=>'string',
+            'niss'=>'string',
+            'emer_contact'=>'string',
+            'bi_cc'=>'string',
+            'role'=>'string',
             'image_path'=>'string',
-            'role'=>'string'
             
          
             
         ]);
 
-        $employee = Employee::create([
+        $user_employee = User::create([
 
             'tenant_id'=>$tenantId,
 
             'name' => $fields['name'],
             'email'=>$fields['email'],
-            
-                     
-            'nif'=>$fields['nif'],
-            'niss'=>$fields['niss'],
-            'emer_contact'=>$fields['emer_contact'],
-            'bi_cc'=>$fields['bi_cc'],
-            'company_id'=>$fields['company_id'],
+            'password'=>bcrypt($fields['password']),          
+         
 
             //REQUEST NON REQUIRED
-            
+            'nif'=>$request['nif'],       
             'iban'=>$request['iban'],
-            'details'=>$request['details'],
+            'details'=>$request['details'],  
+            'niss'=>$request['niss'],  
+            'emer_contact'=>$request['emer_contact'],
+            'bi_cc'=>$request['bi_cc'],
+            'role'=>'USER-EMPLOYEE',            //HARD CODED USER-EMPLOYEE ROLE
+            // 'role'=>$request['role'], 
+            'image_path'=>$request['image_path'],
+            
+            
+            'company_id'=>$request['company_id'],
             'department_id'=>$request['department_id'],
             'schedule_id'=>$request['schedule_id'],
-            'start_date'=>$request['start_date'],
-            // 'role'=>$request['role'],  
-            'role'=>'EMPLOYEE',                 //HARD CODED ROLE EMPLOYEE  
+          
             
             
             
         ]);
-        
+        // dd($user_employee['id']);
            
         $image = Image::create([
             'tenant_id'=>$tenantId,
             'image_path'=>$request['image_path'],
-            'employee_id'=>$employee['id'],
+            'user_id'=>$user_employee['id'],
         ]);
 
-        $employee->image_id = $image['id'];
-        $employee->save();
+        $user_employee->image_id = $image['id'];
+        $user_employee->save();
+
+        
+        $token = $user_employee->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user'=> $user_employee,
+            'token' => $token
+        ];
 
 
-        return response($employee, 201);
+        return response($response, 201);
     }
 
     /**
@@ -108,11 +108,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = Employee::find($id);
-        if (is_null($employee)){
-            return response()->json(['message'=>'Employee not found',404] );
-        }
-        return response()->json($employee = Employee::find($id), 200);
+        //
     }
 
     /**
@@ -124,48 +120,55 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $tenantId = Auth::user()->tenant_id;
 
-        $employee = Employee::find($id);
-        if (is_null($employee)){
+        $user_employee = User::find($id);
+        if (is_null($user_employee)){
             return response()->json(['message'=>'Employee not found',404] );
         }
         // dd($employee);
         $fields = $request->validate([
             
             'name'=>'required|string',
-            'email'=>'required|string',
-            
-            'nif'=>'required|string',
-            'niss'=>'required|string',
-            'emer_contact'=>'required|string',
-            'bi_cc'=>'required|string',
-            'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
-           
-            'role'=>'string',     
-            'image_path'=>'string',     
-            'details'=>'string',     
+            'email'=>'string',
+            'password'=>'required|string|confirmed',
+
+            'nif'=>'string',
+            'iban'=>'string',
+            'details'=>'string',
+            'niss'=>'string',
+            'emer_contact'=>'string',
+            'bi_cc'=>'string',
+            'role'=>'string',
+            'image_path'=>'string', 
         ]);
 
+        $fields['nif'] = $request['nif'];
+        $fields['iban'] = $request['iban'];
+        $fields['details'] = $request['details'];
+        $fields['niss'] = $request['niss'];  
+        $fields['emer_contact'] = $request['emer_contact'];
+        $fields['bi_cc'] = $request['bi_cc'];
+        $fields['role'] = $request['role'];
+        $fields['image_path'] = $request['image_path'];
         
         $fields['schedule_id'] = $request['schedule_id'];
         $fields['department_id'] = $request['department_id'];
-        $fields['iban'] = $request['iban'];
-        $fields['details'] = $request['details'];
-        $fields['role'] = $request['role'];
-        $fields['image_path'] = $request['image_path'];
+        $fields['company_id'] = $request['company_id'];
+      
 
-        $employee->update($fields);
+        $user_employee->update($fields);
 
         if ($fields['image_path'] != null)
         {
-            $image_update = Image::where('employee_id',$id)->first();
+            $image_update = Image::where('user_id',$id)->first();
             // dd(empty($image_update));
             if (empty($image_update)){
                 $image_update = Image::create([
                     'tenant_id'=>$tenantId,
                     'image_path'=>$request['image_path'],
-                    'employee_id'=>$employee['id'],
+                    'user_id'=>$user_employee['id'],
                 ]);
             } else{
                 $image_update = Image::where('employee_id',$id)->update([
@@ -176,7 +179,7 @@ class EmployeeController extends Controller
         }
 
 
-        return response($employee, 200);
+        return response($user_employee, 200);
     }
 
     /**
@@ -187,11 +190,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        $employee = Employee::find($id);
-        if (is_null($employee)){
-            return response()->json(['message'=>'Employee not found',404] );
-        }
-        $employee->delete();
-        return response($employee, 200);
+        //
     }
+
+    
 }

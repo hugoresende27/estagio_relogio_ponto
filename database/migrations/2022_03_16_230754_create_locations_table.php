@@ -31,6 +31,11 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        Schema::table('companies', function (Blueprint $table) {
+            $table->unsignedBigInteger('location_id')->nullable()->index();
+            $table->foreign('location_id')->references('id')->on('companies')->onDelete('set null');
+        });
     }
 
     /**

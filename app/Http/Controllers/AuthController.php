@@ -39,8 +39,9 @@ class AuthController extends Controller
             'password'=>bcrypt($fields['password']),
           
 
-            //REQUEST
-            'role'=>$request['role'],  
+            //REQUEST NON REQUIRED
+            // 'role'=>$request['role'],  
+            'role'=>'TENANT-ADMIN',         //HARD CODED TENANT ADMIN  
             'nif'=>$request['nif'],                    
             'emer_contact'=>$request['emer_contact'],  
             'bi_cc'=>$request['bi_cc'],                

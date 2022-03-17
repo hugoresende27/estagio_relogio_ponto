@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tenant;
 use App\Models\Company;
+use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -106,4 +107,16 @@ class DepartmentController extends Controller
         $department->delete();
         return response($department, 200);
     }
+
+    public function showEmployees($id)
+    {
+        $employees = Employee::where('department_id',$id)->get();
+        // dd($employees);
+        if (is_null($employees)){
+            return response()->json(['message'=>'No employees',404] );
+        }
+        return response()->json($employees, 200);
+    }
+
+    
 }

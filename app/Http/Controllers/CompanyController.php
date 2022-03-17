@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Employee;
+use App\Models\Location;
+use App\Models\Department;
 use App\Scopes\TenantScope;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +26,8 @@ class CompanyController extends Controller
         // dd(session());
         return Company::all();
     }
+
+
 
  
 
@@ -47,7 +52,10 @@ class CompanyController extends Controller
         $company = Company::create([
             'name'=>$fields['name'],
             'email'=>$fields['email'],
-            'tenant_id'=>$tenantId
+            'tenant_id'=>$tenantId,
+
+            ////NON REQUIRED FIELDS
+            'location_id'=>$request['location_id'],
         ]);
 
         //ATTACH TO PIVOT TABLE COMPANY_TENANT
@@ -89,8 +97,13 @@ class CompanyController extends Controller
             
             'name'=>'string|required',
             'email'=>'string|required',
+            'location_id'=>'required',
         ]);
         
+        
+        $fields['location_id'] = $request['location_id'];
+       
+       
 
         $company->update($fields);
         return response($company, 200);
@@ -110,6 +123,26 @@ class CompanyController extends Controller
         }
         $company->delete();
         return response($company, 200);
+    }
+
+    public function showEmployees($id)
+    {
+        $employees = Employee::where('company_id',$id)->get();
+        // dd($employees);
+        if (is_null($employees)){
+            return response()->json(['message'=>'No employees',404] );
+        }
+        return response()->json($employees, 200);
+    }
+
+    public function showDepartments($id)
+    {
+        $department = Department::where('company_id',$id)->get();
+        // dd($employees);
+        if (is_null($department)){
+            return response()->json(['message'=>'No departments',404] );
+        }
+        return response()->json($department, 200);
     }
 
   
