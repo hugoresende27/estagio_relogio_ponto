@@ -48,7 +48,7 @@ class EmployeeController extends Controller
             'emer_contact'=>'required|string',
             'bi_cc'=>'required|string',
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
-            'department_id'=>'required'     //REQUIRED ATM, CAN BE CHANGED
+            
          
             
         ]);
@@ -65,7 +65,7 @@ class EmployeeController extends Controller
             'tenant_id'=>$tenantId,
             'company_id'=>$request['company_id'],
             'department_id'=>$request['department_id'],
-
+            'schedule_id'=>$request['schedule_id'],
             'start_date'=>$request['start_date'],
             
             
@@ -113,11 +113,14 @@ class EmployeeController extends Controller
             'emer_contact'=>'required|string',
             'bi_cc'=>'required|string',
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
-            'department_id'=>'required' 
         ]);
         
+        $fields['schedule_id'] = $request['schedule_id'];
+        $fields['department_id'] = $request['department_id'];
 
         $employee->update($fields);
+
+
         return response($employee, 200);
     }
 

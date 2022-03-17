@@ -33,6 +33,11 @@ return new class extends Migration
 
 
         });
+
+        Schema::table('employees', function (Blueprint $table) {
+            $table->unsignedBigInteger('schedule_id')->nullable()->index();
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('set null');
+        });
     }
 
     /**

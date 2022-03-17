@@ -44,11 +44,10 @@ class AuthController extends Controller
             'bi_cc'=>$request['bi_cc'],                
             'company_id'=>$request['company_id'],
             'department_id'=>$request['department_id'],
+            'schedule_id'=>$request['schedule_id'],
 
             'tenant_id'=>$tenant['id'],
-            
-           
-            
+       
             
         ]);
 

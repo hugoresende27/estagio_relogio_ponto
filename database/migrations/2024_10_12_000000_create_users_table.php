@@ -36,6 +36,9 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nullable()->index();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
 
+            $table->unsignedBigInteger('schedule_id')->nullable()->index();
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('set null');
+
 
         });
     }
