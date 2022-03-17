@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return User::all();
     }
 
     /**
@@ -190,7 +190,19 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if (is_null($user)){
+            return response()->json(['message'=>'User not found',404] );
+        }
+        // dd(Auth::user()->id);
+        if (Auth::user()->id != $id){
+            $user->delete();
+            return response($user, 200);
+        }
+        else {
+            return response()->json(['message'=>'Cannot delete yourself',666] );
+        }
+        
     }
 
     
