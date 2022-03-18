@@ -17,6 +17,8 @@ return new class extends Migration
             //
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
+
+            $table->softDeletes();
         });
     }
 

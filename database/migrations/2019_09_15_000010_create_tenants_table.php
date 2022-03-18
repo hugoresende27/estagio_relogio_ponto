@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('name');
             $table->timestamps();
             $table->json('data')->nullable();
+            $table->softDeletes();
         });
     }
 

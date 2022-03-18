@@ -24,7 +24,7 @@ class CompanyController extends Controller
     public function index()
     {
       
-        $companies = Company::all();
+        $companies = Company::orderBy('created_at','DESC')->paginate(10);
 
         return response()->json($companies, 200);
     }
@@ -45,6 +45,7 @@ class CompanyController extends Controller
             
             'name'=>'required|string|unique:companies,name',
             'email'=>'required|string',
+            'nif'=>'required|string',
             
         ]);
         
@@ -54,6 +55,7 @@ class CompanyController extends Controller
         $company = Company::create([
             'name'=>$fields['name'],
             'email'=>$fields['email'],
+            'nif'=>$fields['nif'],
             'tenant_id'=>$tenantId,
 
             ////NON REQUIRED FIELDS
@@ -99,6 +101,7 @@ class CompanyController extends Controller
             
             'name'=>'string|required',
             'email'=>'string|required',
+            'nif'=>'string|required',
             'location_id'=>'required',
         ]);
         

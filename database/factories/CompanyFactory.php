@@ -21,6 +21,7 @@ class CompanyFactory extends Factory
             //
             'name' => $this->faker->company(),
             'email' => $this->faker->unique()->safeEmail(),
+            'nif'=>rand(111111111,999999999),
             'tenant_id'=>1
         ];
     }

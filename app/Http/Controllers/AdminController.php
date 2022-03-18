@@ -18,9 +18,9 @@ class AdminController extends Controller
     public function index()
     {
 
-        $x = User::where('id',3)->first();
-        // dd($x);
-        $users =  User::all();
+        // $x = User::where('id',3)->first();
+        // // dd($x);
+        $users =  User::orderBy('created_at','DESC')->paginate(10);
 
         return response()->json($users, 200);
 
@@ -104,7 +104,7 @@ class AdminController extends Controller
         ];
 
 
-        return response($response, 201);
+        return response()->json($response, 201);
     }
 
     /**
@@ -136,7 +136,7 @@ class AdminController extends Controller
 
         $user_employee = User::find($id);
         if (is_null($user_employee)){
-            return response()->json(['message'=>'Employee not found',404] );
+            return response()->json(['message'=>'Employee-User not found',404] );
         }
         // dd($employee);
         $fields = $request->validate([
@@ -190,7 +190,7 @@ class AdminController extends Controller
         }
 
 
-        return response($user_employee, 200);
+        return response()->json($user_employee, 200);
     }
 
     /**

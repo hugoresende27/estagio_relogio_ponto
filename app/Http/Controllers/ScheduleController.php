@@ -15,7 +15,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::all();
+        $schedules = Schedule::orderBy('created_at','DESC')->paginate(10);
 
         return response()->json($schedules, 200);
     }
@@ -61,7 +61,7 @@ class ScheduleController extends Controller
 
         ]);
         
-        return response($schedules, 201);
+        return response()->json($schedules, 201);
     }
 
     /**
@@ -106,7 +106,7 @@ class ScheduleController extends Controller
         
 
         $schedule->update($fields);
-        return response($schedule, 200);
+        return response()->json($schedule, 200);
     }
 
     /**
@@ -122,6 +122,6 @@ class ScheduleController extends Controller
             return response()->json(['message'=>'Location not found',404] );
         }
         $schedule->delete();
-        return response($schedule, 200);
+        return response()->json($schedule, 200);
     }
 }

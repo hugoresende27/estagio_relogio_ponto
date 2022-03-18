@@ -26,6 +26,8 @@ return new class extends Migration
             $table->timestamp ('clock_out')->nullable();
 
             $table->nullableTimestamps();
+
+            $table->softDeletes();
             
         });
     }

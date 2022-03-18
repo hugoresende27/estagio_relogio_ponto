@@ -22,7 +22,7 @@ class EmployeeController extends Controller
     {
         
         
-        $employees = Employee::all();
+        $employees = Employee::orderBy('created_at','DESC')->paginate(10);
 
         return response()->json($employees, 200);
 
@@ -97,7 +97,7 @@ class EmployeeController extends Controller
         $employee->save();
 
 
-        return response($employee, 201);
+        return response()->json($employee, 201);
     }
 
     /**
@@ -176,7 +176,7 @@ class EmployeeController extends Controller
         }
 
 
-        return response($employee, 200);
+        return response()->json($employee, 200);
     }
 
     /**
@@ -192,6 +192,6 @@ class EmployeeController extends Controller
             return response()->json(['message'=>'Employee not found',404] );
         }
         $employee->delete();
-        return response($employee, 200);
+        return response()->json($employee, 200);
     }
 }

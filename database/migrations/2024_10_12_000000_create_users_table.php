@@ -39,7 +39,8 @@ return new class extends Migration
             $table->unsignedBigInteger('schedule_id')->nullable()->index();
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('set null');
 
-
+            $table->softDeletes();
+            
         });
     }
 

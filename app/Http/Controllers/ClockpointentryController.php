@@ -15,7 +15,7 @@ class ClockpointentryController extends Controller
      */
     public function index()
     {
-        $clockpointentrys =  Clockpointentry::all();
+        $clockpointentrys =  Clockpointentry::orderBy('id')->paginate(10);
 
         return response()->json($clockpointentrys, 200);
     }
@@ -88,6 +88,6 @@ class ClockpointentryController extends Controller
             return response()->json(['message'=>'Clockpoint not found',404] );
         }
         $clockpointentrys->delete();
-        return response($clockpointentrys, 200);
+        return response()->json($clockpointentrys, 200);
     }
 }

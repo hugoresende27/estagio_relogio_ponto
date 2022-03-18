@@ -40,6 +40,8 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nullable()->index();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
 
+            $table->softDeletes();
+
 
         });
     }

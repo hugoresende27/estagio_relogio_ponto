@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt('1111'), // password
             'remember_token' => Str::random(10),
-            'role'=> 'func',
+            'role'=> 'USER',
             'nif'=>rand(111111111,999999999),
             'emer_contact'=>rand(91111111,96222222),
             'bi_cc'=>rand(111111,999999),

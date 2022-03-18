@@ -22,6 +22,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
+            $table->softDeletes();
             
         });
     }

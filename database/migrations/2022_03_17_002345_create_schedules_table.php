@@ -30,6 +30,8 @@ return new class extends Migration
             $table->time('shift_end');
             $table->time('shift_total');
             $table->string('shift_type')->nullable();
+
+            $table->softDeletes();
             
 
 

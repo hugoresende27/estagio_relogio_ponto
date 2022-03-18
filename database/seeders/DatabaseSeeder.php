@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Tenant;
 use App\Models\Company;
+use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Support\Str;
+use App\Models\Clockpointentry;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -18,16 +20,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\Tenant::factory(2)->create();
+        \App\Models\Tenant::factory(2)->create();
          
          
-        //  \App\Models\Company::factory(1)->create();
-        //  \App\Models\Department::factory(1)->create();
+         \App\Models\Company::factory(1)->create();
+         \App\Models\Department::factory(1)->create();
 
-        //  \App\Models\User::factory(5)->create();
+         \App\Models\User::factory(5)->create();
+         \App\Models\Employee::factory(50)->create();
+         \App\Models\Clockpointentry::factory(50)->create();
 
         
-        
+        /*
         for ($i = 1; $i<3;$i++)
         {
             \DB::table('tenants')->insert([
@@ -39,7 +43,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Administrador',
         //     'email' => 'admin@admin',
         //     'role' => 'admin',
-        //     'password' => bcrypt('admin'),
+        //     'password' => ('admin'),
         // ]);
 
         \DB::table('users')->insert([
@@ -65,6 +69,7 @@ class DatabaseSeeder extends Seeder
             \DB::table('companies')->insert([
                 'name' => 'Empresa'.$i.'TEN1',
                 'email' => 'e@e'.$i.'TEN1',
+                'nif'=>(rand(111111111,999999999)),
                 'tenant_id'=> $i,
             ]);
 
@@ -91,6 +96,7 @@ class DatabaseSeeder extends Seeder
             \DB::table('companies')->insert([
                 'name' => 'Empresa'.$i.'TEN2',
                 'email' => 'e@e'.$i.'TEN2',
+                'nif'=>(rand(111111111,999999999)),
                 'tenant_id'=> 2,
             ]);
 
@@ -114,16 +120,16 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i<2;$i++)
         {
             \DB::table('employees')->insert([
-                'name' => bcrypt('ze'.$i),
-                'email' => bcrypt('ze'.$i),
+                'name' => ('ze'.$i),
+                'email' => ('ze'.$i),
          
-                'role'=> bcrypt('dev'),
-                'nif'=>bcrypt(rand(111111111,999999999)),
-                'niss'=>bcrypt(rand(111111111,999999999)),
-                'iban'=>bcrypt(rand(111111111,999999999)),
-                'details'=>bcrypt('junior dev'),
-                'emer_contact'=>bcrypt(rand(91111111,96222222)),
-                'bi_cc'=>bcrypt(rand(111111,999999)),
+                'role'=> ('dev'),
+                'nif'=>(rand(111111111,999999999)),
+                'niss'=>(rand(111111111,999999999)),
+                'iban'=>(rand(111111111,999999999)),
+                'details'=>('junior dev'),
+                'emer_contact'=>(rand(91111111,96222222)),
+                'bi_cc'=>(rand(111111,999999)),
                 'company_id'=> 1,
                 'department_id'=> 1,
                 // 'tenant_id'=>Tenant::factory()
@@ -131,16 +137,16 @@ class DatabaseSeeder extends Seeder
                 'start_date'=>now()
             ]);
             \DB::table('employees')->insert([
-                'name' => bcrypt('maria'.$i),
-                'email' => bcrypt('maria'.$i),
+                'name' => ('maria'.$i),
+                'email' => ('maria'.$i),
          
-                'role'=> bcrypt('limpeza'),
-                'nif'=>bcrypt(rand(111111111,999999999)),
-                'niss'=>bcrypt(rand(111111111,999999999)),
-                'iban'=>bcrypt(rand(111111111,999999999)),
-                'details'=>bcrypt('casada'),
-                'emer_contact'=>bcrypt(rand(91111111,96222222)),
-                'bi_cc'=>bcrypt(rand(111111,999999)),
+                'role'=> ('limpeza'),
+                'nif'=>(rand(111111111,999999999)),
+                'niss'=>(rand(111111111,999999999)),
+                'iban'=>(rand(111111111,999999999)),
+                'details'=>('casada'),
+                'emer_contact'=>(rand(91111111,96222222)),
+                'bi_cc'=>(rand(111111,999999)),
                 'company_id'=> 2,
                 'department_id'=> 2,
                 // 'tenant_id'=>Tenant::factory()
@@ -171,8 +177,7 @@ class DatabaseSeeder extends Seeder
                 'city'=>'Kiev',
                 'street'=>'Flower street, 2'.$i,
                 'zip_code'=>'5556-123',
-                'company_id'=>$i,
-                'department_id'=>$i
+               
             ]);
           
             \DB::table('schedules')->insert([
@@ -185,6 +190,6 @@ class DatabaseSeeder extends Seeder
                 'shift_type'=>'day'.$i,
             ]);
         }
-      
+      */
     }
 }

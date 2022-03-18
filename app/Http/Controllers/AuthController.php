@@ -75,7 +75,7 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        return response($response, 201);
+        return response()->json($response, 201);
     }
 
     public function login(Request $request)
@@ -106,7 +106,7 @@ class AuthController extends Controller
         ];
         
         // dd(session()->tenant_id);
-        return response($response, 200);
+        return response()->json($response, 200);
     }
 
     public function logout(Request $request)
