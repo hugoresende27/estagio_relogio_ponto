@@ -116,4 +116,11 @@ class AuthController extends Controller
             'message' => 'Logged out'
         ];
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    public function index_web()
+    {
+        return view ('auth.login');
+    }
 }

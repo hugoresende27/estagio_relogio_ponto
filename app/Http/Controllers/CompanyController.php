@@ -45,7 +45,7 @@ class CompanyController extends Controller
             
             'name'=>'required|string|unique:companies,name',
             'email'=>'required|string',
-            'nif'=>'required|string',
+            'nif'=>'required|string|unique:companies,nif',
             
         ]);
         

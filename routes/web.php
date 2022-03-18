@@ -15,15 +15,13 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', [AuthController::class, 'index_web']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\AuthController::class, 'login']);
 
-Route::post('login', [AuthController::class, 'login']);
+// Route::get('login', [AuthController::class, 'index_web']);
 
 Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
 Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
