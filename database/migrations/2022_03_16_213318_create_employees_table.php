@@ -17,18 +17,18 @@ return new class extends Migration
             $table->id();
            
 
-            $table->string('name');
-            $table->string('email')->nullable();
+            $table->text('name');
+            $table->text('email')->nullable();
      
             $table->timestamps();
 
-            $table->string('role')->nullable();
-            $table->string('nif')->nullable();
-            $table->string('niss')->nullable();
-            $table->string('iban')->nullable();
-            $table->string('details')->nullable();
-            $table->string('emer_contact')->nullable();
-            $table->string('bi_cc')->nullable();
+            $table->text('role')->nullable();
+            $table->text('nif')->nullable();
+            $table->text('niss')->nullable();
+            $table->text('iban')->nullable();
+            $table->text('details')->nullable();
+            $table->text('emer_contact')->nullable();
+            $table->text('bi_cc')->nullable();
             $table->date('start_date')->nullable();
 
             $table->unsignedBigInteger('tenant_id')->nullable()->index();

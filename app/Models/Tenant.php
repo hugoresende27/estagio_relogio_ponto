@@ -19,6 +19,14 @@ class Tenant extends Model
         return $this->belongsToMany(Company::class);
     }
 
+    protected $casts = [
+       
+
+        //ENCRYPTED////////////
+        'name' => 'encrypted',
+     
+    ];
+
      
 }
 

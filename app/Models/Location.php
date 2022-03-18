@@ -12,4 +12,15 @@ class Location extends Model
     use Tenantable;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+       
+
+        //ENCRYPTED////////////
+        'country' => 'encrypted',
+        'city' => 'encrypted',
+        'street' => 'encrypted',
+        'zip_code' => 'encrypted',
+ 
+    ];
 }

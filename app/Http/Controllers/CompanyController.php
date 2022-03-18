@@ -23,8 +23,10 @@ class CompanyController extends Controller
 
     public function index()
     {
-        // dd(session());
-        return Company::all();
+      
+        $companies = Company::all();
+
+        return response()->json($companies, 200);
     }
 
 
@@ -61,7 +63,7 @@ class CompanyController extends Controller
         //ATTACH TO PIVOT TABLE COMPANY_TENANT
         $company->tenant()->attach($tenantId);
         
-        return response($company, 201);
+        return response()->json($company, 201);
     }
 
     /**
@@ -106,7 +108,7 @@ class CompanyController extends Controller
        
 
         $company->update($fields);
-        return response($company, 200);
+        return response()->json($company, 200);
     }
 
     /**
@@ -122,7 +124,7 @@ class CompanyController extends Controller
             return response()->json(['message'=>'Company not found',404] );
         }
         $company->delete();
-        return response($company, 200);
+        return response()->json($company, 200);
     }
 
     public function showEmployees($id)

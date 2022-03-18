@@ -12,4 +12,23 @@ class Employee extends Model
     use Tenantable;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+       
+
+        //ENCRYPTED////////////
+        'name' => 'encrypted',
+        'email' => 'encrypted',
+        'role' => 'encrypted',
+        'nif' => 'encrypted',
+        'niss' => 'encrypted',
+        'iban' => 'encrypted',
+        'details' => 'encrypted',
+        'emer_contact' => 'encrypted',
+        'bi_cc' => 'encrypted',
+     
+      
+       
+        
+    ];
 }

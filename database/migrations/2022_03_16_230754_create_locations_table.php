@@ -18,16 +18,16 @@ return new class extends Migration
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
 
-            $table->string('country');
-            $table->string('city');
-            $table->string('street');
-            $table->string('zip_code');
+            $table->text('country');
+            $table->text('city');
+            $table->text('street');
+            $table->text('zip_code');
 
-            $table->unsignedBigInteger('company_id')->nullable()->index();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');
+            // $table->unsignedBigInteger('company_id')->nullable()->index();
+            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');
 
-            $table->unsignedBigInteger('department_id')->nullable()->index();
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
+            // $table->unsignedBigInteger('department_id')->nullable()->index();
+            // $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
 
             $table->timestamps();
         });

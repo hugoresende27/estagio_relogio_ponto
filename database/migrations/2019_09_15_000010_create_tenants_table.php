@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
             // $table->bigIncrements('id')->unique();
-            $table->string('name');
+            $table->text('name');
             $table->timestamps();
             $table->json('data')->nullable();
         });

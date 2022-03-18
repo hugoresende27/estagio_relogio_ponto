@@ -35,7 +35,7 @@ class LocationController extends Controller
             'city'=>'required|string',
             'street'=>'required|string',
             'zip_code'=>'required|string',
-            'company_id'=>'required', 
+           
             
         ]);
         
@@ -48,12 +48,11 @@ class LocationController extends Controller
             'city'=>$fields['city'], 
             'street'=>$fields['street'], 
             'zip_code'=>$fields['zip_code'], 
-            'company_id'=>$fields['company_id'], 
-            'department_id'=>$request['department_id'], 
+          
 
         ]);
         
-        return response($location, 201);
+        return response()->json($location, 201);
     }
 
     /**
@@ -91,13 +90,13 @@ class LocationController extends Controller
             'city'=>'required|string',
             'street'=>'required|string',
             'zip_code'=>'required|string',
-            'company_id'=>'required', 
+            
          
         ]);
         
 
         $location->update($fields);
-        return response($location, 200);
+        return response()->json($location, 200);
     }
 
     /**
@@ -113,6 +112,6 @@ class LocationController extends Controller
             return response()->json(['message'=>'Location not found',404] );
         }
         $location->delete();
-        return response($location, 200);
+        return response()->json($location, 200);
     }
 }

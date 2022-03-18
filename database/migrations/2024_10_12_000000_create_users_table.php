@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->text('name');
+            $table->text('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->string('role')->nullable();
-            $table->string('nif')->nullable();
-            $table->string('emer_contact')->nullable();
-            $table->string('bi_cc')->nullable();
+            $table->text('role')->nullable();
+            $table->text('nif')->nullable();
+            $table->text('emer_contact')->nullable();
+            $table->text('bi_cc')->nullable();
 
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');

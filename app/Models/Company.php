@@ -18,4 +18,13 @@ class Company extends Model
     {
         return $this->belongsToMany(Tenant::class);
     }
+
+    protected $casts = [
+       
+
+        //ENCRYPTED////////////
+        'name' => 'encrypted',
+        'email' => 'encrypted',
+ 
+    ];
 }

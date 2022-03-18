@@ -12,4 +12,13 @@ class Department extends Model
     use Tenantable;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+       
+
+        //ENCRYPTED////////////
+        'name' => 'encrypted',
+     
+ 
+    ];
 }

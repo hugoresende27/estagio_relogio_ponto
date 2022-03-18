@@ -114,16 +114,16 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i<2;$i++)
         {
             \DB::table('employees')->insert([
-                'name' => 'ze'.$i,
-                'email' => 'ze'.$i,
+                'name' => bcrypt('ze'.$i),
+                'email' => bcrypt('ze'.$i),
          
-                'role'=> 'dev',
-                'nif'=>rand(111111111,999999999),
-                'niss'=>rand(111111111,999999999),
-                'iban'=>rand(111111111,999999999),
-                'details'=>'junior dev',
-                'emer_contact'=>rand(91111111,96222222),
-                'bi_cc'=>rand(111111,999999),
+                'role'=> bcrypt('dev'),
+                'nif'=>bcrypt(rand(111111111,999999999)),
+                'niss'=>bcrypt(rand(111111111,999999999)),
+                'iban'=>bcrypt(rand(111111111,999999999)),
+                'details'=>bcrypt('junior dev'),
+                'emer_contact'=>bcrypt(rand(91111111,96222222)),
+                'bi_cc'=>bcrypt(rand(111111,999999)),
                 'company_id'=> 1,
                 'department_id'=> 1,
                 // 'tenant_id'=>Tenant::factory()
@@ -131,16 +131,16 @@ class DatabaseSeeder extends Seeder
                 'start_date'=>now()
             ]);
             \DB::table('employees')->insert([
-                'name' => 'maria'.$i*3,
-                'email' => 'maria'.$i*3,
-     
-                'role'=> 'rookie',
-                'nif'=>rand(111111111,999999999),
-                'niss'=>rand(111111111,999999999),
-                'iban'=>rand(111111111,999999999),
-                'details'=>'trainee',
-                'emer_contact'=>rand(91111111,96222222),
-                'bi_cc'=>rand(111111,999999),
+                'name' => bcrypt('maria'.$i),
+                'email' => bcrypt('maria'.$i),
+         
+                'role'=> bcrypt('limpeza'),
+                'nif'=>bcrypt(rand(111111111,999999999)),
+                'niss'=>bcrypt(rand(111111111,999999999)),
+                'iban'=>bcrypt(rand(111111111,999999999)),
+                'details'=>bcrypt('casada'),
+                'emer_contact'=>bcrypt(rand(91111111,96222222)),
+                'bi_cc'=>bcrypt(rand(111111,999999)),
                 'company_id'=> 2,
                 'department_id'=> 2,
                 // 'tenant_id'=>Tenant::factory()
