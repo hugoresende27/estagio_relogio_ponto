@@ -48,7 +48,10 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     
 
     Route::resource('/employees', EmployeeController::class);
-   
+    Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
+    Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
+
+    Route::post('employeesimport/', [EmployeeController::class, 'import']);
 
     Route::resource('/locations', LocationController::class);
 
@@ -57,6 +60,10 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::resource('/clockpointentry', ClockpointentryController::class);
 
     Route::resource('/admin', AdminController::class);
+
+   
+
+
 
 });
 

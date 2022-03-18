@@ -6,9 +6,13 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\Tenant;
 use App\Models\Employee;
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
+use App\Exports\EmployeeExport;
+use App\Imports\EmployeeImport;
 use App\Models\Traits\Tenantable;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
 {
@@ -194,4 +198,27 @@ class EmployeeController extends Controller
         $employee->delete();
         return response()->json($employee, 200);
     }
+
+    public function export_xlsx() 
+    {
+        return Excel::download(new EmployeeExport, 'employees.xlsx');
+    }
+    public function export_csv() 
+    {
+        return Excel::download(new EmployeeExport, 'employees.csv');
+    }
+
+    public function import(Request $request) 
+    {
+        $file = $fields = $request->validate([
+     
+            'file'=>'required|mimes:xlsx,csv'
+        ]);
+
+        Excel::import(new EmployeeImport, request()->file('file'));
+        
+        return response()->json('file imported');
+    }
+
+    
 }

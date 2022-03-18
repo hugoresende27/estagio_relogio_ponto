@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('login', [AuthController::class, 'login']);
+
+Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
+Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
