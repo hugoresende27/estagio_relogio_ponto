@@ -17,7 +17,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users =  User::all();
+
+        return response()->json($users, 200);
     }
 
     /**
@@ -108,7 +110,11 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = User::find($id);
+        if (is_null($users)){
+            return response()->json(['message'=>'User not found',404] );
+        }
+        return response()->json($users = User::find($id), 200);
     }
 
     /**

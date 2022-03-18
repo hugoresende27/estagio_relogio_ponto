@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Company;
+
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ClockpointentryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,8 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::resource('/locations', LocationController::class);
 
     Route::resource('/schedules', ScheduleController::class);
+
+    Route::resource('/clockpointentry', ClockpointentryController::class);
 
     Route::resource('/admin', AdminController::class);
 

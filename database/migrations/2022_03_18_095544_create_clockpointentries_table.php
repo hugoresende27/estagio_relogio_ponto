@@ -22,8 +22,10 @@ return new class extends Migration
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
 
             // $table->timestamps('clock_in','clock_out');
-            $table->datetime ('clock_in');
-            $table->datetime ('clock_out');
+            $table->timestamp ('clock_in')->nullable();
+            $table->timestamp ('clock_out')->nullable();
+
+            $table->nullableTimestamps();
             
         });
     }

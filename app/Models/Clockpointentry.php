@@ -11,5 +11,7 @@ class Clockpointentry extends Model
     use HasFactory;
     use Tenantable;
 
+    public $timestamps = false;
+
     protected $guarded = ['id'];
 }

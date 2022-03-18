@@ -39,9 +39,6 @@ class DepartmentController extends Controller
         $tenantId = Auth::user()->tenant_id;
 
   
-    //    $tenant_companies = Company::all();
-    
-    //    dd($tenant_companies);
        
         $department = Department::create([
             'name'=>$fields['name'],
@@ -49,7 +46,7 @@ class DepartmentController extends Controller
             'tenant_id'=>$tenantId
         ]);
         
-        return response($department, 201);
+        return response()->json($department, 201);
     }
 
     /**
@@ -89,7 +86,7 @@ class DepartmentController extends Controller
         
 
         $department->update($fields);
-        return response($department, 200);
+        return response()->json($department, 200);
     }
 
     /**
@@ -105,14 +102,14 @@ class DepartmentController extends Controller
             return response()->json(['message'=>'Department not found',404] );
         }
         $department->delete();
-        return response($department, 200);
+        return response()->json($department, 200);
     }
 
     public function showEmployees($id)
     {
         $employees = Employee::where('department_id',$id)->get();
         // dd($employees);
-        if (is_null($employees)){
+        if (empty($employees)){
             return response()->json(['message'=>'No employees',404] );
         }
         return response()->json($employees, 200);
