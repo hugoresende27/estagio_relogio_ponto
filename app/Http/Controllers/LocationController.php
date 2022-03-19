@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Department;
+use Illuminate\Http\Request;
+use App\Exports\LocationExport;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LocationController extends Controller
 {
@@ -117,4 +119,26 @@ class LocationController extends Controller
         $location->delete();
         return response()->json($location, 200);
     }
+
+    public function export_xlsx() 
+    {
+        return Excel::download(new LocationExport, 'locations.xlsx');
+    }
+    public function export_csv() 
+    {
+        return Excel::download(new LocationExport, 'locations.csv');
+    }
+
+    public function import(Request $request) 
+    {
+        $file = $fields = $request->validate([
+     
+            'file'=>'required|mimes:xlsx,csv'
+        ]);
+
+        Excel::import(new LocationImport, request()->file('file'));
+        
+        return response()->json('file imported');
+    }
+    
 }

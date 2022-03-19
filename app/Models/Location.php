@@ -23,6 +23,7 @@ class Location extends Model
         'country' => 'encrypted',
         'city' => 'encrypted',
         'street' => 'encrypted',
+        'door_number' => 'encrypted',
         'zip_code' => 'encrypted',
  
     ];

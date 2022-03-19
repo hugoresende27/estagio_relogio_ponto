@@ -46,7 +46,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('/companies/{id}/showdepartments',[CompanyController::class, 'showDepartments']);
     Route::get('companiesexportexcel/', [CompanyController::class, 'export_xlsx']);
     Route::get('companiesexportcsv/', [CompanyController::class, 'export_csv']);
-    Route::post('companiesimport/', [EmployeeController::class, 'import']);
+    Route::post('companiesimport/', [CompanyController::class, 'import']);
 
 /////////////////////DEPARMENT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/departments', DepartmentController::class);
@@ -62,7 +62,8 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 /////////////////////LOCATIONS ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/locations', LocationController::class);
-
+    Route::get('locationsexportexcel/', [LocationController::class, 'export_xlsx']);
+    Route::get('locationsexportcsv/', [LocationController::class, 'export_csv']);
 
 /////////////////////SCHEDULES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/schedules', ScheduleController::class);
