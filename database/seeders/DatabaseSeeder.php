@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Tenant;
 use App\Models\Company;
 use App\Models\Employee;
+use App\Models\Schedule;
 use App\Models\Department;
 use Illuminate\Support\Str;
 use App\Models\Clockpointentry;
@@ -24,11 +25,12 @@ class DatabaseSeeder extends Seeder
          
          
          \App\Models\Company::factory(25)->create();
-         \App\Models\Department::factory(1)->create();
+         \App\Models\Department::factory(50)->create();
 
          \App\Models\User::factory(5)->create();
          \App\Models\Employee::factory(50)->create();
          \App\Models\Clockpointentry::factory(50)->create();
+         \App\Models\Schedule::factory(50)->create();
 
         
         /*

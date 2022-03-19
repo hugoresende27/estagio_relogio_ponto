@@ -15,18 +15,23 @@ return new class extends Migration
     {
         Schema::create('clockpointentries', function (Blueprint $table) {
             $table->id();
+
+             ///TENANT ID///////
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
 
+            ////FOREIGN IDS//////////////
             $table->unsignedBigInteger('employee_id')->nullable()->index();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
 
-            // $table->timestamps('clock_in','clock_out');
+            
+             ///DATA//////
             $table->timestamp ('clock_in')->nullable();
             $table->timestamp ('clock_out')->nullable();
 
-            $table->nullableTimestamps();
 
+             /////NO TIMESTAMPS+SOFTDELETE/////
+            $table->nullableTimestamps();
             $table->softDeletes();
             
         });

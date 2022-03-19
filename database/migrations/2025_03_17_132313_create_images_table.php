@@ -15,29 +15,33 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
+
+            ///TENANT ID///////
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
 
+            ////FOREIGN IDS//////////////
             $table->unsignedBigInteger('employee_id')->nullable()->index();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
-
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
+            ///DATA//////
             $table->text('image_path')->nullable();
-            $table->timestamps();
-            
+
+            /////TIMESTAMPS+SOFTDELETE/////
+            $table->timestamps();     
             $table->softDeletes();
 
         });
 
         Schema::table('employees', function (Blueprint $table) {
-            $table->unsignedBigInteger('image_id')->nullable()->index();
+            
             $table->foreign('image_id')->references('id')->on('images')->onDelete('set null');
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('image_id')->nullable()->index();
+           
             $table->foreign('image_id')->references('id')->on('images')->onDelete('set null');
         });
     }

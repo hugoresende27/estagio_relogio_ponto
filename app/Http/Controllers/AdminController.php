@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Image;
 
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -217,6 +220,29 @@ class AdminController extends Controller
         }
         
     }
+
+    public function export_xlsx() 
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+    public function export_csv() 
+    {
+        return Excel::download(new UsersExport, 'users.csv');
+    }
+
+    public function import(Request $request) 
+    {
+        $file = $fields = $request->validate([
+     
+            'file'=>'required|mimes:xlsx,csv'
+        ]);
+
+        Excel::import(new UsersImport, request()->file('file'));
+        
+        return response()->json('file imported');
+    }
+
+
 
     
 }

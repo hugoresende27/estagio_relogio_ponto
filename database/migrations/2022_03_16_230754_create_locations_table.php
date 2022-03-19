@@ -15,34 +15,32 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
+
+            ///TENANT ID///////
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
 
+            /////DATA /////////////
             $table->text('country');
             $table->text('city');
             $table->text('street');
             $table->text('door_number');
             $table->text('zip_code');
 
-            // $table->unsignedBigInteger('company_id')->nullable()->index();
-            // $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');
-
-            // $table->unsignedBigInteger('department_id')->nullable()->index();
-            // $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
-
+      
+            /////TIMESTAMPS+SOFTDELETE/////
             $table->timestamps();
-
             $table->softDeletes();
             
         });
 
         Schema::table('companies', function (Blueprint $table) {
-            $table->unsignedBigInteger('location_id')->nullable()->index();
+            
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
 
         Schema::table('employees', function (Blueprint $table) {
-            $table->unsignedBigInteger('location_id')->nullable()->index();
+            
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
     }

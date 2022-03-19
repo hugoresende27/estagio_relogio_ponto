@@ -6,6 +6,7 @@ use App\Models\Location;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Exports\LocationExport;
+use App\Imports\LocationImport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 

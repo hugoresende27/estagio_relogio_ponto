@@ -15,11 +15,11 @@ class CompanyImport implements ToModel
     public function model(array $row)
     {
         return new Company([
-            'name'=>$row[1],
-            'email'=>$row[2],
-            'nif'=>$row[3],
-            'tenant_id'=>$row[6],
-            'location_id'=>$row[8],
+            'tenant_id'=>$row[1],
+            'location_id'=>$row[2],
+            'name'=>$row[3],
+            'email'=>$row[4],
+            'nif'=>$row[5],
         ]);
     }
 }

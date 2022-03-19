@@ -22,7 +22,7 @@ class DepartmentFactory extends Factory
             
             'name' => $this->faker->word(),
             // 'company_id'=>Company::factory(),
-            'company_id'=>1,
+            'company_id'=>rand(1,2),
             // 'tenant_id'=>Tenant::factory()
             'tenant_id'=>1
         ];

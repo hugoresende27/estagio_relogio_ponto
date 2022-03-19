@@ -15,13 +15,20 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->timestamps();
 
+            ///TENANT ID///////
             $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
+            
+            ////FOREIGN IDS//////////////
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+
+            
+            $table->text('name');
+              
+            /////TIMESTAMPS+SOFTDELETE/////
+            $table->timestamps();    
             $table->softDeletes();
             
         });

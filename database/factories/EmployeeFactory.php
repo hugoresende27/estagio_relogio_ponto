@@ -27,7 +27,7 @@ class EmployeeFactory extends Factory
             'niss'=>rand(111111111,999999999),
             'emer_contact'=>rand(91111111,96222222),
             'bi_cc'=>rand(111111,999999),
-            'company_id'=> 1,
+            'company_id'=> rand(1,2),
             // 'department_id'=> Department::factory(),
             // 'tenant_id'=>Tenant::factory()
             'tenant_id'=>1,

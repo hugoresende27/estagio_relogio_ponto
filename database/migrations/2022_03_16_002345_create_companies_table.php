@@ -15,14 +15,21 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            // $table->bigIncrements('id')->unique();
+
+            ///TENANT ID///////
+            $table->unsignedBigInteger('tenant_id')->nullable()->index();
+            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
+
+            ////FOREIGN IDS//////////////
+            $table->unsignedBigInteger('location_id')->nullable()->index();
+            
+            ///DATA//////
             $table->text('name');
             $table->text('email');
             $table->text('nif');
-            $table->timestamps();
-
-            $table->unsignedBigInteger('tenant_id')->nullable()->index();
-            $table->foreign('tenant_id')->references('id')->on('tenants')->onDelete('set null');
+            
+            /////TIMESTAMPS+SOFTDELETE/////
+            $table->timestamps();   
             $table->softDeletes();
 
         });

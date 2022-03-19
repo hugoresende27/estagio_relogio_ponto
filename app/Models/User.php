@@ -52,13 +52,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
 
-     //ENCRYPTED////////////
-     'name' => 'encrypted',
-    //  'email' => 'encrypted',
-     'role' => 'encrypted',
-     'nif' => 'encrypted',
-     'emer_contact' => 'encrypted',
-     'bi_cc' => 'encrypted',
+     
+        //ENCRYPTED////////////
+        'name' => 'encrypted',
+        
+        'role' => 'encrypted',
+        'nif' => 'encrypted',
+       
+        'iban' => 'encrypted',
+        'details' => 'encrypted',
+        'emer_contact' => 'encrypted',
+        'bi_cc' => 'encrypted',
   
     ];
 

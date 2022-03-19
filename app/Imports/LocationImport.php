@@ -15,7 +15,12 @@ class LocationImport implements ToModel
     public function model(array $row)
     {
         return new Location([
-            //
+            'tenant_id'=>$row[1],
+            'country'=>$row[2],
+            'city'=>$row[3],
+            'street'=>$row[4],
+            'door_number'=>$row[5],
+            'zip_code'=>$row[6],
         ]);
     }
 }

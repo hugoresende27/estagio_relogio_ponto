@@ -16,38 +16,28 @@ class EmployeeImport implements ToModel
     {
         return new Employee([
             
-            'name'=>$row[1],
-            'email'=>$row[2],
-            'role'=>$row[5],
-            'nif'=>$row[6],
-            'niss'=>$row[7],
-            'iban'=>$row[8],
-            'details'=>$row[9],
-            'emer_contact'=>$row[10],
-            'bi_cc'=>$row[11],
-            'start_date'=>$row[12],
-            'tenant_id'=>$row[13],
-            'company_id'=>$row[14],
-            'department_id'=>$row[15],
-            // 'schedule_id'=>$row[18],
-            // 'image_id'=>$row[19],
-            // 'location_id'=>$row[17],
+            'tenant_id'=>$row[1],
+            'company_id'=>$row[2],
+            'department_id'=>$row[3],
+            'schedule_id'=>$row[4],
+            'location_id'=>$row[5],
+            'image_id'=>$row[6],
+            
+            'name'=>$row[7],
+            'email'=>$row[8],
+            'role'=>$row[9],
+            'nif'=>$row[10],
+            'niss'=>$row[11],
+            'iban'=>$row[12],
+            'details'=>$row[13],
+            'emer_contact'=>$row[14],
+            'bi_cc'=>$row[15],
+            'start_date'=>$row[16],
+            
+            // 'company_id'=>$row[14],
+            // 
 
-            // 'name'=>$row['name'] ?? $row['client'] ?? $row['name'] ,
-            // 'email'=>$row['email'],
-            // 'role'=>$row['role'],
-            // 'nif'=>$row['nif'],
-            // 'niss'=>$row['niss'],
-            // 'iban'=>$row['iban'],
-            // 'details'=>$row['details'],
-            // 'emer_contact'=>$row['emer_contact'],
-            // 'bi_cc'=>$row['bi_cc'],
-            // 'start_date'=>$row['start_date'],
-            // 'tenant_id'=>$row['tenant_id'],
-            // 'company_id'=>$row['company_id'],
-            // 'department_id'=>$row['department_id'],
-            // 'schedule_id'=>$row['schedule_id'],
-            // 'image_id'=>$row['image_id'],
+       
         ]);
     }
 }
