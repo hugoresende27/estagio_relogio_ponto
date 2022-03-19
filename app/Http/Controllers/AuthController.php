@@ -81,7 +81,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
       
-       // session_start();
        
         $fields = $request->validate([
             
@@ -105,7 +104,6 @@ class AuthController extends Controller
             'token' => $token
         ];
         
-        // dd(session()->tenant_id);
         return response()->json($response, 200);
     }
 
@@ -118,9 +116,5 @@ class AuthController extends Controller
     }
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    public function index_web()
-    {
-        return view ('auth.login');
-    }
+ 
 }

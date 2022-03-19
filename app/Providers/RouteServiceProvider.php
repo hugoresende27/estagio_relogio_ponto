@@ -45,6 +45,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+     ///////////////// TO DO (60) OK?? ///////////////// TOO MANY ATTEMPS 
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Backoffice\BackauthController;
@@ -22,7 +23,8 @@ use App\Http\Controllers\Backoffice\BackauthController;
 
 Auth::routes();
 
-// Route::get('/', [App\Http\Controllers\AuthController::class, 'login']);
+Route::get('backend/login', [AdminController::class,'web_home']);
+// Route::post('backend/login', [AdminController::class,'web_login'])->name('login');
 
 // Route::get('login', [AuthController::class, 'index_web']);
 

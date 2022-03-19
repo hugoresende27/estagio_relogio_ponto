@@ -242,7 +242,32 @@ class AdminController extends Controller
         return response()->json('file imported');
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
+    public function web_home()
+    {
+        $users = User::all();
+        return view ('backend.login', compact('users'));
+    }
+    // public function web_login(Request $request)
+    // {
+    //         $fields = $request->validate([
+                
+    //             'email'=>'required|string',
+    //             'password'=>'required|string',
+    //         ]);
+    
+    //         $user = User::where('email', $request['email'])->first();
+            
+    //         if (!$user ||!Hash::check($request['password'], $user->password))
+    //         {
+    //             return 'not login!';
+    //         }
+    
+            
+    //         // dd(session()->tenant_id);
+    //         return 'ok';
+    // }
 
     
 }
