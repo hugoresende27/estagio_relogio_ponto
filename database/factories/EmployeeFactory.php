@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -29,7 +30,8 @@ class EmployeeFactory extends Factory
             'company_id'=> 1,
             // 'department_id'=> Department::factory(),
             // 'tenant_id'=>Tenant::factory()
-            'tenant_id'=>1
+            'tenant_id'=>1,
+            'location_id'=>Location::factory(),
         ];
     }
 }

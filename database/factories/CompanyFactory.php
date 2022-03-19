@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Tenant;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,8 @@ class CompanyFactory extends Factory
             'name' => $this->faker->company(),
             'email' => $this->faker->unique()->safeEmail(),
             'nif'=>rand(111111111,999999999),
-            'tenant_id'=>rand(1,2)
+            'tenant_id'=>rand(1,2),
+            'location_id'=>Location::factory(),
         ];
     }
 }
