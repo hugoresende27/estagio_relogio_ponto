@@ -8,7 +8,10 @@ use App\Models\Location;
 use App\Models\Department;
 use App\Scopes\TenantScope;
 use Illuminate\Http\Request;
+use App\Exports\CompanyExport;
+use App\Imports\CompanyImport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CompanyController extends Controller
 {
@@ -47,10 +50,29 @@ class CompanyController extends Controller
             'email'=>'required|string',
             'nif'=>'required|string|unique:companies,nif',
             
+            //////////LOCATION TABLE->ADRESS OF COMPANY/////////////
+            'country'=>'required|string',
+            'city'=>'required|string',
+            'street'=>'required|string',
+            'door_number'=>'required|string',
+            'zip_code'=>'required|string',
+                            
         ]);
         
         //TENANT_ID 
         $tenantId = Auth::user()->tenant_id;
+
+        /////////////// LOCATION CREATE ////////////
+        $company_location = Location::create([
+
+        'tenant_id'=>$tenantId,          
+        'country'=>$fields['country'], 
+        'city'=>$fields['city'], 
+        'street'=>$fields['street'], 
+        'door_number'=>$fields['door_number'], 
+        'zip_code'=>$fields['zip_code'], 
+
+        ]);
        
         $company = Company::create([
             'name'=>$fields['name'],
@@ -59,7 +81,7 @@ class CompanyController extends Controller
             'tenant_id'=>$tenantId,
 
             ////NON REQUIRED FIELDS
-            'location_id'=>$request['location_id'],
+            'location_id'=>$company_location['id'],
         ]);
 
         //ATTACH TO PIVOT TABLE COMPANY_TENANT
@@ -150,5 +172,26 @@ class CompanyController extends Controller
         return response()->json($department, 200);
     }
 
+    
+    public function export_xlsx() 
+    {
+        return Excel::download(new CompanyExport, 'companies.xlsx');
+    }
+    public function export_csv() 
+    {
+        return Excel::download(new CompanyExport, 'companies.csv');
+    }
+
+    public function import(Request $request) 
+    {
+        $file = $fields = $request->validate([
+     
+            'file'=>'required|mimes:xlsx,csv'
+        ]);
+
+        Excel::import(new CompanyImport, request()->file('file'));
+        
+        return response()->json('file imported');
+    }
   
 }

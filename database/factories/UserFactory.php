@@ -33,7 +33,7 @@ class UserFactory extends Factory
             // 'company_id'=> Company::factory(),
             // 'department_id'=> Department::factory(),
             // 'tenant_id'=>Tenant::factory()
-            'tenant_id'=>1
+            'tenant_id'=>rand(1,2)
         ];
     }
 

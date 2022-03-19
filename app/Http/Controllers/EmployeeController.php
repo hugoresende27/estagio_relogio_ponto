@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\Tenant;
 use App\Models\Employee;
+use App\Models\Location;
 use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\EmployeeExport;
@@ -56,10 +57,15 @@ class EmployeeController extends Controller
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
 
             'image_path'=>'string',
-            'role'=>'string'
-            
-         
-            
+            'role'=>'string',
+
+            //////////LOCATION TABLE->ADRESS OF EMPLOYEE/////////////
+            'country'=>'required|string',
+            'city'=>'required|string',
+            'street'=>'required|string',
+            'door_number'=>'required|string',
+            'zip_code'=>'required|string',
+                       
         ]);
 
         $employee = Employee::create([
@@ -90,14 +96,27 @@ class EmployeeController extends Controller
             
         ]);
         
-           
-        $image = Image::create([
+        ///////////// IMAGE CREATE //////////////////
+        $employee_image = Image::create([
             'tenant_id'=>$tenantId,
             'image_path'=>$request['image_path'],
             'employee_id'=>$employee['id'],
         ]);
 
-        $employee->image_id = $image['id'];
+        /////////////// LOCATION CREATE ////////////
+        $employee_location = Location::create([
+
+            'tenant_id'=>$tenantId,          
+            'country'=>$fields['country'], 
+            'city'=>$fields['city'], 
+            'street'=>$fields['street'], 
+            'door_number'=>$fields['door_number'], 
+            'zip_code'=>$fields['zip_code'], 
+
+        ]);
+
+        $employee->image_id = $employee_image['id'];
+        $employee->location_id = $employee_location['id'];
         $employee->save();
 
 
@@ -148,12 +167,18 @@ class EmployeeController extends Controller
            
             'role'=>'string',     
             'image_path'=>'string',     
-            'details'=>'string',     
+            'details'=>'string',   
+        
+           
+
         ]);
 
-        
+        ////REQUEST ID'S/////////////
         $fields['schedule_id'] = $request['schedule_id'];
         $fields['department_id'] = $request['department_id'];
+        $fields['location_id'] = $request['location_id'];
+
+        ///////NON REQUIRED FIELDS ///////////////
         $fields['iban'] = $request['iban'];
         $fields['details'] = $request['details'];
         $fields['role'] = $request['role'];

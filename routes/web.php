@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Backoffice\BackauthController;
 
@@ -17,14 +18,18 @@ use App\Http\Controllers\Backoffice\BackauthController;
 */
 
 
-Route::get('/backoffice', [BackauthController::class, 'login']);
-Route::post('/backoffice/home', [BackauthController::class, 'home']);
 
-// Auth::routes();
+
+Auth::routes();
 
 // Route::get('/', [App\Http\Controllers\AuthController::class, 'login']);
 
 // Route::get('login', [AuthController::class, 'index_web']);
 
-Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
-Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
+// Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
+// Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
+
+// Route::get('companiesexportexcel/', [CompanyController::class, 'export_xlsx']);
+// Route::get('companiesexportcsv/', [CompanyController::class, 'export_csv']);
+
+

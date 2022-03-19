@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('country');
             $table->text('city');
             $table->text('street');
+            $table->text('door_number');
             $table->text('zip_code');
 
             // $table->unsignedBigInteger('company_id')->nullable()->index();
@@ -37,7 +38,12 @@ return new class extends Migration
 
         Schema::table('companies', function (Blueprint $table) {
             $table->unsignedBigInteger('location_id')->nullable()->index();
-            $table->foreign('location_id')->references('id')->on('companies')->onDelete('set null');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
+        });
+
+        Schema::table('employees', function (Blueprint $table) {
+            $table->unsignedBigInteger('location_id')->nullable()->index();
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
     }
 

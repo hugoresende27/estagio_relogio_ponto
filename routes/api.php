@@ -39,26 +39,40 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
     Route::post('logout', [AuthController::class,'logout']);
 
+
+/////////////////////COMPANY ROUTES///////////////////////////////////////////////////////////////////
     Route::resource('/companies', CompanyController::class);
     Route::post('/companies/{id}/showemployees', [CompanyController::class, 'showEmployees']);
     Route::post('/companies/{id}/showdepartments',[CompanyController::class, 'showDepartments']);
+    Route::get('companiesexportexcel/', [CompanyController::class, 'export_xlsx']);
+    Route::get('companiesexportcsv/', [CompanyController::class, 'export_csv']);
+    Route::post('companiesimport/', [EmployeeController::class, 'import']);
 
+/////////////////////DEPARMENT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/departments', DepartmentController::class);
     Route::post('/departments/{id}/showemployees', [DepartmentController::class, 'showEmployees']);
     
 
+/////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/employees', EmployeeController::class);
     Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
     Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
-
     Route::post('employeesimport/', [EmployeeController::class, 'import']);
 
+
+/////////////////////LOCATIONS ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/locations', LocationController::class);
 
+
+/////////////////////SCHEDULES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/schedules', ScheduleController::class);
 
+
+/////////////////////CLOCKPOINT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/clockpointentry', ClockpointentryController::class);
 
+
+//////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/admin', AdminController::class);
 
    

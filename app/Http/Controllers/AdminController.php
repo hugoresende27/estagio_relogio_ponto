@@ -155,6 +155,7 @@ class AdminController extends Controller
             'image_path'=>'string', 
         ]);
 
+        ///////NON REQUIRED FIELDS ///////////////
         $fields['nif'] = $request['nif'];
         $fields['iban'] = $request['iban'];
         $fields['details'] = $request['details'];
@@ -164,6 +165,7 @@ class AdminController extends Controller
         $fields['role'] = $request['role'];
         $fields['image_path'] = $request['image_path'];
         
+        ////REQUEST ID'S/////////////
         $fields['schedule_id'] = $request['schedule_id'];
         $fields['department_id'] = $request['department_id'];
         $fields['company_id'] = $request['company_id'];

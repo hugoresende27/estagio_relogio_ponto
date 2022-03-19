@@ -34,6 +34,7 @@ class LocationController extends Controller
             'country'=>'required|string',
             'city'=>'required|string',
             'street'=>'required|string',
+            'door_number'=>'required|string',
             'zip_code'=>'required|string',
            
             
@@ -47,6 +48,7 @@ class LocationController extends Controller
             'country'=>$fields['country'], 
             'city'=>$fields['city'], 
             'street'=>$fields['street'], 
+            'door_number'=>$fields['door_number'], 
             'zip_code'=>$fields['zip_code'], 
           
 
@@ -89,6 +91,7 @@ class LocationController extends Controller
             'country'=>'required|string',
             'city'=>'required|string',
             'street'=>'required|string',
+            'door_number'=>'required|string',
             'zip_code'=>'required|string',
             
          

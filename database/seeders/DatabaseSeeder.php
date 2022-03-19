@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Tenant::factory(2)->create();
          
          
-         \App\Models\Company::factory(1)->create();
+         \App\Models\Company::factory(25)->create();
          \App\Models\Department::factory(1)->create();
 
          \App\Models\User::factory(5)->create();
