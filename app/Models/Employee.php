@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Schedule;
 use App\Models\Traits\Tenantable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,4 +35,14 @@ class Employee extends Model
        
         
     ];
+
+    /**
+     * Get the schedule associated with the Employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    // public function schedule()//: HasOne
+    // {
+    //     return $this->hasOne(Schedule::class);
+    // }
 }

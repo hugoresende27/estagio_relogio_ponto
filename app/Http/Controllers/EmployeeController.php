@@ -7,6 +7,7 @@ use App\Models\Image;
 use App\Models\Tenant;
 use App\Models\Employee;
 use App\Models\Location;
+use App\Models\Schedule;
 use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\EmployeeExport;
@@ -135,6 +136,11 @@ class EmployeeController extends Controller
         if (is_null($employee)){
             return response()->json(['message'=>'Employee not found',404] );
         }
+
+        //GET EMPLOYEE SHIFT
+        // $shift = Schedule::where('id', $employee->schedule_id)->get();
+        // return response()->json($shift, 200);
+
         return response()->json($employee = Employee::find($id), 200);
     }
 

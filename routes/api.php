@@ -72,6 +72,9 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 /////////////////////CLOCKPOINT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/clockpointentry', ClockpointentryController::class);
+    Route::get('clockpointentrysexportexcel/', [ClockpointentryController::class, 'export_xlsx']);
+    Route::get('clockpointentrysexportcsv/', [ClockpointentryController::class, 'export_csv']);
+    Route::post('clockpointentrysimport/', [ClockpointentryController::class, 'import']);
 
 
 //////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////

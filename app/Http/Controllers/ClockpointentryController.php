@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\Clockpointentry;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ClockpointentrysExport;
+use App\Imports\ClockpointentrysImport;
 
 class ClockpointentryController extends Controller
 {
@@ -60,7 +64,18 @@ class ClockpointentryController extends Controller
         if (is_null($clockpointentrys)){
             return response()->json(['message'=>'Clockpoint not found',404] );
         }
-        return response()->json($clockpointentrys = Clockpointentry::find($id), 200);
+
+        ///GET THE EMPLOYEE IN THE CLOCKPOINTENTRY MODEL
+        $employee = Employee::where('id',$clockpointentrys->employee_id)->first();
+
+        $data[]= [
+            $employee->name,
+            $clockpointentrys
+        ];
+        
+        ////RETURN OF THE NAME + CLOCKPOINTENTRY
+        return response()->json($data, 200);
+        // return response()->json($clockpointentrys = Clockpointentry::find($id), 200);
     }
 
     /**
@@ -89,5 +104,26 @@ class ClockpointentryController extends Controller
         }
         $clockpointentrys->delete();
         return response()->json($clockpointentrys, 200);
+    }
+
+    public function export_xlsx() 
+    {
+        return Excel::download(new ClockpointentrysExport, 'clock_entrys.xlsx');
+    }
+    public function export_csv() 
+    {
+        return Excel::download(new ClockpointentrysExport, 'clock_entrys.csv');
+    }
+
+    public function import(Request $request) 
+    {
+        $file = $fields = $request->validate([
+     
+            'file'=>'required|mimes:xlsx,csv'
+        ]);
+
+        Excel::import(new ClockpointentrysImport, request()->file('file'));
+        
+        return response()->json('file imported');
     }
 }
