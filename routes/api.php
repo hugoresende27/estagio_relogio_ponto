@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LocationController;
@@ -38,6 +39,13 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 
     Route::post('logout', [AuthController::class,'logout']);
+
+//////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
+    Route::resource('/admin', AdminController::class);
+    Route::get('adminusersexportexcel/', [AdminController::class, 'export_xlsx']);
+    Route::get('adminusersexportcsv/', [AdminController::class, 'export_csv']);
+    Route::post('adminusersimport/', [AdminController::class, 'import']);
+
 
 
 /////////////////////COMPANY ROUTES///////////////////////////////////////////////////////////////////
@@ -78,13 +86,10 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::post('clockpointentrysimport/', [ClockpointentryController::class, 'import']);
 
 
-//////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
-    Route::resource('/admin', AdminController::class);
-    Route::get('adminusersexportexcel/', [AdminController::class, 'export_xlsx']);
-    Route::get('adminusersexportcsv/', [AdminController::class, 'export_csv']);
-    Route::post('adminusersimport/', [AdminController::class, 'import']);
 
-   
+
+//////////////////////////SEARCH ROUTES////////////////////////////////////////////////////////////////
+    Route::get('search', [SearchController::class, 'search']);
 
 
 
