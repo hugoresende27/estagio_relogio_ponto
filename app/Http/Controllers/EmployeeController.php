@@ -40,6 +40,9 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+     //////////////////////////  CRUD     ////////////////////////////
     public function store(Request $request)
     {
 
@@ -230,6 +233,9 @@ class EmployeeController extends Controller
         return response()->json($employee, 200);
     }
 
+
+    //////////////////////////IMPORT/EXPORT////////////////////////////
+
     public function export_xlsx() 
     {
         return Excel::download(new EmployeeExport, 'employees.xlsx');
@@ -251,5 +257,20 @@ class EmployeeController extends Controller
         return response()->json('file imported');
     }
 
-    
+
+    //////////////////////////SEARCH////////////////////////////
+
+    public function search(Request $request)
+    {
+
+        $search_query = Employee::where('name','LIKE','%'.$request->keyword.'%');
+
+        // $search_query->where('name','LIKE','%',.$request->keyword.'%')->get();
+        $results = $search_query->get();
+
+        return response()->json([
+            'message'=>'search results:',
+            'data'=>$results
+        ],200);
+    }
 }

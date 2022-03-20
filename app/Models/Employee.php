@@ -45,4 +45,6 @@ class Employee extends Model
     // {
     //     return $this->hasOne(Schedule::class);
     // }
+
+  
 }
