@@ -23,7 +23,8 @@ return new class extends Migration
             ////FOREIGN IDS//////////////
             $table->unsignedBigInteger('employee_id')->nullable()->index();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
-
+            $table->unsignedBigInteger('file_id')->nullable()->index();
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             
              ///DATA//////
             $table->timestamp ('clock_in')->nullable();

@@ -157,7 +157,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tenantId = Auth::user()->tenant_id;
+        //$tenantId = Auth::user()->tenant_id;
 
         $employee = Employee::find($id);
         if (is_null($employee)){

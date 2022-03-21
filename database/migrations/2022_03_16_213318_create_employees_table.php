@@ -28,6 +28,8 @@ return new class extends Migration
             $table->unsignedBigInteger('schedule_id')->nullable()->index();
             $table->unsignedBigInteger('location_id')->nullable()->index();     
             $table->unsignedBigInteger('image_id')->nullable()->index(); 
+            $table->unsignedBigInteger('file_id')->nullable()->index();
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             
             /////DATA /////////////
             $table->text('name');

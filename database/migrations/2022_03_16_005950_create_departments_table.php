@@ -23,7 +23,8 @@ return new class extends Migration
             ////FOREIGN IDS//////////////
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-
+            $table->unsignedBigInteger('file_id')->nullable()->index();
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             
             $table->text('name');
               

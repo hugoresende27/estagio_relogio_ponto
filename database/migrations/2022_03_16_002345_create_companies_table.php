@@ -22,6 +22,8 @@ return new class extends Migration
 
             ////FOREIGN IDS//////////////
             $table->unsignedBigInteger('location_id')->nullable()->index();
+            $table->unsignedBigInteger('file_id')->nullable()->index();
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             
             ///DATA//////
             $table->text('name');

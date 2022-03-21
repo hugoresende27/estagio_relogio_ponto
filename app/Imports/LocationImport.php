@@ -16,11 +16,11 @@ class LocationImport implements ToModel
     {
         return new Location([
             'tenant_id'=>$row[1],
-            'country'=>$row[2],
-            'city'=>$row[3],
-            'street'=>$row[4],
-            'door_number'=>$row[5],
-            'zip_code'=>$row[6],
+            'country'=>$row[3],
+            'city'=>$row[4],
+            'street'=>$row[5],
+            'door_number'=>$row[6],
+            'zip_code'=>$row[7],
         ]);
     }
 }

@@ -33,16 +33,15 @@ class FileController extends Controller
 
         $fields = $request->validate([
             'file_path'=>'required|string',
+            'type'=>'required|string',
            
         ]);
 
         $file = File::create([
 
             'tenant_id'=>$tenantId,
-
-            'employee_id' => $request['employee_id'],
-            'company_id' => $request['company_id'],
             'file_path' => $fields['file_path'],
+            'type' => $fields['type'],
 
         ]);
 
@@ -91,10 +90,10 @@ class FileController extends Controller
         // dd($employee);
         $fields = $request->validate([
             'file_path'=>'required|string',
+            'type'=>'required|string',
         ]);
 
-        $fields['employee_id']=$request['employee_id'];
-        $fields['company_id']=$request['company_id'];
+    
         $file->update($fields);
 
         return response()->json($file, 200);

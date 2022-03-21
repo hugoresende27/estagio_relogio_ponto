@@ -25,7 +25,8 @@ return new class extends Migration
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');
             $table->unsignedBigInteger('department_id')->nullable()->index();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
-
+            $table->unsignedBigInteger('file_id')->nullable()->index();
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             
             /////DATA /////////////
             $table->time('shift_start');
