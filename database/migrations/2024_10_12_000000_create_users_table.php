@@ -39,6 +39,9 @@ return new class extends Migration
             $table->text('emer_contact')->nullable();
             $table->text('bi_cc')->nullable();
 
+
+          
+
             ///OTHERS////
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

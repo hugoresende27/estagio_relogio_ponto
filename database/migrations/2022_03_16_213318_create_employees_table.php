@@ -40,6 +40,10 @@ return new class extends Migration
             $table->text('emer_contact')->nullable();
             $table->text('bi_cc')->nullable();
             $table->date('start_date')->nullable();
+
+
+            /////BLIND INDEX////////////
+            $table->string('name_bi');
         
             /////TIMESTAMPS+SOFTDELETE/////
             $table->timestamps();

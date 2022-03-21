@@ -10,19 +10,11 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $query = Employee::query();
-        // $name = Employee::get('name');
-        // $name_decrypt = Crypt::decrypt($name);
 
-        // dd($name_decrypt);
+        $s = $request->input('s');
 
-        if ($s = $request->input('name')){
-            // $query->where()
-            // $query->whereRaw("name LIKE '%".$s."%' ");
-            $query->whereRaw("name LIKE '%".$s."%' ", Crypt::encrypt($s));
-                // ->orWhereRaw("role LIKE '%".$s."%' ");
-        }
-
-        return $query->get();
+        $res = Employee::whereEncrypted('name', $s)->get();
+        // dd($s);
+        return response()->json($res,200);
     }
 }

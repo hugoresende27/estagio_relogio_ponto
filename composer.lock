@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ea1b33faf4ac93453ab990652755aef",
+    "content-hash": "2a12c3064ac1582f73f4fc0c7e392d2f",
     "packages": [
         {
             "name": "brick/math",
@@ -6872,6 +6872,41 @@
                 }
             ],
             "time": "2022-03-02T12:58:14+00:00"
+        },
+        {
+            "name": "thetalabs/laravel-database-encryption",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/ThetaLabs/laravel-database-encryption.git",
+                "reference": "e1f9cecb0406c29cec4a9989b2a18dca5eb98487"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/ThetaLabs%2Flaravel-database-encryption/repository/archive.zip?sha=e1f9cecb0406c29cec4a9989b2a18dca5eb98487",
+                "reference": "e1f9cecb0406c29cec4a9989b2a18dca5eb98487",
+                "shasum": ""
+            },
+            "require-dev": {
+                "illuminate/support": "^5.7",
+                "orchestra/testbench": "^3.7",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ThetaLabs\\DbEncryption\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Thomas Krause",
+                    "email": "trueswordmaster@gmail.com"
+                }
+            ],
+            "description": "A no fuss Laravel model trait to add encrypted model attributes with the option of blind indexes.",
+            "time": "2019-09-13T05:20:57+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
