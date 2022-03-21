@@ -30,6 +30,8 @@ class EmployeeFactory extends Factory
             'company_id'=> rand(1,2),
             // 'department_id'=> Department::factory(),
             // 'tenant_id'=>Tenant::factory()
+            'iban'=>rand(111111,99999),
+            'details'=>'details here',
             'tenant_id'=>1,
             'location_id'=>Location::factory(),
         ];

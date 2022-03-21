@@ -41,9 +41,6 @@ return new class extends Migration
             $table->text('bi_cc')->nullable();
             $table->date('start_date')->nullable();
 
-
-            /////BLIND INDEX////////////
-            $table->string('name_bi');
         
             /////TIMESTAMPS+SOFTDELETE/////
             $table->timestamps();

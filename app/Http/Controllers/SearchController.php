@@ -10,11 +10,23 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        // return Employee::all();
+        $items = Employee::all()->filter(function($record) 
+        use($request) 
+        {
+            // dd($request->s);
 
-        $s = $request->input('s');
+            if (str_contains($record->name, ($request->s))){
+                return $record;
+            }
+            if (str_contains($record->email, ($request->s))){
+                return $record;
+            }
 
-        $res = Employee::whereEncrypted('name', $s)->get();
-        // dd($s);
-        return response()->json($res,200);
+        });
+
+
+       
+        return $items;
     }
 }
