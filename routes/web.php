@@ -19,19 +19,21 @@ use App\Http\Controllers\Backoffice\BackauthController;
 */
 
 
+Route::get('/', [AdminController::class, 'home']);
+
+// Auth::routes();
+// Route::post('backend/login', [AdminController::class,'login_web'])->name('login_web');
+// Route::post('backend/login', [AuthController::class,'login'])->name('login');
+
+Route::get('companies', [AdminController::class,'companies_index']);
+
+Route::group(['middleware'=>['auth:sanctum']], function () {
+
+    Route::get('backend', [AdminController::class,'home']);
+    Route::get('backend/companies', [AdminController::class,'companies_index']);
+
+});
 
 
-Auth::routes();
-
-Route::get('backend/login', [AdminController::class,'web_home']);
-// Route::post('backend/login', [AdminController::class,'web_login'])->name('login');
-
-// Route::get('login', [AuthController::class, 'index_web']);
-
-// Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
-// Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
-
-// Route::get('companiesexportexcel/', [CompanyController::class, 'export_xlsx']);
-// Route::get('companiesexportcsv/', [CompanyController::class, 'export_csv']);
 
 

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Image;
 
+use App\Models\Company;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -218,6 +220,52 @@ class AdminController extends Controller
             return response()->json(['message'=>'Cannot delete yourself',666] );
         }
         
+    }
+
+    /////////////////////////////////////////// BACKEND OFFICE /////////////////////////////////////////
+    public function home()
+    {
+        return view ('backend.browser');
+    }
+
+    public function login_web(Request $request)
+    {
+        // dd(get_defined_vars());
+        $fields = $request->validate([
+            
+            'email'=>'required|string',
+            'password'=>'required|string',
+        ]);
+
+        $user = User::where('email', $request['email'])->first();
+        
+        if (!$user ||!Hash::check($request['password'], $user->password))
+        {
+            return response([
+                'message' => 'Login not valid'
+            ], 401);
+        }
+        
+           
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user'=> $user,
+            'token' => $token
+        ];
+        
+        
+        return view ('backend.browser');
+        
+
+     
+    }
+
+    public function companies_index()
+    {
+
+        $companies = Company::all();
+        return view ('backend.companies', compact('companies'));
     }
 
     

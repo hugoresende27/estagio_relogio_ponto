@@ -4,45 +4,22 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Backend</title>
   </head>
   <body>
-    <h1>Login</h1>
+    
+    <div class="container">
+      <h1>Options</h1>
 
-    @guest
-        
-  
-        
-        
-        {{-- <form action="{{ action('web_login') }}" method="POST"> --}}
+      <button> <a href="companies"> Companies </a> </button>
 
-            <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" value="" name="email">
-            </div>
-            </div>
-            <div class="mb-3 row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" name="password">
-            </div>
-            </div>
-            <button type="submit">Login</button>
 
-        </form>
-    @else
-
-        <h1>hello user</h1>
-        @foreach ($users as $user)
-            <p>$user</p>
-        @endforeach
-
-    @endguest
+     
+      </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
