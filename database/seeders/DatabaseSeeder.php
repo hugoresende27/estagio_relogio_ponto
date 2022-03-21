@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\File;
 use App\Models\Tenant;
 use App\Models\Company;
 use App\Models\Employee;
@@ -32,6 +33,8 @@ class DatabaseSeeder extends Seeder
          
          \App\Models\Clockpointentry::factory(50)->create();
          \App\Models\Schedule::factory(50)->create();
+
+         \App\Models\File::factory(5)->create();
 
         
         /*

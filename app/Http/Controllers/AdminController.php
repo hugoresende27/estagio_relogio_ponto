@@ -21,13 +21,12 @@ class AdminController extends Controller
     public function index()
     {
 
-        // $x = User::where('id',3)->first();
-        // // dd($x);
+       
         $users =  User::orderBy('created_at','DESC')->paginate(10);
 
         return response()->json($users, 200);
 
-        // return User::all();
+       
     }
 
     /**

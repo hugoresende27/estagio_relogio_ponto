@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CompanyController;
@@ -62,6 +63,8 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 /////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/employees', EmployeeController::class);
     Route::get('/employeessearch', [EmployeeController::class, 'search']);
+    Route::get('/employeesgetfiles/{id}', [EmployeeController::class, 'getFiles']);
+    
     Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
     Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
     Route::post('employeesimport/', [EmployeeController::class, 'import']);
@@ -77,6 +80,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::resource('/schedules', ScheduleController::class);
 
 
+
 /////////////////////CLOCKPOINT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/clockpointentry', ClockpointentryController::class);
     Route::get('clockpointentrysexportexcel/', [ClockpointentryController::class, 'export_xlsx']);
@@ -90,6 +94,9 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::get('search', [SearchController::class, 'search']);
 
 
+/////////////////////FILES ROUTES////////////////////////////////////////////////////////////////
+    Route::resource('files', FileController::class);
+    // Route::post('/files', [FileController::class, 'store']);
 
 });
 

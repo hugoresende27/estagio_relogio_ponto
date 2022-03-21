@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Tenant;
@@ -257,8 +258,15 @@ class EmployeeController extends Controller
         return response()->json('file imported');
     }
 
+   
 
-    
+    /////////////////////////////GET EMPLOYEE FILES /////////////////////////
+    public function getFiles($id)
+    {
+        // dd($id);
+        $employee_files = File::where('employee_id', $id)->get();
+        return response()->json($employee_files,200);
+    }
 
   
 }
