@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Tenant;
 use App\Models\Traits\Tenantable;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,13 +23,30 @@ class Company extends Model
         return $this->belongsToMany(Tenant::class);
     }
 
-    protected $casts = [
-       
 
-        //ENCRYPTED////////////
-        'name' => 'encrypted',
-        'email' => 'encrypted',
-        'nif' => 'encrypted',
- 
-    ];
+
+     ////////// TO ENCRYPT DATA STORE IN TABLE /////////////
+     public function setNameAttribute($value)
+     {
+         $this->attributes['name'] = Crypt::encryptString($value);
+     }
+     public function setEmailAttribute($value)
+     {
+         $this->attributes['email'] = Crypt::encryptString($value);
+     }
+     public function setNifAttribute($value)
+     {
+         $this->attributes['nif'] = Crypt::encryptString($value);
+     }
+
+      ////////// TO DECRYPT DATA STORE IN TABLE /////////////
+      public function getNameAttribute($value) {
+        return Crypt::decryptString($value);
+        }
+      public function getEmailAttribute($value) {
+        return Crypt::decryptString($value);
+        }
+      public function getNifAttribute($value) {
+        return Crypt::decryptString($value);
+        }
 }

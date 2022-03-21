@@ -37,8 +37,8 @@ return new class extends Migration
             $table->text('niss')->nullable();
             $table->text('iban')->nullable();
             $table->text('details')->nullable();
-            $table->text('emer_contact')->nullable();
-            $table->text('bi_cc')->nullable();
+            $table->text('emercontact')->nullable();
+            $table->text('bicc')->nullable();
             $table->date('start_date')->nullable();
 
         

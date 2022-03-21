@@ -56,8 +56,8 @@ class EmployeeController extends Controller
             
             'nif'=>'required|string',
             'niss'=>'required|string',
-            'emer_contact'=>'required|string',
-            'bi_cc'=>'required|string',
+            'emercontact'=>'required|string',
+            'bicc'=>'required|string',
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
 
             'image_path'=>'string',
@@ -82,8 +82,8 @@ class EmployeeController extends Controller
                      
             'nif'=>$fields['nif'],
             'niss'=>$fields['niss'],
-            'emer_contact'=>$fields['emer_contact'],
-            'bi_cc'=>$fields['bi_cc'],
+            'emercontact'=>$fields['emercontact'],
+            'bicc'=>$fields['bicc'],
             'company_id'=>$fields['company_id'],
 
             //REQUEST NON REQUIRED
@@ -170,8 +170,8 @@ class EmployeeController extends Controller
             
             'nif'=>'required|string',
             'niss'=>'required|string',
-            'emer_contact'=>'required|string',
-            'bi_cc'=>'required|string',
+            'emercontact'=>'required|string',
+            'bicc'=>'required|string',
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
            
             'role'=>'string',     
@@ -258,19 +258,7 @@ class EmployeeController extends Controller
     }
 
 
-    //////////////////////////SEARCH////////////////////////////
+    
 
-    public function search(Request $request)
-    {
-
-        $search_query = Employee::where('name','LIKE','%'.$request->keyword.'%');
-
-        // $search_query->where('name','LIKE','%',.$request->keyword.'%')->get();
-        $results = $search_query->get();
-
-        return response()->json([
-            'message'=>'search results:',
-            'data'=>$results
-        ],200);
-    }
+  
 }

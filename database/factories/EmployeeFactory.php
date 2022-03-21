@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Image;
 use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,8 +26,8 @@ class EmployeeFactory extends Factory
             'role'=> 'EMP',
             'nif'=>rand(111111111,999999999),
             'niss'=>rand(111111111,999999999),
-            'emer_contact'=>rand(91111111,96222222),
-            'bi_cc'=>rand(111111,999999),
+            'emercontact'=>rand(91111111,96222222),
+            'bicc'=>rand(111111,999999),
             'company_id'=> rand(1,2),
             // 'department_id'=> Department::factory(),
             // 'tenant_id'=>Tenant::factory()
@@ -34,6 +35,7 @@ class EmployeeFactory extends Factory
             'details'=>'details here',
             'tenant_id'=>1,
             'location_id'=>Location::factory(),
+            
         ];
     }
 }

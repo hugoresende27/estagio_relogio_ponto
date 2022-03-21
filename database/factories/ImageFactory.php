@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tenant>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
  */
-class TenantFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class TenantFactory extends Factory
     public function definition()
     {
         return [
-            // 'id'=>1,
-            'name' => 'tenant1'.rand(1,5),
+            // 'tenant_id'=>1,
+            'image_path'=>$this->faker->url()
         ];
     }
 }

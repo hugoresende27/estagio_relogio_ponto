@@ -42,9 +42,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/admin', AdminController::class);
-    Route::get('adminusersexportexcel/', [AdminController::class, 'export_xlsx']);
-    Route::get('adminusersexportcsv/', [AdminController::class, 'export_csv']);
-    Route::post('adminusersimport/', [AdminController::class, 'import']);
+  
 
 
 

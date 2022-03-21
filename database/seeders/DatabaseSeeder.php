@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
 
          \App\Models\User::factory(5)->create();
          \App\Models\Employee::factory(50)->create();
+         
          \App\Models\Clockpointentry::factory(50)->create();
          \App\Models\Schedule::factory(50)->create();
 

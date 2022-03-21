@@ -221,53 +221,6 @@ class AdminController extends Controller
         
     }
 
-    public function export_xlsx() 
-    {
-        return Excel::download(new UsersExport, 'users.xlsx');
-    }
-    public function export_csv() 
-    {
-        return Excel::download(new UsersExport, 'users.csv');
-    }
-
-    public function import(Request $request) 
-    {
-        $file = $fields = $request->validate([
-     
-            'file'=>'required|mimes:xlsx,csv'
-        ]);
-
-        Excel::import(new UsersImport, request()->file('file'));
-        
-        return response()->json('file imported');
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
-
-    public function web_home()
-    {
-        $users = User::all();
-        return view ('backend.login', compact('users'));
-    }
-    // public function web_login(Request $request)
-    // {
-    //         $fields = $request->validate([
-                
-    //             'email'=>'required|string',
-    //             'password'=>'required|string',
-    //         ]);
     
-    //         $user = User::where('email', $request['email'])->first();
-            
-    //         if (!$user ||!Hash::check($request['password'], $user->password))
-    //         {
-    //             return 'not login!';
-    //         }
-    
-            
-    //         // dd(session()->tenant_id);
-    //         return 'ok';
-    // }
-
     
 }
