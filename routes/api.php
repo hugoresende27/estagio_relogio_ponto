@@ -64,7 +64,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 /////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/employees', EmployeeController::class);
     Route::get('/employeessearch', [EmployeeController::class, 'search']);
-    Route::get('/employeesgetfiles/{id}', [EmployeeController::class, 'getFiles']);
+    
     
     Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
     Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);

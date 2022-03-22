@@ -254,7 +254,7 @@ class AdminController extends Controller
     /////////////////////////////////////////// BACKEND OFFICE /////////////////////////////////////////
     public function home()
     {
-        return view ('backend.browser');
+        return view ('backend.home');
     }
 
     public function login_web(Request $request)

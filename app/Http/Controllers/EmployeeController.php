@@ -95,6 +95,7 @@ class EmployeeController extends Controller
             'details'=>$request['details'],
             'department_id'=>$request['department_id'],
             'schedule_id'=>$request['schedule_id'],
+            'file_id'=>$request['file_id'],
             
             // 'role'=>$request['role'],  
             'role'=>'EMPLOYEE',                 //HARD CODED ROLE EMPLOYEE  
@@ -296,13 +297,7 @@ class EmployeeController extends Controller
 
    
 
-    /////////////////////////////GET EMPLOYEE FILES /////////////////////////
-    public function getFiles($id)
-    {
-        // dd($id);
-        $employee_files = File::where('employee_id', $id)->get();
-        return response()->json($employee_files,200);
-    }
+  
 
   
 }
