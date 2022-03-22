@@ -6,6 +6,8 @@ use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class FileController extends Controller
 {
     /**
@@ -31,19 +33,26 @@ class FileController extends Controller
         $tenantId = Auth::user()->tenant_id;
         // dd($tenantId);
 
-        $fields = $request->validate([
-            'file_path'=>'required|string',
-            'type'=>'required|string',
-           
-        ]);
+        $validatedData  = $request->validate([
+            'file' => 'required|mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
+            'type'=>'required|string'
+    
+           ]);
 
-        $file = File::create([
+        
 
-            'tenant_id'=>$tenantId,
-            'file_path' => $fields['file_path'],
-            'type' => $fields['type'],
-
-        ]);
+        $name = $request->file('file')->getClientOriginalName();
+ 
+        $path = $request->file('file')->store('public/files');
+ 
+        $file = new File;
+ 
+        $file->tenant_id = $tenantId;
+        $file->type = $validatedData['type'];
+        $file->name = $name;
+        $file->path = $path;
+        $file->size = $request->file('file')->getSize();
+       
 
         $file->save();
 
@@ -81,22 +90,7 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tenantId = Auth::user()->tenant_id;
-
-        $file = File::find($id);
-        if (is_null($file)){
-            return response()->json(['message'=>'File not found',404] );
-        }
-        // dd($employee);
-        $fields = $request->validate([
-            'file_path'=>'required|string',
-            'type'=>'required|string',
-        ]);
-
-    
-        $file->update($fields);
-
-        return response()->json($file, 200);
+       
     }
 
     /**

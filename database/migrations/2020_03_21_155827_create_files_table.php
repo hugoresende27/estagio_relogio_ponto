@@ -25,7 +25,9 @@ return new class extends Migration
 
             /////DATA /////////////
             $table->string('type');
-            $table->text('file_path');
+            $table->string('name');
+            $table->string('path');
+            $table->string('size');
            
 
 

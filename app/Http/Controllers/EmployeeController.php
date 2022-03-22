@@ -61,7 +61,7 @@ class EmployeeController extends Controller
             'bicc'=>'required|string',
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
 
-            'image_path'=>'string',
+            'image'=>'mimes:png,jpg,jpeg',
             'role'=>'string',
 
             //////////LOCATION TABLE->ADRESS OF EMPLOYEE/////////////
@@ -102,11 +102,21 @@ class EmployeeController extends Controller
         ]);
         
         ///////////// IMAGE CREATE //////////////////
-        $employee_image = Image::create([
-            'tenant_id'=>$tenantId,
-            'image_path'=>$request['image_path'],
-            'employee_id'=>$employee['id'],
-        ]);
+        if (isset($fields['image'] ))
+        {
+            $image_name = $request->file('image')->getClientOriginalName();
+            $image_path = $request->file('image')->store('public/images');
+
+            $employee_image = Image::create([
+                'tenant_id'=>$tenantId,
+                'name'=>$image_name,
+                'image_path'=>$image_path,
+                'size'=>$request->file('image')->getSize(),
+                'employee_id'=>$employee['id'],
+            ]);
+
+            $employee->image_id = $employee_image['id'];
+        };
 
         /////////////// LOCATION CREATE ////////////
         $employee_location = Location::create([
@@ -120,7 +130,7 @@ class EmployeeController extends Controller
 
         ]);
 
-        $employee->image_id = $employee_image['id'];
+        
         $employee->location_id = $employee_location['id'];
         $employee->save();
 
@@ -157,7 +167,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$tenantId = Auth::user()->tenant_id;
+        $tenantId = Auth::user()->tenant_id;
 
         $employee = Employee::find($id);
         if (is_null($employee)){
@@ -176,7 +186,9 @@ class EmployeeController extends Controller
             'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
            
             'role'=>'string',     
-            'image_path'=>'string',     
+
+            'image'=>'mimes:png,jpg,jpeg',
+
             'details'=>'string',   
         
            
@@ -192,28 +204,45 @@ class EmployeeController extends Controller
         $fields['iban'] = $request['iban'];
         $fields['details'] = $request['details'];
         $fields['role'] = $request['role'];
-        $fields['image_path'] = $request['image_path'];
+        $fields['image'] = $request['image'];
 
-        $employee->update($fields);
+       
 
-        if ($fields['image_path'] != null)
+        
+        if (isset($fields['image'] ))
         {
-            $image_update = Image::where('employee_id',$id)->first();
-            // dd(empty($image_update));
-            if (empty($image_update)){
-                $image_update = Image::create([
+            $image = Image::where('employee_id',$id)->first();
+            
+            if (empty($image)){
+               ///////////// IMAGE CREATE //////////////////
+                $image_name = $request->file('image')->getClientOriginalName();
+                $image_path = $request->file('image')->store('public/images');
+
+                $employee_image = Image::create([
                     'tenant_id'=>$tenantId,
-                    'image_path'=>$request['image_path'],
+                    'name'=>$image_name,
+                    'image_path'=>$image_path,
+                    'size'=>$request->file('image')->getSize(),
                     'employee_id'=>$employee['id'],
                 ]);
             } else{
-                $image_update = Image::where('employee_id',$id)->update([
-                    'image_path'=>$fields['image_path']
+                $image->delete();
+                ///////////// IMAGE CREATE //////////////////
+                $image_name = $request->file('image')->getClientOriginalName();
+                $image_path = $request->file('image')->store('public/images');
+
+                $employee_image = Image::create([
+                    'tenant_id'=>$tenantId,
+                    'name'=>$image_name,
+                    'image_path'=>$image_path,
+                    'size'=>$request->file('image')->getSize(),
+                    'employee_id'=>$employee['id'],
                 ]);
             }
          
         }
 
+        $employee->update($fields);
 
         return response()->json($employee, 200);
     }

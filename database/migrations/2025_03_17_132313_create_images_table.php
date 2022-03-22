@@ -27,7 +27,9 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
             ///DATA//////
-            $table->text('image_path')->nullable();
+            $table->string('name');
+            $table->text('image_path')->nullable();        
+            $table->string('size');
 
             /////TIMESTAMPS+SOFTDELETE/////
             $table->timestamps();     

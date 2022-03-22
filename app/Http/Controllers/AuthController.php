@@ -22,7 +22,8 @@ class AuthController extends Controller
             'nif'=>'string',
             'emer_contact'=>'string',
             'bi_cc'=>'string',
-            'image_path'=>'string',
+
+            'image'=>'mimes:png,jpg,jpeg',
             
             
         ]);
@@ -57,15 +58,25 @@ class AuthController extends Controller
         ]);
 
         
-        $image = Image::create([
-            'tenant_id'=>$tenant['id'],
-            'image_path'=>$request['image_path'],
-            'user_id'=>$user['id'],
-
-        ]);
+         ///////////// IMAGE CREATE //////////////////
+         if (isset($fields['image'] ))
+         {
+             $image_name = $request->file('image')->getClientOriginalName();
+             $image_path = $request->file('image')->store('public/images');
+ 
+             $user_image = Image::create([
+                 'tenant_id'=>$tenantId,
+                 'name'=>$image_name,
+                 'image_path'=>$image_path,
+                 'size'=>$request->file('image')->getSize(),
+                 'user_id'=>$user['id'],
+             ]);
+ 
+             $user->image_id = $user_image['id'];
+         };
 
         
-        $user->image_id = $image['id'];
+     
         $user->save();
 
         $token = $user->createToken('myapptoken')->plainTextToken;

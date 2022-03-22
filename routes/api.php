@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
@@ -96,7 +97,11 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 /////////////////////FILES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('files', FileController::class);
-    // Route::post('/files', [FileController::class, 'store']);
+   
+
+/////////////////////IMAGES ROUTES////////////////////////////////////////////////////////////////
+    Route::resource('images', ImageController::class);
+    
 
 });
 
