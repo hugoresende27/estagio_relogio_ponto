@@ -33,6 +33,7 @@ class EmployeeFactory extends Factory
             // 'tenant_id'=>Tenant::factory()
             'iban'=>rand(111111,99999),
             'details'=>'details here',
+            'start_date'=>'1995/10/11',
             'tenant_id'=>1,
             'location_id'=>Location::factory(),
             

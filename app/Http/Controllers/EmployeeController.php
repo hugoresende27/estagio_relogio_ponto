@@ -13,7 +13,7 @@ use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 use App\Exports\EmployeeExport;
 use App\Imports\EmployeeImport;
-use App\Models\Traits\Tenantable;
+// use App\Models\Traits\Tenantable;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -59,7 +59,8 @@ class EmployeeController extends Controller
             'niss'=>'required|string',
             'emercontact'=>'required|string',
             'bicc'=>'required|string',
-            'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
+            'company_id'=>'required',     
+            'start_date'=>'required',  
 
             'image'=>'mimes:png,jpg,jpeg',
             'role'=>'string',
@@ -85,6 +86,7 @@ class EmployeeController extends Controller
             'niss'=>$fields['niss'],
             'emercontact'=>$fields['emercontact'],
             'bicc'=>$fields['bicc'],
+            'start_date'=>$fields['start_date'],
             'company_id'=>$fields['company_id'],
 
             //REQUEST NON REQUIRED
@@ -93,7 +95,7 @@ class EmployeeController extends Controller
             'details'=>$request['details'],
             'department_id'=>$request['department_id'],
             'schedule_id'=>$request['schedule_id'],
-            'start_date'=>$request['start_date'],
+            
             // 'role'=>$request['role'],  
             'role'=>'EMPLOYEE',                 //HARD CODED ROLE EMPLOYEE  
             
@@ -183,13 +185,14 @@ class EmployeeController extends Controller
             'niss'=>'required|string',
             'emercontact'=>'required|string',
             'bicc'=>'required|string',
-            'company_id'=>'required',       //REQUIRED ATM, CAN BE CHANGED
+            'company_id'=>'required',      
            
             'role'=>'string',     
 
             'image'=>'mimes:png,jpg,jpeg',
 
             'details'=>'string',   
+           
         
            
 
@@ -205,6 +208,7 @@ class EmployeeController extends Controller
         $fields['details'] = $request['details'];
         $fields['role'] = $request['role'];
         $fields['image'] = $request['image'];
+        $fields['start_date'] = $request['start_date'];
 
        
 
@@ -238,9 +242,12 @@ class EmployeeController extends Controller
                     'size'=>$request->file('image')->getSize(),
                     'employee_id'=>$employee['id'],
                 ]);
+                $employee->image_id = $employee_image['id'];
             }
          
         }
+
+        
 
         $employee->update($fields);
 

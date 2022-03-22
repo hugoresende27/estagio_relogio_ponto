@@ -65,7 +65,7 @@ class AuthController extends Controller
              $image_path = $request->file('image')->store('public/images');
  
              $user_image = Image::create([
-                 'tenant_id'=>$tenantId,
+                 'tenant_id'=>$tenant['id'],
                  'name'=>$image_name,
                  'image_path'=>$image_path,
                  'size'=>$request->file('image')->getSize(),

@@ -53,7 +53,7 @@ class AdminController extends Controller
             'emer_contact'=>'string',
             'bi_cc'=>'string',
             'role'=>'string',
-            'image_path'=>'string',
+            'image'=>'mimes:png,jpg,jpeg',
             
          
             
@@ -77,7 +77,7 @@ class AdminController extends Controller
             'bi_cc'=>$request['bi_cc'],
             'role'=>'USER-EMPLOYEE',            //HARD CODED USER-EMPLOYEE ROLE
             // 'role'=>$request['role'], 
-            'image_path'=>$request['image_path'],
+            'image'=>$request['image'],
             
             
             'company_id'=>$request['company_id'],
@@ -88,15 +88,24 @@ class AdminController extends Controller
             
             
         ]);
-        // dd($user_employee['id']);
-           
-        $image = Image::create([
-            'tenant_id'=>$tenantId,
-            'image_path'=>$request['image_path'],
-            'user_id'=>$user_employee['id'],
-        ]);
+        ///////////// IMAGE CREATE //////////////////
+        if (isset($fields['image'] ))
+        {
+            $image_name = $request->file('image')->getClientOriginalName();
+            $image_path = $request->file('image')->store('public/images');
 
-        $user_employee->image_id = $image['id'];
+            $user_image = Image::create([
+                'tenant_id'=>$tenantId,
+                'name'=>$image_name,
+                'image_path'=>$image_path,
+                'size'=>$request->file('image')->getSize(),
+                'user_id'=>$user_employee['id'],
+            ]);
+
+            $user_employee->image_id = $user_image['id'];
+        };
+
+
         $user_employee->save();
 
         
@@ -156,7 +165,7 @@ class AdminController extends Controller
             'emer_contact'=>'string',
             'bi_cc'=>'string',
             'role'=>'string',
-            'image_path'=>'string', 
+            'image'=>'mimes:png,jpg,jpeg',
         ]);
 
         ///////NON REQUIRED FIELDS ///////////////
@@ -167,7 +176,7 @@ class AdminController extends Controller
         $fields['emer_contact'] = $request['emer_contact'];
         $fields['bi_cc'] = $request['bi_cc'];
         $fields['role'] = $request['role'];
-        $fields['image_path'] = $request['image_path'];
+        $fields['image'] = $request['image'];
         
         ////REQUEST ID'S/////////////
         $fields['schedule_id'] = $request['schedule_id'];
@@ -175,25 +184,45 @@ class AdminController extends Controller
         $fields['company_id'] = $request['company_id'];
       
 
-        $user_employee->update($fields);
+        
 
-        if ($fields['image_path'] != null)
+        if (isset($fields['image'] ))
         {
-            $image_update = Image::where('user_id',$id)->first();
-            // dd(empty($image_update));
-            if (empty($image_update)){
-                $image_update = Image::create([
+            $image = Image::where('user_id',$id)->first();
+            
+            if (empty($image)){
+               ///////////// IMAGE CREATE //////////////////
+                $image_name = $request->file('image')->getClientOriginalName();
+                $image_path = $request->file('image')->store('public/images');
+
+                $employee_image = Image::create([
                     'tenant_id'=>$tenantId,
-                    'image_path'=>$request['image_path'],
+                    'name'=>$image_name,
+                    'image_path'=>$image_path,
+                    'size'=>$request->file('image')->getSize(),
                     'user_id'=>$user_employee['id'],
                 ]);
             } else{
-                $image_update = Image::where('employee_id',$id)->update([
-                    'image_path'=>$fields['image_path']
+                $image->delete();
+                ///////////// IMAGE CREATE //////////////////
+                $image_name = $request->file('image')->getClientOriginalName();
+                $image_path = $request->file('image')->store('public/images');
+
+                $employee_image = Image::create([
+                    'tenant_id'=>$tenantId,
+                    'name'=>$image_name,
+                    'image_path'=>$image_path,
+                    'size'=>$request->file('image')->getSize(),
+                    'user_id'=>$user_employee['id'],
                 ]);
+               
             }
+
+            $user_employee->image_id = $employee_image['id'];
          
         }
+
+        $user_employee->update($fields);
 
 
         return response()->json($user_employee, 200);

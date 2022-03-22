@@ -22,6 +22,7 @@ class EmployeeImport implements ToModel
             'schedule_id'=>$row[4],
             'location_id'=>$row[5],
             'image_id'=>$row[6],
+            'file_id'=>$row[7],
             
             'name'=>$row[8],
             'email'=>$row[9],
@@ -30,15 +31,10 @@ class EmployeeImport implements ToModel
             'niss'=>$row[12],
             'iban'=>$row[13],
             'details'=>$row[14],
-            'emer_contact'=>$row[15],
-            'bi_cc'=>$row[16],
+            'emercontact'=>$row[15],
+            'bicc'=>$row[16],
             'start_date'=>$row[17],
 
-            // 'created_at'=>$row[18],
-            // 'updated_at'=>$row[19],
-            
-            // 'company_id'=>$row[14],
-            // 
 
        
         ]);

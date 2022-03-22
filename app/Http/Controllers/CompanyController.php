@@ -6,7 +6,7 @@ use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Department;
-use App\Scopes\TenantScope;
+// use App\Scopes\TenantScope;
 use Illuminate\Http\Request;
 use App\Exports\CompanyExport;
 use App\Imports\CompanyImport;
