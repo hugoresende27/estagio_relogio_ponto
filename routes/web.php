@@ -19,21 +19,18 @@ use App\Http\Controllers\Backoffice\BackauthController;
 */
 
 
-Route::get('/', [AdminController::class, 'home']);
 
-// Auth::routes();
-// Route::post('backend/login', [AdminController::class,'login_web'])->name('login_web');
-// Route::post('backend/login', [AuthController::class,'login'])->name('login');
 
-Route::get('companies', [AdminController::class,'companies_index']);
-
-Route::group(['middleware'=>['auth:sanctum']], function () {
-
-    Route::get('backend', [AdminController::class,'home']);
-    Route::get('backend/companies', [AdminController::class,'companies_index']);
-
+Route::get('/', function () {
+    return view('backend.app');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+    
 
 
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
