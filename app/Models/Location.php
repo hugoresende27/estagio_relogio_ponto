@@ -55,4 +55,12 @@ public function setZipCodeAttribute($value)
  public function getZipCodeAttribute($value) {
    return Crypt::decryptString($value);
    }
+
+
+   /////////////////////RELATIONS ///////////////////////////
+   public function file()
+   {
+       return $this-> hasOne(File::class, 'id', 'file_id');
+   }
+   
 }

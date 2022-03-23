@@ -17,5 +17,21 @@ class Schedule extends Model
 
     protected $guarded = ['id'];
 
-    
+     //////////////// RELATIONS //////////////////////
+
+     public function company()
+     {
+         return $this-> hasOne(Company::class, 'id', 'company_id');
+     }
+
+     public function department()
+     {
+         return $this-> hasOne(Department::class, 'id', 'department_id');
+     }
+
+
+     public function file()
+     {
+         return $this-> hasOne(File::class, 'id', 'file_id');
+     }
 }

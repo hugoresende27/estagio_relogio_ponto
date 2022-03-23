@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Acme&family=Assistant:wght@200;300&family=Baloo+2&family=Cairo:wght@200;600&family=Caveat:wght@400;700&family=Comforter+Brush&family=Exo+2:wght@100;300&family=Indie+Flower&family=Inter:wght@100;500&family=Lato:wght@100;400&family=M+PLUS+1:wght@100;400&family=M+PLUS+2:wght@100;500&family=M+PLUS+Code+Latin:wght@100;400&family=Merriweather:wght@300;700&family=Open+Sans:wght@300;600&family=Roboto+Slab:wght@100;400&family=Signika:wght@300&display=swap');
+
+:root
+{
+    --primary-cor:#409C32;
+    --secondary-cor:#265C1D;
+    --three-cor:#59DB46;
+    --four-cor:#5FE84A;
+    --five-cor:#50C23E;
+    --gold-cor:#FFC857;
+    --charcoal-cor:#2E4052;
+    --purple-cor:#412234;
+    --green-cor:#BDD9BF;
+}
+*{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: var(--purple-cor);
+    font-family: 'Inter',sans-serif;   
+    display: flex;          /*coloca tudo em linha*/
+    flex-direction: column; /*coloca tudo em coluna*/
+    align-items: center;    /*alinha horizontalmente*/
+    justify-content: center;/*alinha tudo verticalmente com uso de height:100vh*/
+    min-height: 100vh;
+    /* overflow: hidden; BARRA DE SCROLL DOWN, HIDDEN ESCONDIDA */
+    margin: 0;
+    /*overflow-x: hidden; /*REMOVER BARRA DE SCROLL HORIZONTAL*/
+    padding: 5px;
+}

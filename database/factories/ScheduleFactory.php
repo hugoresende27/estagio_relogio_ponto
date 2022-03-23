@@ -17,7 +17,7 @@ class ScheduleFactory extends Factory
     public function definition()
     {
         return [
-            'company_id' => rand(1,25),
+            'company_id' => 1,
             'shift_start' => rand(11,23).'0000', 
             'shift_end'=>rand(11,23).'0000', 
             'shift_type'=>'SHIFT_TEST',

@@ -18,7 +18,7 @@ class TenantFactory extends Factory
     {
         return [
             // 'id'=>1,
-            'name' => 'tenant1'.rand(1,5),
+            'name' => 'tenant1'.rand(1,3),
         ];
     }
 }

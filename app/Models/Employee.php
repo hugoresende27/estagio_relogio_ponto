@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Schedule;
+
 use App\Models\Traits\Tenantable;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
@@ -77,6 +77,39 @@ class Employee extends Model
         }
         
       
+
+    //////////////// RELATIONS //////////////////////
+
+       public function company()
+       {
+           return $this-> hasOne(Company::class, 'id', 'company_id');
+       }
+
+       public function department()
+       {
+           return $this-> hasOne(Department::class, 'id', 'department_id');
+       }
+
+       public function schedule()
+       {
+           return $this-> hasOne(Schedule::class, 'id', 'schedule_id');
+       }
+
+       
+       public function location()
+       {
+           return $this-> hasOne(Location::class, 'id', 'location_id');
+       }
+
+       public function image()
+       {
+           return $this-> hasOne(Image::class, 'id', 'image_id');
+       }
+
+       public function file()
+       {
+           return $this-> hasOne(File::class, 'id', 'file_id');
+       }
        
         
   

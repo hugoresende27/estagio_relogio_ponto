@@ -24,4 +24,17 @@ class Department extends Model
      
  
     ];
+
+
+    
+    public function company()
+    {
+        return $this-> hasOne(Company::class, 'id', 'company_id');
+    }
+
+    public function file()
+    {
+        return $this-> hasOne(File::class, 'id', 'file_id');
+    }
+    
 }

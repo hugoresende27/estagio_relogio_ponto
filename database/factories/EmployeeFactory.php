@@ -28,12 +28,15 @@ class EmployeeFactory extends Factory
             'niss'=>rand(111111111,999999999),
             'emercontact'=>rand(91111111,96222222),
             'bicc'=>rand(111111,999999),
-            'company_id'=> rand(1,2),
-            // 'department_id'=> Department::factory(),
-            // 'tenant_id'=>Tenant::factory()
+           
+            
             'iban'=>rand(111111,99999),
             'details'=>'details here',
-            'start_date'=>'1995/10/11',
+            'start_date'=>'19'.rand(88,99).'/'.rand(1,12).'/'.rand(1,27),
+
+            'company_id'=> 1,
+            'department_id'=> 1,
+            'schedule_id'=> rand(1,3),
             'tenant_id'=>1,
             'location_id'=>Location::factory(),
             

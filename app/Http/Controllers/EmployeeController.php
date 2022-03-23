@@ -243,8 +243,8 @@ class EmployeeController extends Controller
                     'size'=>$request->file('image')->getSize(),
                     'employee_id'=>$employee['id'],
                 ]);
+                }
                 $employee->image_id = $employee_image['id'];
-            }
          
         }
 

@@ -129,13 +129,6 @@ class AuthController extends Controller
         ];
     }
 
-    /////////////////////////////////////////// BACKEND OFFICE /////////////////////////////////////////
-    public function logoutweb()
-    {
-        Auth::guard('web')->logout();
-        auth()->user()->tokens()->delete();
-        return view ('backend.welcome');
-    }
 
    
  

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Tenant;
+use App\Models\Employee;
 use App\Models\Traits\Tenantable;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
@@ -49,4 +50,18 @@ class Company extends Model
       public function getNifAttribute($value) {
         return Crypt::decryptString($value);
         }
+
+
+   //////////////// RELATIONS //////////////////////
+
+   public function location()
+   {
+       return $this-> hasOne(Location::class, 'id', 'location_id');
+   }
+
+   public function file()
+   {
+       return $this-> hasOne(File::class, 'id', 'file_id');
+   }
+   
 }
