@@ -64,8 +64,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 /////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/employees', EmployeeController::class);
     Route::get('/employeessearch', [EmployeeController::class, 'search']);
-    
-    
+       
     Route::get('employeesexportexcel/', [EmployeeController::class, 'export_xlsx']);
     Route::get('employeesexportcsv/', [EmployeeController::class, 'export_csv']);
     Route::post('employeesimport/', [EmployeeController::class, 'import']);
@@ -93,6 +92,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //////////////////////////SEARCH ROUTES////////////////////////////////////////////////////////////////
     Route::get('search', [SearchController::class, 'search']);
+    Route::get('searcht', [SearchController::class, 'searcht']);
 
 
 /////////////////////FILES ROUTES////////////////////////////////////////////////////////////////

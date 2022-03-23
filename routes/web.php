@@ -23,19 +23,41 @@ use App\Http\Controllers\Backoffice\BackauthController;
 */
 
 
-// Route::get('loginweb', [AuthController::class,'loginWeb'])->name('loginWeb');
-// Route::post('loginapi', [AuthController::class,'loginApi'])->name('loginApi');
+
+
+Auth::routes();
 
 Route::get('/', function () {
     // return view('backend.home');
-    return view('welcome');
+    return view('backend.welcome');
 });
 
 
 
 
-// Auth::routes();
+// Route::post('login', [AuthController::class,'login']);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware'=>['auth:sanctum']], function () {
+
+
+    Route::get('logoutweb', [AuthController::class,'logoutweb'])->name('logoutweb');
+
+//////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
+    Route::resource('/admin', AdminController::class);
+
+/////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
+    Route::resource('/employees', EmployeeController::class);
+
+
+});
+
+
+
+
+
+
+
 
 

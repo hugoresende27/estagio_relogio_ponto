@@ -10,10 +10,27 @@ use Illuminate\Support\Facades\Crypt;
 
 class SearchController extends Controller
 {
+
+
+    public function searcht (Request $request)
+    {
+        $haystack = Employee::all();
+        $needle   = $request->s;
+
+        $pos      = strripos($haystack, $needle);
+
+        if ($pos === false) {
+            echo "Not found";
+        } else {
+         
+            echo "Nós encontramos a última ($needle)  na posição ($pos)";
+        }
+        return response()->json($needle, 200);
+    }
+    
     public function search(Request $request)
     {
-      
-       
+        
 
         $search_employees_table = Employee::all()->filter(function($record) 
         
@@ -23,6 +40,7 @@ class SearchController extends Controller
 
             if (str_contains($record->name, ($request->s))){
                 return $record;
+           
             }
             if (str_contains($record->email, ($request->s))){
                 return $record;
@@ -93,4 +111,8 @@ class SearchController extends Controller
         $record = collect([$search_employees_table, $search_companies_table, $search_locations_table]);
         return response()->json($record, 200);
     }
+
+ 
+
+
 }

@@ -8,6 +8,7 @@ use App\Models\Tenant;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -122,39 +123,20 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
+        
         return [
             'message' => 'Logged out'
         ];
     }
 
     /////////////////////////////////////////// BACKEND OFFICE /////////////////////////////////////////
-    public function login_web()
+    public function logoutweb()
     {
-        return view ('backend.login');
+        Auth::guard('web')->logout();
+        auth()->user()->tokens()->delete();
+        return view ('backend.welcome');
     }
 
-    public function loginApi(Request $request)
-    {
-        $http = new \GuzzleHttp\Client;
-
-        $email = $request->email;
-        $password = $request->password;
-
-        $response = $http->post('http://127.0.0.1:8000/api/login?', [
-            'headers'=>[
-                'Authorization'=>'Bearer'.session()->get('token.access_token')
-                ],
-                'query'=>[
-                    'email' => $email,
-                    'password'=>$password
-                ]
-            ]);
-
-            $result = json_decode((string)$response->getBody(),true);
-
-            return dd($result);
-
-            return view('backend.login');
-    }
+   
  
 }

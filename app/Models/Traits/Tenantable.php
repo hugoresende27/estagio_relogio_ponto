@@ -4,6 +4,7 @@ namespace App\Models\Traits;
 
 use App\Models\Tenant;
 use App\Scopes\TenantScope;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -12,7 +13,11 @@ trait Tenantable
     protected static function bootTenantable()
     {
 
-        static::addGlobalScope(new TenantScope);
+        if (@Auth::user()->tenant_id) {
+            static::addGlobalScope(new TenantScope);
+   
+        }
+        // static::addGlobalScope(new TenantScope);
         
         if (session()->has('tenant_id') && !is_null(session()->get('tenant_id')))
         {
