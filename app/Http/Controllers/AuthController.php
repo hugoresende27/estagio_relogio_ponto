@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Tenant;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -126,6 +127,34 @@ class AuthController extends Controller
         ];
     }
 
+    /////////////////////////////////////////// BACKEND OFFICE /////////////////////////////////////////
+    public function login_web()
+    {
+        return view ('backend.login');
+    }
 
+    public function loginApi(Request $request)
+    {
+        $http = new \GuzzleHttp\Client;
+
+        $email = $request->email;
+        $password = $request->password;
+
+        $response = $http->post('http://127.0.0.1:8000/api/login?', [
+            'headers'=>[
+                'Authorization'=>'Bearer'.session()->get('token.access_token')
+                ],
+                'query'=>[
+                    'email' => $email,
+                    'password'=>$password
+                ]
+            ]);
+
+            $result = json_decode((string)$response->getBody(),true);
+
+            return dd($result);
+
+            return view('backend.login');
+    }
  
 }

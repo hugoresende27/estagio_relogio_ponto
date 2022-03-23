@@ -1,11 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\Backoffice\BackauthController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +23,19 @@ use App\Http\Controllers\Backoffice\BackauthController;
 */
 
 
-
+// Route::get('loginweb', [AuthController::class,'loginWeb'])->name('loginWeb');
+// Route::post('loginapi', [AuthController::class,'loginApi'])->name('loginApi');
 
 Route::get('/', function () {
-    return view('backend.app');
+    // return view('backend.home');
+    return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-    
 
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
