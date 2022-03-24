@@ -46,13 +46,13 @@ class AdminController extends Controller
             'email'=>'required|string|unique:users,email',
             'password'=>'required|string|confirmed',
 
-            'nif'=>'string',
-            'iban'=>'string',
-            'details'=>'string',
-            'niss'=>'string',
-            'emer_contact'=>'string',
-            'bi_cc'=>'string',
-            'role'=>'string',
+            // 'nif'=>'string',
+            // 'iban'=>'string',
+            // 'details'=>'string',
+            // 'niss'=>'string',
+            // 'emer_contact'=>'string',
+            // 'bi_cc'=>'string',
+            // 'role'=>'string',
             'image'=>'mimes:png,jpg,jpeg',
             
          

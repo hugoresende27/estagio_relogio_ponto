@@ -4,8 +4,8 @@
     
     @guest
     <div class="mytitle text-center">
-        <button class="btn btn-secondary"> <a href="{{ url('login') }}">Login</a> </button>
-        <button class="btn btn-secondary"> <a href="{{ url('registerweb') }}">Register</a> </button>
+        <a href="{{ url('login') }}">  <button class="btn btn-secondary"> Login </button></a>
+        <a href="{{ url('registerweb') }}"><button class="btn btn-secondary"> Register </button></a>
     </div>
     @endguest
         

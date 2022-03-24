@@ -3,14 +3,14 @@
 @section('content')
     
 <div class="container">
-<h1 class="display-4 text-center">Add Employees</h1>
+<h1 class="display-4 text-center">Add User</h1>
 <button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
 
 
 <div>
 
 
-   <form action="{{ url('api/employees') }}" method="POST" enctype="multipart/form-data">
+   <form action="{{ url('api/admin') }}" method="POST" enctype="multipart/form-data">
     @csrf
   
    
@@ -29,27 +29,17 @@
                             
                             <input type="text" name="name" class="form-control mylabels" placeholder="Full Name" value="{{ old('name') }}">
                             <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
+                            <input type="password" name="password" class="form-control mylabels" placeholder="Password">
+                            <input type="password" name="password_confirmation" class="form-control mylabels" placeholder="Password Confirmation" >
                             <input type="text" name="nif" class="form-control mylabels" placeholder="NIF" value="{{ old('nif') }}">
-                            <input type="text" name="niss" class="form-control mylabels" placeholder="NISS" value="{{ old('niss') }}">
                             <input type="text" name="emercontact" class="form-control mylabels" placeholder="Emergency Contact" value="{{ old('emercontact') }}">
                             <input type="text" name="bicc" class="form-control mylabels" placeholder="Identity Card Number" value="{{ old('bicc') }}">
-                            <label for="start_date">Start Date</label>
-                            <input type="date" name="start_date" class="form-control mylabels" value="{{ old('start_date') }}">
-                            <input type="text" name="iban" class="form-control mylabels" placeholder="IBAN" value="{{ old('iban') }}">
-                            <label for="details">Details</label><br>
-                            <input type="file" name="file" class="mb-3">
-                            <textarea name="details" cols="45" rows="3" style="color:#000;padding:3px">{{ old('details') }}</textarea>
-
-                            
+                  
+                        
                         </div>
 
                         <div class="col-md-4">
    
-                            <input type="text" name="country" class="form-control mylabels" placeholder="Country" value="{{ old('country') }}">
-                            <input type="text" name="city" class="form-control mylabels" placeholder="City" value="{{ old('city') }}">
-                            <input type="text" name="street" class="form-control mylabels" placeholder="Street" value="{{ old('street') }}">
-                            <input type="text" name="door_number" class="form-control mylabels" placeholder="Door Nr" value="{{ old('door_number') }}">
-                            <input type="text" name="zip_code" class="form-control mylabels" placeholder="Zip Code" value="{{ old('zip_code') }}">
                         
 
                             <label for="company_id">Company</label>

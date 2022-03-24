@@ -21,7 +21,7 @@ class DepartmentFactory extends Factory
         return [
             
             'name' => $this->faker->word(),
-         
+            'email' => $this->faker->unique()->safeEmail(),
             'company_id'=>1,
             
             'tenant_id'=>1

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backoffice;
 
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,9 @@ class AdminBackofficeController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+      
+        return view ('backoffice.admin.create', compact ('companies'));
     }
 
     /**

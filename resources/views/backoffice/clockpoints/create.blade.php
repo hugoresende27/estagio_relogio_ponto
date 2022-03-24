@@ -22,7 +22,7 @@
                 <label for="employee_id">Employee</label>
                 <select name="employee_id" class="form-control mylabels" >
                     @foreach ($employees as $employee)
-                
+                        <option hidden disabled selected value> -- select an option -- </option>
                         <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                     @endforeach
                    

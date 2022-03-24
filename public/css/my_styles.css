@@ -39,17 +39,22 @@ body
    
     font-size: 3rem;
     font-weight: bolder;
-    /* position: absolute; */
     top: 5%;
 }
 
 .mylogin
 {
+    font-family: 'Roboto', sans-serif; 
     font-size: 1rem;
     font-weight: bolder;
     position: absolute;
     top: 5%;
     left: 2%;
+    min-width: 200px;
+}
+
+.card{
+    /* background-color: #265C1D !important; */
 }
 
 .btn{

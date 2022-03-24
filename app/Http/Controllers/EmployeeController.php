@@ -63,6 +63,7 @@ class EmployeeController extends Controller
             'start_date'=>'required',  
 
             'image'=>'mimes:png,jpg,jpeg',
+            'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
             'role'=>'string',
 
             //////////LOCATION TABLE->ADRESS OF EMPLOYEE/////////////
@@ -95,7 +96,6 @@ class EmployeeController extends Controller
             'details'=>$request['details'],
             'department_id'=>$request['department_id'],
             'schedule_id'=>$request['schedule_id'],
-            'file_id'=>$request['file_id'],
             
             // 'role'=>$request['role'],  
             'role'=>'EMPLOYEE',                 //HARD CODED ROLE EMPLOYEE  
@@ -119,6 +119,24 @@ class EmployeeController extends Controller
             ]);
 
             $employee->image_id = $employee_image['id'];
+        };
+
+        ///////////// FILE CREATE //////////////////
+        if (isset($fields['file'] ))
+        {
+            $file_name = $request->file('file')->getClientOriginalName();
+            $file_path = $request->file('file')->store('public/files');
+
+            $employee_file = File::create([
+                'tenant_id'=>$tenantId,
+                'type'=>'EMPLOYEE FILE',
+                'name'=>$file_name,
+                'path'=>$file_path,
+                'size'=>$request->file('file')->getSize(),
+                'employee_id'=>$employee['id'],
+            ]);
+
+            $employee->file_id = $employee_file['id'];
         };
 
         /////////////// LOCATION CREATE ////////////

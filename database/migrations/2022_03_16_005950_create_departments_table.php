@@ -26,8 +26,10 @@ return new class extends Migration
             $table->unsignedBigInteger('file_id')->nullable()->index();
             $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             
+
+            /////DATA////////////
             $table->text('name');
-              
+            $table->text('email')->nullable(); 
             /////TIMESTAMPS+SOFTDELETE/////
             $table->timestamps();    
             $table->softDeletes();

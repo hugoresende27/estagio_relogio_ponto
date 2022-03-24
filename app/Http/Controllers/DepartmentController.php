@@ -34,6 +34,7 @@ class DepartmentController extends Controller
         $fields = $request->validate([
             
             'name'=>'required|string',
+            'email'=>'string', 
             'company_id'=>'required', 
             
         ]);
@@ -44,6 +45,7 @@ class DepartmentController extends Controller
        
         $department = Department::create([
             'name'=>$fields['name'],
+            'email'=>$fields['email'],
             'company_id'=>$fields['company_id'],            
             'tenant_id'=>$tenantId
         ]);
@@ -83,6 +85,7 @@ class DepartmentController extends Controller
         $fields = $request->validate([
             
             'name'=>'string|required',
+            'email'=>'string',
             'company_id'=>'required|string', 
         ]);
         

@@ -39,8 +39,7 @@
       <p> EMAIL: {{ Auth::user()->email }}</p>
       <p> NAME: {{ Auth::user()->name }}</p>
       <p>  TENANT ID: {{ Auth::user()->tenant_id }}</p>
-      {{-- <p>  TENANT NAME: {{ Auth::user()->tenant->name }}</p> --}}
-       <a href="{{ route('logout') }}">   <button class="btn btn-secondary"> Logout </button> </a> 
+        <p class="text-center"><a href="{{ route('logout') }}">   <button class="btn btn-secondary " > Logout </button> </a> </p>
     </div>
 
     <div class="text-center p-6">

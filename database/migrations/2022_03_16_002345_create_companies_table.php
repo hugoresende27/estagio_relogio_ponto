@@ -27,7 +27,7 @@ return new class extends Migration
             
             ///DATA//////
             $table->text('name');
-            $table->text('email');
+            $table->text('email')->nullable();
             $table->text('nif');
             
             /////TIMESTAMPS+SOFTDELETE/////

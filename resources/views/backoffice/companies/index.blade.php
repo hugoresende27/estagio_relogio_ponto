@@ -7,8 +7,10 @@
 <button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
 <button class="btn btn-success "><a href="/companies/create">ADD</a></button>
 
-    
+<div class="m-3">
     {{ $companies->links() }}
+</div>
+
     <table class="table table-dark">
     <thead>
         <tr>

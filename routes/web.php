@@ -55,6 +55,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/admin', AdminBackofficeController::class);
+    Route::get('/admin/create', [AdminBackofficeController::class, 'create']);
 
 /////////////////////CLOCKPOINT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/clockpointentry', ClockpointBackofficeController::class);
