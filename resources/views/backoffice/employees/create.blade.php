@@ -5,11 +5,63 @@
 <div class="container">
 <h1 class="display-4 text-center">Add Employees</h1>
 <button class="btn btn-success"><a href="/">HOME</a></button>
-<button class="btn btn-success"><a href="../employees/create">ADD</a></button>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 
+
+<div class="myform">
+
+
+   <form action="{{ url('api/employees') }}" method="POST">
+    @csrf
+  
+     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">           
+                <input type="text" name="name" class="form-control mylabels" placeholder="Full Name" value="{{ old('name') }}">
+                <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
+                <input type="text" name="nif" class="form-control mylabels" placeholder="NIF" value="{{ old('nif') }}">
+                <input type="text" name="niss" class="form-control mylabels" placeholder="NISS" value="{{ old('niss') }}">
+                <input type="text" name="emercontact" class="form-control mylabels" placeholder="Emergency Contact" value="{{ old('emercontact') }}">
+                <input type="text" name="bicc" class="form-control mylabels" placeholder="Identity Card Number" value="{{ old('bicc') }}">
+                <label for="start_date">Start Date</label>
+                <input type="date" name="start_date" class="form-control mylabels" value="{{ old('start_date') }}">
+
+                <input type="text" name="country" class="form-control mylabels" placeholder="Country" value="{{ old('country') }}">
+                <input type="text" name="city" class="form-control mylabels" placeholder="City" value="{{ old('city') }}">
+                <input type="text" name="street" class="form-control mylabels" placeholder="Street" value="{{ old('street') }}">
+                <input type="text" name="door_number" class="form-control mylabels" placeholder="Door Nr" value="{{ old('door_number') }}">
+                <input type="text" name="zip_code" class="form-control mylabels" placeholder="Zip Code" value="{{ old('zip_code') }}">
+              
+
+                <label for="company_id">Company</label>
+                <select name="company_id" class="form-control mylabels" >
+                    @foreach ($companies as $company)
+                
+                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                    @endforeach
+                   
+                </select>
+            </div>
+        </div>
+      
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
    
-
+</form>
+   
+</div>
  
        
   

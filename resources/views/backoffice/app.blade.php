@@ -16,7 +16,8 @@
 
   <body class=" text-white ">
 
-    <h1 class="mytitle">Relogio de Ponto</h1>
+    <h1 class="mytitle">Relogio de Ponto </h1>
+    <h2>BackOffice</h2>
     
     @auth
 
@@ -61,8 +62,9 @@
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container" style="font-size: .8em">
                 <p class="navbar-text">
-                    &copy; Relogio de ponto backoffice
+                  &copy;Hugo Resende
                 </p>
+               
             </div>
         </div>
     </footer>

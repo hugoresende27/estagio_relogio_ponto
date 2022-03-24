@@ -28,7 +28,7 @@ class CompanyBackofficeController extends Controller
      */
     public function create()
     {
-        //
+        return view ('backoffice.companies.create');
     }
 
     /**

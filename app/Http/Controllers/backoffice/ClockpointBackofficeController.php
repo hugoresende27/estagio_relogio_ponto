@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backoffice;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\Clockpointentry;
 use App\Http\Controllers\Controller;
@@ -27,7 +28,9 @@ class ClockpointBackofficeController extends Controller
      */
     public function create()
     {
-        //
+      
+        $employees = Employee::all();
+        return view ('backoffice.clockpoints.create', compact('employees'));
     }
 
     /**

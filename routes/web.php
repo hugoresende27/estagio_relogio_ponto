@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\backoffice\FileBackofficeController;
 use App\Http\Controllers\backoffice\AdminBackofficeController;
 use App\Http\Controllers\backoffice\CompanyBackofficeController;
@@ -51,13 +52,16 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 /////////////////////CLOCKPOINT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/clockpointentry', ClockpointBackofficeController::class);
-
+    Route::get('/clockpointentry/create', [ClockpointBackofficeController::class, 'create']);
+    
 /////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/employees', EmployeeBackofficeController::class);
     Route::get('/employees/create', [EmployeeBackofficeController::class, 'create']);
+   
 
 /////////////////////COMPANY ROUTES///////////////////////////////////////////////////////////////////
     Route::resource('/companies', CompanyBackofficeController::class);
+    Route::get('/companies/create', [CompanyBackofficeController::class, 'create']);
 /////////////////////DEPARMENT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/departments', DepartmentBackofficeController::class);
 /////////////////////LOCATIONS ROUTES////////////////////////////////////////////////////////////////
