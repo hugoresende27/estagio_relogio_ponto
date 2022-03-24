@@ -18,10 +18,10 @@ class Tenant extends Model
 
     protected $guarded = ['id'];
 
-    public function companies()
-    {
-        return $this->belongsToMany(Company::class);
-    }
+    // public function companies()
+    // {
+    //     return $this->belongsToMany(Company::class);
+    // }
 
     protected $casts = [
        

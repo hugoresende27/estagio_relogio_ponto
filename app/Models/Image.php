@@ -40,8 +40,8 @@ class Image extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function employee(): HasOne
+    public function employee()//: HasOne
     {
-        return $this->hasOne(Employee::class);
+        return $this->hasOne(Employee::class, 'id', 'employee_id');
     }
 }

@@ -4,17 +4,7 @@
     
 <div class="container">
 <h1 class="display-4 text-center">Point Clock</h1>
-<button class="btn btn-success"><a href="/">HOME</a></button>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
 
 
 

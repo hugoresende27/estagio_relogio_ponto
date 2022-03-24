@@ -5,7 +5,7 @@
 <div class="container">
 <h1 class="display-4 text-center">Clockpoint Regists</h1>
 <button class="btn btn-success"><a href="/">HOME</a></button>
-<button class="btn btn-success"><a href="/clockpointentry/create">ADD</a></button>
+<button class="btn btn-success homeBtn"><a href="/clockpointentry/create">ADD</a></button>
 
 
     {{ $clockpoints->links() }}

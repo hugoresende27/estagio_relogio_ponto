@@ -18,14 +18,28 @@
 
     <h1 class="mytitle">Relogio de Ponto </h1>
     <h2>BackOffice</h2>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
+
+
     
     @auth
 
-    <div class="mylogin card text-black p-3">
-      <h5 class="card-title">User Details</h5>
+    <div class="mylogin card text-white p-3">
+      <h5 class="card-title text-center">User Details</h5>
       <p> EMAIL: {{ Auth::user()->email }}</p>
       <p> NAME: {{ Auth::user()->name }}</p>
       <p>  TENANT ID: {{ Auth::user()->tenant_id }}</p>
+      {{-- <p>  TENANT NAME: {{ Auth::user()->tenant->name }}</p> --}}
        <a href="{{ route('logout') }}">   <button class="btn btn-secondary"> Logout </button> </a> 
     </div>
 
@@ -41,6 +55,7 @@
           <a href="../locations">   <button class="btn btn-secondary">Locations  </button> </a>
           <a href="../schedules">   <button class="btn btn-secondary">Schedules  </button> </a>
           <a href="../files">   <button class="btn btn-secondary">Files  </button> </a>
+          <a href="../images">   <button class="btn btn-secondary">Images  </button> </a>
       </div>
      
 
@@ -68,6 +83,15 @@
             </div>
         </div>
     </footer>
+
+    <script>
+
+      // SCRIPT IMAGES LOAD FORM
+      function preview() {
+      frame.src=URL.createObjectURL(event.target.files[0]);
+  }
+  
+  </script>
       
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

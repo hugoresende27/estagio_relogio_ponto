@@ -1,16 +1,19 @@
-@extends('layouts.app')
+@extends('backoffice.app')
 
 @section('content')
+<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card text-white bg-dark mb-3">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ url('api/register') }}" enctype="multipart/form-data">
                         @csrf
-
+                        <label for="image">Photo</label>     
+                        <input type="file" name="image" class="form-control" onchange="preview()">
+                        <img id="frame" src="" width="300px" height="300px" class="mt-3"/>
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 

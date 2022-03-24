@@ -69,10 +69,17 @@ a:hover{
 .mylogin{
     background-color: var(--charcoal-cor);
 }
+
 .myform{
-    margin-left: 50%;
-    transform: translateX(-50%);
-    max-width: 400px;
+  margin-left: 10%;
+  margin-right: auto;
+
+}
+
+.homeBtn{
+    position: absolute;
+    top: 5%;
+    left: 30%;
 }
 
 .mylabels{

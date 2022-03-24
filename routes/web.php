@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\backoffice\FileBackofficeController;
 use App\Http\Controllers\backoffice\AdminBackofficeController;
+use App\Http\Controllers\backoffice\ImageBackofficeController;
 use App\Http\Controllers\backoffice\CompanyBackofficeController;
 use App\Http\Controllers\backoffice\EmployeeBackofficeController;
 use App\Http\Controllers\backoffice\LocationBackofficeController;
@@ -41,6 +43,10 @@ Route::get('logout', function () {
     return view ('backoffice.welcome');
 });
 
+Route::get('registerweb', function () { 
+    return view('auth.register');
+});
+
 
 
 Route::group(['middleware'=>['auth:sanctum']], function () {
@@ -70,6 +76,9 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::resource('/schedules', ScheduleBackofficeController::class);
 /////////////////////FILES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('files', FileBackofficeController::class);
+
+/////////////////////IMAGES ROUTES////////////////////////////////////////////////////////////////
+    Route::resource('images', ImageBackofficeController::class);
 });
 
 

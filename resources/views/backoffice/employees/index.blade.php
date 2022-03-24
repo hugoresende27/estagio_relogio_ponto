@@ -4,7 +4,7 @@
     
 <div class="container">
 <h1 class="display-4 text-center">All Employees</h1>
-<button class="btn btn-success"><a href="/">HOME</a></button>
+<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
 <button class="btn btn-success"><a href="/employees/create">ADD</a></button>
 
 <div class="text-white">
@@ -31,6 +31,7 @@
         <th scope="col">Emergency Contact</th>
         <th scope="col">BI/CC</th>
         <th scope="col">Start Date</th>
+        <th scope="col">Tenant ID</th>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +57,7 @@
             <td>{{ $employee->emercontact }}</td>
             <td>{{ $employee->bicc }}</td>
             <td>{{ $employee->start_date }}</td>
+            <td>{{ Auth::user()->tenant_id }}</td>
            
             </tr>
 

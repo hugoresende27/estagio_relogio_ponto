@@ -1,6 +1,7 @@
 @extends('backoffice.app')
 
 @section('content')
+<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8  ">

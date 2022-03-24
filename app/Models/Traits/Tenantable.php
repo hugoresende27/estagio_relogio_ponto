@@ -28,10 +28,10 @@ trait Tenantable
         }
     }
 
-    //função para usar para ir buscar departamentos, empresas, etc
-    public function tenant()
-    {
-        return $this->belongsTo(Tenant::class);
-    }
+   
+    // public function tenant()
+    // {
+    //     return $this->belongsTo(Tenant::class);
+    // }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Image;
+use App\Models\Tenant;
 use App\Models\Company;
 use App\Scopes\TenantScope;
 use App\Models\Traits\Tenantable;
@@ -91,16 +92,6 @@ class User extends Authenticatable
        return $this-> hasOne(Image::class, 'id', 'image_id');
    }
 
- 
-
-    
-    //função para usar para ir buscar departamentos, empresas, etc
-    public function tenant()
-    {
-        return $this->belongsTo(Tenant::class);
-    }
-
-  
  
 
 
