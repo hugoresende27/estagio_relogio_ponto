@@ -2,9 +2,10 @@
 
 @section('content')
     
-
-<h1 class="display-4 text-center">All Locations</h1>
 <div class="container">
+<h1 class="display-4 text-center">All Locations</h1>
+<button class="btn btn-success"><a href="/">HOME</a></button>
+
 
     {{ $locations->links() }}
     <table class="table table-dark">
@@ -22,7 +23,7 @@
     <tbody>
         @foreach ($locations as $location)
             
-            <tr class=" text-xs">
+            <tr class=" text-sm">
             <td>{{ $location->id }}</td>
             <td>{{ $location->country }}</td>
             <td>{{ $location->city }}</td>

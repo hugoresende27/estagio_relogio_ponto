@@ -65,12 +65,12 @@ class DatabaseSeeder extends Seeder
         \App\Models\Employee::factory(20)->create();
         \App\Models\Clockpointentry::factory(20)->create();
 
-         \DB::table('users')->insert([
-            'name' => 'Administrador',
-            'email' => 'admin@admin',
-            'role' => 'admin',
-            'password' => bcrypt('1111'),
-        ]);
+        //  \DB::table('users')->insert([
+        //     'name' => 'Administrador',
+        //     'email' => 'admin@admin',
+        //     'role' => 'admin',
+        //     'password' => bcrypt('1111'),
+        // ]);
 
        
     }

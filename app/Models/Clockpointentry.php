@@ -17,4 +17,18 @@ class Clockpointentry extends Model
     public $timestamps = false;
 
     protected $guarded = ['id'];
+
+
+     //////////////// RELATIONS //////////////////////
+
+   public function employee()
+   {
+       return $this-> hasOne(Employee::class, 'id', 'employee_id');
+   }
+
+   public function file()
+   {
+       return $this-> hasOne(File::class, 'id', 'file_id');
+   }
+
 }

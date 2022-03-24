@@ -2,9 +2,10 @@
 
 @section('content')
     
-
-<h1 class="display-4 text-center">All Departments</h1>
 <div class="container">
+<h1 class="display-4 text-center">All Departments</h1>
+<button class="btn btn-success"><a href="/">HOME</a></button>
+
 
     {{ $departments->links() }}
     <table class="table table-dark">
@@ -24,7 +25,7 @@
     <tbody>
         @foreach ($departments as $department)
             
-            <tr class=" text-xs">
+            <tr class="text-sm">
             <td>{{ $department->id }}</td>    
             <td>{{ $department->name }}</td>
             

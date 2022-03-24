@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Acme&family=Assistant:wght@200;300&family=Baloo+2&family=Cairo:wght@200;600&family=Caveat:wght@400;700&family=Comforter+Brush&family=Exo+2:wght@100;300&family=Indie+Flower&family=Inter:wght@100;500&family=Lato:wght@100;400&family=M+PLUS+1:wght@100;400&family=M+PLUS+2:wght@100;500&family=M+PLUS+Code+Latin:wght@100;400&family=Merriweather:wght@300;700&family=Open+Sans:wght@300;600&family=Roboto+Slab:wght@100;400&family=Signika:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
+/* font-family: 'Mukta', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+/* font-family: 'Roboto', sans-serif; */
 :root
 {
     --primary-cor:#409C32;
@@ -18,8 +20,9 @@
 
 body
 {
+    font-family: 'Mukta', sans-serif;
+    font-size: 1.5rem;
     background-color: var(--purple-cor);
-    font-family: 'Inter',sans-serif;   
     display: flex;          /*coloca tudo em linha*/
     flex-direction: column; /*coloca tudo em coluna*/
     align-items: center;    /*alinha horizontalmente*/
@@ -29,4 +32,40 @@ body
     margin: 0;
     /*overflow-x: hidden; /*REMOVER BARRA DE SCROLL HORIZONTAL*/
     padding: 5px;
+}
+
+.mytitle
+{
+   
+    font-size: 3rem;
+    font-weight: bolder;
+    /* position: absolute; */
+    top: 5%;
+}
+
+.mylogin
+{
+    font-size: 1rem;
+    font-weight: bolder;
+    position: absolute;
+    top: 5%;
+    left: 2%;
+}
+
+.btn{
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn:hover{
+    background-color: var(--charcoal-cor);
+}
+
+a:hover{
+    text-decoration: none;
+    color: #fff;
+}
+
+.mylogin{
+    background-color: var(--charcoal-cor);
 }

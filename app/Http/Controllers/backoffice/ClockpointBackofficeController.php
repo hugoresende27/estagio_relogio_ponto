@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\backoffice;
 
-use App\Models\Company;
-use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Models\Clockpointentry;
 use App\Http\Controllers\Controller;
 
-class EmployeeBackofficeController extends Controller
+class ClockpointBackofficeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,9 @@ class EmployeeBackofficeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::orderBy('created_at','DESC')->paginate(10);
-
-    
-        return view('backoffice.employees.index', compact ('employees'));
+        $clockpoints = Clockpointentry::orderBy('created_at','DESC')->paginate(10);
+  
+        return view('backoffice.clockpoints.index', compact ('clockpoints'));
     }
 
     /**
@@ -29,7 +27,7 @@ class EmployeeBackofficeController extends Controller
      */
     public function create()
     {
-        return view ('backoffice.employees.create');
+        //
     }
 
     /**
@@ -51,7 +49,7 @@ class EmployeeBackofficeController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

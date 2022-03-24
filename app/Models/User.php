@@ -68,10 +68,30 @@ class User extends Authenticatable
 
   
 
-    public function companies() 
-    {
-		return $this->belongsToMany(Company::class, );
-	}
+   //////////////// RELATIONS //////////////////////
+
+   public function company()
+   {
+       return $this-> hasOne(Company::class, 'id', 'company_id');
+   }
+
+   public function department()
+   {
+       return $this-> hasOne(Department::class, 'id', 'department_id');
+   }
+
+   public function schedule()
+   {
+       return $this-> hasOne(Schedule::class, 'id', 'schedule_id');
+   }
+
+
+   public function image()
+   {
+       return $this-> hasOne(Image::class, 'id', 'image_id');
+   }
+
+ 
 
     
     //função para usar para ir buscar departamentos, empresas, etc
@@ -81,10 +101,7 @@ class User extends Authenticatable
     }
 
   
-    public function image()
-    {
-        return $this->hasOne(Image::class);
-    }
+ 
 
 
     

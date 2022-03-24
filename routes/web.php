@@ -3,20 +3,16 @@
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\DepartmentController;
+
+
 
 use App\Http\Controllers\backoffice\FileBackofficeController;
+use App\Http\Controllers\backoffice\AdminBackofficeController;
 use App\Http\Controllers\backoffice\CompanyBackofficeController;
 use App\Http\Controllers\backoffice\EmployeeBackofficeController;
 use App\Http\Controllers\backoffice\LocationBackofficeController;
 use App\Http\Controllers\backoffice\ScheduleBackofficeController;
+use App\Http\Controllers\backoffice\ClockpointBackofficeController;
 use App\Http\Controllers\backoffice\DepartmentBackofficeController;
 
 
@@ -51,10 +47,14 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 
 //////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
-    Route::resource('/admin', AdminController::class);
+    Route::resource('/admin', AdminBackofficeController::class);
+
+/////////////////////CLOCKPOINT ROUTES////////////////////////////////////////////////////////////////
+    Route::resource('/clockpointentry', ClockpointBackofficeController::class);
 
 /////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/employees', EmployeeBackofficeController::class);
+    Route::get('/employees/create', [EmployeeBackofficeController::class, 'create']);
 
 /////////////////////COMPANY ROUTES///////////////////////////////////////////////////////////////////
     Route::resource('/companies', CompanyBackofficeController::class);
