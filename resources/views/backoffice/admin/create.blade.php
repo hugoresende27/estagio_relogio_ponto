@@ -4,7 +4,7 @@
     
 <div class="container">
 <h1 class="display-4 text-center">Add User</h1>
-<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
+<a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
 
 
 <div>
@@ -21,27 +21,8 @@
                             
                             <label for="image">Photo</label>     
                             <input type="file" name="image" class="form-control" onchange="preview()">
-                            <img id="frame" src="" width="300px" height="300px" class="mt-3"/>
+                            <img id="frame" src="" width="200px" height="100px" class="mt-3"/>
                    
-                        
-                        </div>
-                        <div class="col-md-4">
-                            
-                            <input type="text" name="name" class="form-control mylabels" placeholder="Full Name" value="{{ old('name') }}">
-                            <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
-                            <input type="password" name="password" class="form-control mylabels" placeholder="Password">
-                            <input type="password" name="password_confirmation" class="form-control mylabels" placeholder="Password Confirmation" >
-                            <input type="text" name="nif" class="form-control mylabels" placeholder="NIF" value="{{ old('nif') }}">
-                            <input type="text" name="emercontact" class="form-control mylabels" placeholder="Emergency Contact" value="{{ old('emercontact') }}">
-                            <input type="text" name="bicc" class="form-control mylabels" placeholder="Identity Card Number" value="{{ old('bicc') }}">
-                  
-                        
-                        </div>
-
-                        <div class="col-md-4">
-   
-                        
-
                             <label for="company_id">Company</label>
                             <select name="company_id" class="form-control mylabels" >
                                 @foreach ($companies as $company)
@@ -50,6 +31,26 @@
                                 @endforeach
                             
                             </select>
+                        
+                        </div>
+                        <div class="col-md-4">
+                            <label>Login details</label>  
+                            <input type="text" name="name" class="form-control mylabels" placeholder="Full Name" value="{{ old('name') }}">
+                            <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
+                            <input type="password" name="password" class="form-control mylabels" placeholder="Password">
+                            <input type="password" name="password_confirmation" class="form-control mylabels" placeholder="Password Confirmation" >
+                        
+                        
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Details</label>  
+                            <input type="text" name="nif" class="form-control mylabels" placeholder="NIF" value="{{ old('nif') }}">
+                            <input type="text" name="emercontact" class="form-control mylabels" placeholder="Emergency Contact" value="{{ old('emercontact') }}">
+                            <input type="text" name="bicc" class="form-control mylabels" placeholder="Identity Card Number" value="{{ old('bicc') }}">
+                  
+                        
+
                         
                         </div>
                     </div>

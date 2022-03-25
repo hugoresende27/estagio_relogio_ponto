@@ -22,14 +22,29 @@
 <div>
 
 
-    <form action="{{ url('api/departments') }}" method="POST">
+    <form action="{{ url('api/departments') }}" method="POST" enctype="multipart/form-data">
      @csrf
    
       <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12">
-             <div class="form-group">           
-                 <input type="text" name="name" class="form-control mylabels" placeholder="Full Name" value="{{ old('name') }}">
+             <div class="form-group">      
+                 
+                <label for="company_id">Company</label>
+                <select name="company_id" class="form-control mylabels" >
+                    @foreach ($companies as $company)
+                        <option hidden disabled selected value> -- select an option -- </option>
+                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                    @endforeach
+                
+                </select>
+                
+                 <input type="text" name="name" class="form-control mylabels" placeholder="Department Name" value="{{ old('name') }}">
                  <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
+                 <label for="file">Attach File</label>
+                 <input type="file" name="file" class="mb-3"><br>
+                 
+
+                
              
                
              </div>

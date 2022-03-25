@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Location;
-use App\Models\Department;
 // use App\Scopes\TenantScope;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Exports\CompanyExport;
 use App\Imports\CompanyImport;
@@ -56,11 +57,15 @@ class CompanyController extends Controller
             'street'=>'required|string',
             'door_number'=>'required|string',
             'zip_code'=>'required|string',
+
+            ////////////////FILE TABLE/////////////////////
+            'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
                             
         ]);
         
         //TENANT_ID 
         $tenantId = Auth::user()->tenant_id;
+
 
         /////////////// LOCATION CREATE ////////////
         $company_location = Location::create([
@@ -83,6 +88,25 @@ class CompanyController extends Controller
             ////NON REQUIRED FIELDS
             'location_id'=>$company_location['id'],
         ]);
+
+        ///////////// FILE CREATE //////////////////
+        if (isset($fields['file'] ))
+        {
+            $file_name = $request->file('file')->getClientOriginalName();
+            $file_path = $request->file('file')->store('public/files');
+
+            $company_file = File::create([
+                'tenant_id'=>$tenantId,
+                'type'=>'COMPANY FILE',
+                'name'=>$file_name,
+                'path'=>$file_path,
+                'size'=>$request->file('file')->getSize(),
+            ]);
+            // dd($company_file);
+            $company->file_id = $company_file['id'];
+        };
+
+        $company->save();
 
         //ATTACH TO PIVOT TABLE COMPANY_TENANT
         $company->tenant()->attach($tenantId);

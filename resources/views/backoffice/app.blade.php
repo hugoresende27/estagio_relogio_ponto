@@ -47,12 +47,12 @@
 
       <div class="links p-6">
           <a href="../admin">   <button class="btn btn-secondary"> Admin  </button> </a> 
-          <a href="../clockpointentry">   <button class="btn btn-secondary">Clockpoint Reg  </button> </a>  
-          <a href="../employees">   <button class="btn btn-secondary">Employees  </button> </a>
           <a href="../companies">   <button class="btn btn-secondary">Companies  </button> </a>
           <a href="../departments">   <button class="btn btn-secondary">Departments  </button> </a>
-          <a href="../locations">   <button class="btn btn-secondary">Locations  </button> </a>
+          <a href="../employees">   <button class="btn btn-secondary">Employees  </button> </a>
+          <a href="../clockpointentry">   <button class="btn btn-secondary">Clockpoint Reg  </button> </a>           
           <a href="../schedules">   <button class="btn btn-secondary">Schedules  </button> </a>
+          <a href="../locations">   <button class="btn btn-secondary">Locations  </button> </a>
           <a href="../files">   <button class="btn btn-secondary">Files  </button> </a>
           <a href="../images">   <button class="btn btn-secondary">Images  </button> </a>
       </div>

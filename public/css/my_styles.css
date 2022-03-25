@@ -26,7 +26,7 @@ body
     display: flex;          /*coloca tudo em linha*/
     flex-direction: column; /*coloca tudo em coluna*/
     align-items: center;    /*alinha horizontalmente*/
-    justify-content: center;/*alinha tudo verticalmente com uso de height:100vh*/
+    /*justify-content: center;/*alinha tudo verticalmente com uso de height:100vh*/
     min-height: 100vh;
     /* overflow: hidden; BARRA DE SCROLL DOWN, HIDDEN ESCONDIDA */
     margin: 0;
@@ -36,10 +36,10 @@ body
 
 .mytitle
 {
-   
+   /* position: absolute; */
     font-size: 3rem;
     font-weight: bolder;
-    top: 5%;
+    top: 1%;
 }
 
 .mylogin
@@ -48,14 +48,12 @@ body
     font-size: 1rem;
     font-weight: bolder;
     position: absolute;
-    top: 5%;
-    left: 2%;
-    min-width: 200px;
+    top: 1%;
+    left: 1%;
+    max-width: 250px;
 }
 
-.card{
-    /* background-color: #265C1D !important; */
-}
+
 
 .btn{
     font-weight: 900;
@@ -82,9 +80,10 @@ a:hover{
 }
 
 .homeBtn{
-    position: absolute;
-    top: 5%;
-    left: 30%;
+    /* position: absolute; */
+    top: 12%;
+    left: 45%;
+    min-width: 150px;
 }
 
 .mylabels{
@@ -92,4 +91,23 @@ a:hover{
     font-size: 1.5rem;
     color: #000;
     margin-bottom: 20px;
+}
+
+.mytimelabel{
+    display: flex;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #000;
+    
+    margin-right: 10px;
+    margin-bottom: 20px;
+    max-width: 200px;
+}
+
+.mycenter{
+    display: flex;  
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;
+    min-height: 50vh;
 }

@@ -4,8 +4,8 @@
     
 <div class="container">
 <h1 class="display-4 text-center">All Users</h1>
-<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
-<button class="btn btn-success "><a href="/admin/create">ADD</a></button>
+<a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
+<a href="/admin/create"><button class="btn btn-success ">ADD</button></a>
 
 <div class="m-3">
     {{ $users->links() }}

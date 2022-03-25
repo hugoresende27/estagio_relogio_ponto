@@ -71,10 +71,12 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::get('/companies/create', [CompanyBackofficeController::class, 'create']);
 /////////////////////DEPARMENT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/departments', DepartmentBackofficeController::class);
+    Route::get('/departments/create', [DepartmentBackofficeController::class, 'create']);
 /////////////////////LOCATIONS ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/locations', LocationBackofficeController::class);
 /////////////////////SCHEDULES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/schedules', ScheduleBackofficeController::class);
+    Route::get('/schedules/create', [ScheduleBackofficeController::class, 'create']);
 /////////////////////FILES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('files', FileBackofficeController::class);
 

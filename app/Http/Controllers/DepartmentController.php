@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Tenant;
 use App\Models\Company;
 use App\Models\Employee;
@@ -31,17 +32,22 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+
+        $tenantId = Auth::user()->tenant_id;
+
+
         $fields = $request->validate([
             
             'name'=>'required|string',
             'email'=>'string', 
+
+            'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
             'company_id'=>'required', 
+
             
         ]);
         
-        $tenantId = Auth::user()->tenant_id;
 
-  
        
         $department = Department::create([
             'name'=>$fields['name'],
@@ -49,6 +55,25 @@ class DepartmentController extends Controller
             'company_id'=>$fields['company_id'],            
             'tenant_id'=>$tenantId
         ]);
+
+        ///////////// FILE CREATE //////////////////
+        if (isset($fields['file'] ))
+        {
+            $file_name = $request->file('file')->getClientOriginalName();
+            $file_path = $request->file('file')->store('public/files');
+
+            $department_file = File::create([
+                'tenant_id'=>$tenantId,
+                'type'=>'DEPARTMENT FILE',
+                'name'=>$file_name,
+                'path'=>$file_path,
+                'size'=>$request->file('file')->getSize(),
+            ]);
+
+            $department->file_id = $department_file['id'];
+        };
+
+        $department->save();
         
         return response()->json($department, 201);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,27 +29,30 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        $tenantId = Auth::user()->tenant_id;
+
+
         $fields = $request->validate([
             
             'company_id'=>'required',
             'department_id'=>'required',
             'shift_start'=>'required',
             'shift_end'=>'required',
-            'shift_type'=>'required'
-           
+            'shift_type'=>'required',
+            'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
             
         ]);
         
-        $tenantId = Auth::user()->tenant_id;
+    //    dd($fields['shift_start']);
 
-        $total_shift = $fields['shift_end']-$fields['shift_start'];
+        // $total_shift = $fields['shift_end']-$fields['shift_start'];
 
-        if ($total_shift<0)
-        {
-            $total_shift = $fields['shift_start']-240000-$fields['shift_end'];
-        }
+        // if ($total_shift<0)
+        // {
+        //     $total_shift = $fields['shift_start']-240000-$fields['shift_end'];
+        // }
        
-        $schedules = Schedule::create([
+        $schedule = Schedule::create([
                                  
             'tenant_id'=>$tenantId,          
             
@@ -57,11 +61,33 @@ class ScheduleController extends Controller
             'shift_start'=>$fields['shift_start'],
             'shift_end'=>$fields['shift_end'],
             'shift_type'=>$fields['shift_type'],
-            'shift_total'=>abs($total_shift),
+            // 'shift_total'=>abs($total_shift),
+            'shift_total'=>0,
 
         ]);
+
+        ///////////// FILE CREATE //////////////////
+        if (isset($fields['file'] ))
+        {
+            $file_name = $request->file('file')->getClientOriginalName();
+            $file_path = $request->file('file')->store('public/files');
+
+            $schedule_file = File::create([
+                'tenant_id'=>$tenantId,
+                'type'=>'SCHEDULE FILE',
+                'name'=>$file_name,
+                'path'=>$file_path,
+                'size'=>$request->file('file')->getSize(),
+            ]);
+
+            $schedule->file_id = $schedule_file['id'];
+        };
+
+        $schedule->save();
+
+
         
-        return response()->json($schedules, 201);
+        return response()->json($schedule, 201);
     }
 
     /**

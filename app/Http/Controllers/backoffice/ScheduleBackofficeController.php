@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\backoffice;
 
 
+use App\Models\Company;
+use App\Models\Employee;
 use App\Models\Schedule;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -29,7 +32,10 @@ class ScheduleBackofficeController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        $departments = Department::all();
+        
+        return view ('backoffice.schedules.create', compact('companies','departments'));
     }
 
     /**

@@ -133,7 +133,6 @@ class EmployeeController extends Controller
                 'name'=>$file_name,
                 'path'=>$file_path,
                 'size'=>$request->file('file')->getSize(),
-                'employee_id'=>$employee['id'],
             ]);
 
             $employee->file_id = $employee_file['id'];
