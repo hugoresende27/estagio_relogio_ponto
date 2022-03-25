@@ -40,6 +40,8 @@
 
     <div class="mylogin card text-white p-3">
       <h5 class="card-title text-center">User Details</h5>
+
+      {{-- <img class ="" src="{{  asset(Auth::user()->image->image_path) }}" alt="Avatar" style="width:100%;"> --}}
       <p> EMAIL: {{ Auth::user()->email }}</p>
       <p> NAME: {{ Auth::user()->name }}</p>
       <p>  TENANT ID: {{ Auth::user()->tenant_id }}</p>

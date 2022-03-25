@@ -14,6 +14,8 @@
     <table class="table table-dark">
     <thead>
         <tr>
+            
+        <th scope="col">Avatar</th>
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Company</th>
@@ -37,6 +39,7 @@
         @foreach ($users as $user)
             
             <tr class=" text-sm">
+            {{-- <td> <img class ="" src="{{  (Auth::user()->image->image_path) }}" alt="Avatar" style="width:100%;"></td> --}}
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
 

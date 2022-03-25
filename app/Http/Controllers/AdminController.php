@@ -173,37 +173,27 @@ class AdminController extends Controller
         {
             $image = Image::where('user_id',$id)->first();
             
-            if (empty($image)){
-               ///////////// IMAGE CREATE //////////////////
-                $image_name = $request->file('image')->getClientOriginalName();
-                $image_path = $request->file('image')->store('public/images');
+       
+            $image->delete();
+            ///////////// IMAGE CREATE //////////////////
+            $image_name = $request->file('image')->getClientOriginalName();
+            $image_path = $request->file('image')->store('public/images');
 
-                $employee_image = Image::create([
-                    'tenant_id'=>$tenantId,
-                    'name'=>$image_name,
-                    'image_path'=>$image_path,
-                    'size'=>$request->file('image')->getSize(),
-                    'user_id'=>$user_employee['id'],
-                ]);
-            } else{
-                $image->delete();
-                ///////////// IMAGE CREATE //////////////////
-                $image_name = $request->file('image')->getClientOriginalName();
-                $image_path = $request->file('image')->store('public/images');
-
-                $employee_image = Image::create([
-                    'tenant_id'=>$tenantId,
-                    'name'=>$image_name,
-                    'image_path'=>$image_path,
-                    'size'=>$request->file('image')->getSize(),
-                    'user_id'=>$user_employee['id'],
-                ]);
-               
-            }
+            $employee_image = Image::create([
+                'tenant_id'=>$tenantId,
+                'name'=>$image_name,
+                'image_path'=>$image_path,
+                'size'=>$request->file('image')->getSize(),
+                'user_id'=>$user_employee['id'],
+            ]);
 
             $user_employee->image_id = $employee_image['id'];
-         
+               
         }
+
+            
+         
+        
 
         $user_employee->update($fields);
 

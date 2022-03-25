@@ -22,7 +22,7 @@ class Image extends Model
         'email_verified_at' => 'datetime',
 
      //ENCRYPTED////////////
-     'image_path' => 'encrypted',
+    //  'image_path' => 'encrypted',
     
     ];
     /**
