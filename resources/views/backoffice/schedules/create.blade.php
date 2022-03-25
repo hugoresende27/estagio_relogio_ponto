@@ -30,6 +30,9 @@
         <div class="form-group">      
             <div class="row">
                 <div class="col-md-6">
+
+
+{{-- 
                     <label for="company_id">Company</label>
                     <select name="company_id" class="form-control mylabels" >
                         @foreach ($companies as $company)
@@ -46,7 +49,28 @@
                             <option value="{{ $department->id }}">{{ $department->name }}</option>
                         @endforeach
                     
+                    </select> --}}
+
+
+                                         <!-- Department Dropdown -->
+                    <label>Company Details:</label>
+                    <select id='company_id' name='company_id' class="form-control mylabels">
+                        <option value='0'>-- Select Company --</option>
+
+                        <!-- Read Departments -->
+                        @foreach($companies['data'] as $company)
+                            <option value='{{ $company->id }}' >{{ $company->name }}</option>
+                        @endforeach
+
                     </select>
+                  
+
+
+                    <select id='department_id' name='department_id' class="form-control mylabels">
+                        <option value=''>-- Select Department --</option>
+                    </select>
+
+
                 </div>
                 <div class="col-md-6">
                  <label for="file">Attach File</label><br>
@@ -78,6 +102,49 @@
  
        
   
-</div>     
+</div>    
+
+
+
+ <!-- Script -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script type='text/javascript'>
+ $(document).ready(function(){
+   // Department Change
+   $('#company_id').change(function(){
+      // Department id
+      var code = $(this).val();
+     
+      // Empty the dropdown
+      $('#department_id').find('option').not(':first').remove();
+      // AJAX request 
+      $.ajax({
+       
+        url: '/addschedule/'+code,
+        type: 'get',
+        dataType: 'json',
+        success: function(response){
+         
+          var len = 0;
+          if(response['data'] != null){
+             len = response['data'].length;
+          }
+          if(len > 0){
+             // Read data and create <option >
+             for(var i=0; i<len; i++){
+                var id = response['data'][i].id;
+                var name = response['data'][i].name;
+                var option = "<option value='"+id+"'>"+name+"</option>";
+                // console.log(id);
+                $("#department_id").append(option); 
+             }
+          }
+          
+        }
+      });
+   });
+ });
+ 
+ </script>
 
 @endsection

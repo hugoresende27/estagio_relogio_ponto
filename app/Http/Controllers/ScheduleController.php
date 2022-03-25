@@ -36,7 +36,7 @@ class ScheduleController extends Controller
         $fields = $request->validate([
             
             'company_id'=>'required',
-            'department_id'=>'required',
+            // 'department_id'=>'required',
             'shift_start'=>'required',
             'shift_end'=>'required',
             'shift_type'=>'required',
@@ -57,7 +57,7 @@ class ScheduleController extends Controller
             'tenant_id'=>$tenantId,          
             
             'company_id'=>$fields['company_id'],
-            'department_id'=>$fields['department_id'],
+           
             'shift_start'=>$fields['shift_start'],
             'shift_end'=>$fields['shift_end'],
             'shift_type'=>$fields['shift_type'],
@@ -65,6 +65,11 @@ class ScheduleController extends Controller
         
 
         ]);
+
+        if (isset($request['department_id']))
+        {
+            $schedule->department_id = $request['department_id'];
+        }
 
         ///////////// FILE CREATE //////////////////
         if (isset($fields['file'] ))

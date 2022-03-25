@@ -18,6 +18,7 @@ class Company extends Model
     protected $dates = ['deleted_at'];
 
     protected $guarded = ['id'];
+    
 
     public function tenant()
     {

@@ -77,6 +77,7 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 /////////////////////SCHEDULES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/schedules', ScheduleBackofficeController::class);
     Route::get('/schedules/create', [ScheduleBackofficeController::class, 'create']);
+    Route::get('/addschedule/{code}', [ScheduleBackofficeController::class, 'getDepartments']);
 /////////////////////FILES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('files', FileBackofficeController::class);
 

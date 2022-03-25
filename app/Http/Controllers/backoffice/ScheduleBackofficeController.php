@@ -32,10 +32,29 @@ class ScheduleBackofficeController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
-        $departments = Department::all();
+        // $companies ['data'] = Company::orderby("name","asc")
+        // ->select('name')
+        // ->get();
         
-        return view ('backoffice.schedules.create', compact('companies','departments'));
+        // return view ('backoffice.schedules.create')->with("companies",$companies);
+
+        $companies['data'] = Company::all();
+        return view('backoffice.schedules.create', compact('companies'));
+    }
+
+    // Fetch records
+    public function getDepartments($company_id=0)
+    {
+
+        // Fetch Departments by Company_id
+        $departsData['data'] = Department::orderby("company_id","asc")
+            ->select('id','company_id','name')
+            ->where('company_id',$company_id)
+            ->get();
+
+            
+        return response()->json($departsData);
+
     }
 
     /**
