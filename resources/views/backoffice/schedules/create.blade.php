@@ -4,7 +4,7 @@
     
 <div class="container">
 <h1 class="display-4 text-center">Schedules</h1>
-<a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -90,7 +90,7 @@
          
        
          <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                 <button type="submit" class="btn btn-primary">Submit</button>
+                 <button type="submit" class="submitBtn">Submit</button>
          </div>
     
         </div>

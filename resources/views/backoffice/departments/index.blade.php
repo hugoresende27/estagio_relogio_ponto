@@ -4,8 +4,8 @@
     
 <div class="container">
 <h1 class="display-4 text-center">All Departments</h1>
-<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
-<a href="/departments/create"><button class="btn btn-success">ADD</button></a>
+
+<a href="/departments/create"><button class="btn btn-success addBtn">ADD</button></a>
 
 <div class="m-3">
     {{ $departments->links() }}

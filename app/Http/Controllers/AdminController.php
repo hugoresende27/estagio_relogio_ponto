@@ -46,13 +46,7 @@ class AdminController extends Controller
             'email'=>'required|string|unique:users,email',
             'password'=>'required|string|confirmed',
 
-            // 'nif'=>'string',
-            // 'iban'=>'string',
-            // 'details'=>'string',
-            // 'niss'=>'string',
-            // 'emer_contact'=>'string',
-            // 'bi_cc'=>'string',
-            // 'role'=>'string',
+       
             'image'=>'mimes:png,jpg,jpeg',
             
          
@@ -70,13 +64,11 @@ class AdminController extends Controller
 
             //REQUEST NON REQUIRED
             'nif'=>$request['nif'],       
-            'iban'=>$request['iban'],
-            'details'=>$request['details'],  
-            'niss'=>$request['niss'],  
+          
+            
             'emer_contact'=>$request['emer_contact'],
             'bi_cc'=>$request['bi_cc'],
-            'role'=>'USER-EMPLOYEE',            //HARD CODED USER-EMPLOYEE ROLE
-            // 'role'=>$request['role'], 
+            'role'=>'USER-TENANT-'.$tenantId,            //HARD CODED USER-EMPLOYEE ROLE
             'image'=>$request['image'],
             
             
@@ -157,25 +149,16 @@ class AdminController extends Controller
             'name'=>'required|string',
             'email'=>'string',
             'password'=>'required|string|confirmed',
-
-            'nif'=>'string',
-            'iban'=>'string',
-            'details'=>'string',
-            'niss'=>'string',
+            'nif'=>'string',     
             'emer_contact'=>'string',
             'bi_cc'=>'string',
-            'role'=>'string',
             'image'=>'mimes:png,jpg,jpeg',
         ]);
 
         ///////NON REQUIRED FIELDS ///////////////
         $fields['nif'] = $request['nif'];
-        $fields['iban'] = $request['iban'];
-        $fields['details'] = $request['details'];
-        $fields['niss'] = $request['niss'];  
         $fields['emer_contact'] = $request['emer_contact'];
         $fields['bi_cc'] = $request['bi_cc'];
-        $fields['role'] = $request['role'];
         $fields['image'] = $request['image'];
         
         ////REQUEST ID'S/////////////

@@ -4,7 +4,7 @@
     
 <div class="container">
 <h1 class="display-4 text-center">All Locations</h1>
-<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
+
 
 <div class="m-3">
     {{ $locations->links() }}

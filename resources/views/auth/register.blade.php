@@ -1,7 +1,7 @@
 @extends('backoffice.app')
 
 @section('content')
-<button class="btn btn-success homeBtn"><a href="/">HOME</a></button>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,7 +13,7 @@
                         @csrf
                         <label for="image">Photo</label>     
                         <input type="file" name="image" class="form-control" onchange="preview()">
-                        <img id="frame" src="" width="300px" height="300px" class="mt-3"/>
+                        <img id="frame" src="" width="100px" height="100px" class="mt-3"/>
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 

@@ -63,7 +63,10 @@ class AdminBackofficeController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $user = User::find($id);
+        $companies = Company::all();
+        return view ('backoffice.admin.edit', compact('user','companies'));
     }
 
     /**

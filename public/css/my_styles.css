@@ -36,8 +36,9 @@ body
 
 .mytitle
 {
-   /* position: absolute; */
+  
     font-size: 3rem;
+    /* min-height: 40vh; */
     font-weight: bolder;
     top: 1%;
 }
@@ -56,6 +57,15 @@ body
 
 
 .btn{
+    background-color: darkred;
+    border: none;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btnLogin{
+    background-color: darkgreen ;
+    border: none;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
@@ -82,7 +92,8 @@ a:hover{
 .homeBtn{
     /* position: absolute; */
     top: 12%;
-    left: 45%;
+    margin-left: 50%;
+    transform: translateX(-50%);
     min-width: 150px;
 }
 
@@ -97,8 +108,7 @@ a:hover{
     display: flex;
     font-weight: 900;
     font-size: 1.5rem;
-    color: #000;
-    
+    color: #000;   
     margin-right: 10px;
     margin-bottom: 20px;
     max-width: 200px;
@@ -110,4 +120,22 @@ a:hover{
     align-items: center;    
     justify-content: center;
     min-height: 50vh;
+}
+
+.addBtn{
+    float: right;
+    margin: 5px 0;
+}
+
+.submitBtn {
+    background-color: yellow !important;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 250px;
+    color: #000;
+}
+
+.submitBtn:hover{
+    background-color: darkgreen !important;
+    color: #fff;
 }

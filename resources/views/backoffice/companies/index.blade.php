@@ -4,8 +4,8 @@
     
 <div class="container">
 <h1 class="display-4 text-center">All Companies</h1>
-<a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
-<a href="/companies/create"><button class="btn btn-success ">ADD</button></a>
+
+<a href="/companies/create"><button class="btn btn-success addBtn">ADD</button></a>
 
 <div class="m-3">
     {{ $companies->links() }}
