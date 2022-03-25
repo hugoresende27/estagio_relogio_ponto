@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\File;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
@@ -42,16 +43,15 @@ class ScheduleController extends Controller
             'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
             
         ]);
+ 
+
         
-    //    dd($fields['shift_start']);
+        $shift_start = strtotime($fields['shift_start']);
+        $shift_end = strtotime($fields['shift_end']);
 
-        // $total_shift = $fields['shift_end']-$fields['shift_start'];
-
-        // if ($total_shift<0)
-        // {
-        //     $total_shift = $fields['shift_start']-240000-$fields['shift_end'];
-        // }
-       
+        $total_shift = $shift_end - $shift_start; 
+        $time = date("his",$total_shift);
+    
         $schedule = Schedule::create([
                                  
             'tenant_id'=>$tenantId,          
@@ -61,8 +61,8 @@ class ScheduleController extends Controller
             'shift_start'=>$fields['shift_start'],
             'shift_end'=>$fields['shift_end'],
             'shift_type'=>$fields['shift_type'],
-            // 'shift_total'=>abs($total_shift),
-            'shift_total'=>0,
+            'shift_total'=>$time,
+        
 
         ]);
 
