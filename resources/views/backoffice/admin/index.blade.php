@@ -15,7 +15,7 @@
     <thead>
         <tr>
             
-        <th scope="col">Avatar</th>
+        {{-- <th scope="col">Avatar</th> --}}
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Company</th>

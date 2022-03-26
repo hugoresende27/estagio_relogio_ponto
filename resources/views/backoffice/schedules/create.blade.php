@@ -32,27 +32,8 @@
                 <div class="col-md-6">
 
 
-{{-- 
-                    <label for="company_id">Company</label>
-                    <select name="company_id" class="form-control mylabels" >
-                        @foreach ($companies as $company)
-                            <option hidden disabled selected value> -- select an option -- </option>
-                            <option value="{{ $company->id }}">{{ $company->name }}</option>
-                        @endforeach
-                    
-                    </select>
 
-                    <label for="department_id">Department</label>
-                    <select name="department_id" class="form-control mylabels" >
-                        @foreach ($departments as $department)
-                            <option hidden disabled selected value> -- select an option -- </option>
-                            <option value="{{ $department->id }}">{{ $department->name }}</option>
-                        @endforeach
-                    
-                    </select> --}}
-
-
-                                         <!-- Department Dropdown -->
+                                         <!-- companies Dropdown -->
                     <label>Company Details:</label>
                     <select id='company_id' name='company_id' class="form-control mylabels">
                         <option value='0'>-- Select Company --</option>
@@ -77,8 +58,8 @@
                  <input type="file" name="file" class="mb-3">
 
                  <div class="mytimelabel">
-                    <input type="time" class="form-control " name="shift_start"  value="{{ old('shift_type') }}">&nbsp;
-                    <input type="time" class="form-control " name="shift_end"  value="{{ old('shift_type') }}">
+                    <input type="time" class="form-control " name="shift_start"  value="{{ old('shift_start') }}">&nbsp;
+                    <input type="time" class="form-control " name="shift_end"  value="{{ old('shift_end') }}">
                  </div>
                  <input type="text" class="form-control mylabels" name="shift_type" placeholder="Shift Type" value="{{ old('shift_type') }}">
                  
@@ -106,45 +87,8 @@
 
 
 
- <!-- Script -->
+ <!-- Scripts  populate selects companies and departments-->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- <script type='text/javascript'>
- $(document).ready(function(){
-   // Department Change
-   $('#company_id').change(function(){
-      // Department id
-      var code = $(this).val();
-     
-      // Empty the dropdown
-      $('#department_id').find('option').not(':first').remove();
-      // AJAX request 
-      $.ajax({
-       
-        url: '/addschedule/'+code,
-        type: 'get',
-        dataType: 'json',
-        success: function(response){
-         
-          var len = 0;
-          if(response['data'] != null){
-             len = response['data'].length;
-          }
-          if(len > 0){
-             // Read data and create <option >
-             for(var i=0; i<len; i++){
-                var id = response['data'][i].id;
-                var name = response['data'][i].name;
-                var option = "<option value='"+id+"'>"+name+"</option>";
-                // console.log(id);
-                $("#department_id").append(option); 
-             }
-          }
-          
-        }
-      });
-   });
- });
- 
- </script>
+ <script src="{{ asset('js/comp_deps_populates.js') }}" type='text/javascript' ></script>
 
 @endsection

@@ -32,11 +32,6 @@ class ScheduleBackofficeController extends Controller
      */
     public function create()
     {
-        // $companies ['data'] = Company::orderby("name","asc")
-        // ->select('name')
-        // ->get();
-        
-        // return view ('backoffice.schedules.create')->with("companies",$companies);
 
         $companies['data'] = Company::all();
         return view('backoffice.schedules.create', compact('companies'));

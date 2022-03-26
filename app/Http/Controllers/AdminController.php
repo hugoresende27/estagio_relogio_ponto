@@ -53,6 +53,19 @@ class AdminController extends Controller
             
         ]);
 
+        if ($request['company_id']!=0)
+        {
+            $fields['company_id'] = $request['company_id'];
+        }
+        if ($request['department_id']!=0)
+        {
+            $fields['department_id'] = $request['department_id'];
+        }
+        if ($request['schedule_id']!=0)
+        {
+            $fields['schedule_id'] = $request['schedule_id'];
+        }
+
         $user_employee = User::create([
 
             'tenant_id'=>$tenantId,
@@ -162,9 +175,19 @@ class AdminController extends Controller
         $fields['image'] = $request['image'];
         
         ////REQUEST ID'S/////////////
-        $fields['schedule_id'] = $request['schedule_id'];
-        $fields['department_id'] = $request['department_id'];
-        $fields['company_id'] = $request['company_id'];
+  
+        if ($request['company_id']!=0)
+        {
+            $fields['company_id'] = $request['company_id'];
+        }
+        if ($request['department_id']!=0)
+        {
+            $fields['department_id'] = $request['department_id'];
+        }
+        if ($request['schedule_id']!=0)
+        {
+            $fields['schedule_id'] = $request['schedule_id'];
+        }
       
 
         
@@ -173,8 +196,11 @@ class AdminController extends Controller
         {
             $image = Image::where('user_id',$id)->first();
             
-       
-            $image->delete();
+            if(!empty($image))
+            {
+                $image->delete();
+            }
+            
             ///////////// IMAGE CREATE //////////////////
             $image_name = $request->file('image')->getClientOriginalName();
             $image_path = $request->file('image')->store('public/images');
@@ -219,7 +245,7 @@ class AdminController extends Controller
             return response($user, 200);
         }
         else {
-            return response()->json(['message'=>'Cannot delete yourself',666] );
+            return response()->json(['message'=>'Cannot delete yourself',405] );
         }
         
     }

@@ -17,11 +17,17 @@
   <body class=" text-white ">
 
 
-    <div class="mytitle">
-      <h1 >Relogio de Ponto </h1>
-      <a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
+    <div class="mytitle text-center">
+      <h1>Relogio de Ponto </h1>
+      <h2 >BackOffice</h2>
+    
     </div>
-    <h2>BackOffice</h2>
+
+    @auth
+      <a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
+    @endauth
+  
+    
     
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -38,14 +44,15 @@
     
     @auth
 
-    <div class="mylogin card text-white p-3">
-      <h5 class="card-title text-center">User Details</h5>
+    <div class="mylogin">
+      <h5>User Details</h5>
 
       {{-- <img class ="" src="{{  asset(Auth::user()->image->image_path) }}" alt="Avatar" style="width:100%;"> --}}
-      <p> EMAIL: {{ Auth::user()->email }}</p>
-      <p> NAME: {{ Auth::user()->name }}</p>
+      <p> {{ Auth::user()->name }}</p>
+      <p> {{ Auth::user()->email }}</p>    
       <p>  TENANT ID: {{ Auth::user()->tenant_id }}</p>
-        <p class="text-center"><a href="{{ route('logout') }}">   <button class="btn btn-secondary " > Logout </button> </a> </p>
+      {{-- <p>   {{ Auth::user()->tenant->name }}</p> --}}
+        <p><a href="{{ route('logout') }}">   <button class="btn btn-secondary " > Logout </button> </a> </p>
     </div>
 
     <div class="text-center p-6">

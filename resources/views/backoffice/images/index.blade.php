@@ -16,6 +16,7 @@
             <th scope="col">ID</th>
             <th scope="col">Employee</th>
             <th scope="col">User</th>
+            <th scope="col">Name</th>
             <th scope="col">Path</th>
             <th scope="col">Size</th>
         </tr>
@@ -27,6 +28,7 @@
             <td>{{ $image->id }}</td>
             <td>{{ $image->employee->name ?? '--'}}</td>
             <td>{{ $image->user->name ?? '--' }}</td>
+            <td>{{ $image->name }}</td>
             <td>{{ $image->image_path }}</td>
             <td>{{ $image->size }}</td>
 

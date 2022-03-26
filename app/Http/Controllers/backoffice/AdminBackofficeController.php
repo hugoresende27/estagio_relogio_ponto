@@ -28,9 +28,23 @@ class AdminBackofficeController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
+        $companies['data'] = Company::all();
       
         return view ('backoffice.admin.create', compact ('companies'));
+    }
+
+    // Fetch records
+    public function getDepartments($company_id=0)
+    {
+
+        // Fetch Departments by Company_id
+        $departsData['data'] = Department::orderby("company_id","asc")
+            ->select('id','company_id','name')
+            ->where('company_id',$company_id)
+            ->get();
+
+            
+        return response()->json($departsData);
     }
 
     /**
@@ -65,7 +79,7 @@ class AdminBackofficeController extends Controller
     {
 
         $user = User::find($id);
-        $companies = Company::all();
+        $companies['data'] = Company::all();
         return view ('backoffice.admin.edit', compact('user','companies'));
     }
 

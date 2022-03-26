@@ -17,20 +17,13 @@
             <div class="form-group">      
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             
                             <label for="image">Photo</label>     
                             <input type="file" name="image" class="form-control" onchange="preview()">
                             <img id="frame" src="" width="200px" height="100px" class="mt-3"/>
                    
-                            <label for="company_id">Company</label>
-                            <select name="company_id" class="form-control mylabels" >
-                                @foreach ($companies as $company)
-                                    <option hidden disabled selected value> -- select an option -- </option>
-                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
-                                @endforeach
-                            
-                            </select>
+            
                         
                         </div>
                         <div class="col-md-4">
@@ -49,7 +42,25 @@
                             <input type="text" name="emer_contact" class="form-control mylabels" placeholder="Emergency Contact" value="{{ old('emer_contact') }}">
                             <input type="text" name="bi_cc" class="form-control mylabels" placeholder="Identity Card Number" value="{{ old('bi_cc') }}">
                   
+
+                            <!-- companies Dropdown -->
+                            <label>Company Details:</label>
+                            <select id='company_id' name='company_id' class="form-control mylabels">
+                                <option value='0'>-- Select Company --</option>
+
+                                <!-- Read Departments -->
+                                @foreach($companies['data'] as $company)
+                                    <option value='{{ $company->id }}' >{{ $company->name }}</option>
+                                @endforeach
+
+                            </select>
                         
+
+
+                            <select id='department_id' name='department_id' class="form-control mylabels">
+                                <option value=''>-- Select Department --</option>
+                            </select>
+
 
                         
                         </div>
@@ -71,6 +82,8 @@
   
 </div>     
 
-
+ <!-- Scripts  populate selects companies and departments-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="{{ asset('js/comp_deps_populates.js') }}" type='text/javascript' ></script>
 
 @endsection
