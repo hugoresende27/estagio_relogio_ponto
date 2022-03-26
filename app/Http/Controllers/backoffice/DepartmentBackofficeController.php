@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backoffice;
 
 use App\Models\Company;
+use App\Models\Location;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -65,7 +66,10 @@ class DepartmentBackofficeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $companies = Company::all();
+        $department = Department::find($id);
+        
+        return view ('backoffice.departments.edit', compact('companies','department'));
     }
 
     /**

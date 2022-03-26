@@ -148,11 +148,18 @@ class CompanyController extends Controller
             'name'=>'string|required',
             'email'=>'string|required',
             'nif'=>'string|required',
-            'location_id'=>'required',
+            // 'location_id'=>'required',
         ]);
         
-        
-        $fields['location_id'] = $request['location_id'];
+        // if (isset($fields['location_id']))
+        // {
+        //     $fields['location_id'] = $request['location_id'];
+        // } 
+        if (($request['location_id']!=null))
+        {
+            $fields['location_id'] = $request['location_id'];
+        } 
+       
        
        
 

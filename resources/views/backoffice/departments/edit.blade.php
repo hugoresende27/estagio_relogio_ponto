@@ -3,7 +3,7 @@
 @section('content')
     
 <div class="container">
-<h1 class="display-4 text-center">Add Departments</h1>
+<h1 class="display-4 text-center">Edit Departments {{ $department->name }}</h1>
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -22,7 +22,8 @@
 <div>
 
 
-    <form action="{{ url('api/departments') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('api/departments').'/'.$department->id }}" method="POST" enctype="multipart/form-data">
+    @method('PUT')
      @csrf
    
       <div class="row">
@@ -38,10 +39,9 @@
                 
                 </select>
                 
-                 <input type="text" name="name" class="form-control mylabels" placeholder="Department Name" value="{{ old('name') }}">
-                 <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
-                 <label for="file">Attach File</label>
-                 <input type="file" name="file" class="mb-3"><br>
+                 <input type="text" name="name" class="form-control mylabels" placeholder="Department Name" value="{{ $department->name }}">
+                 <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ $department->email }}">
+                
                  
 
                 

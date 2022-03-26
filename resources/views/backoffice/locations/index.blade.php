@@ -10,6 +10,8 @@
     {{ $locations->links() }}
 </div>
 
+<a href="/locations/create"><button class="btn btn-success addBtn">ADD</button></a>
+
     <table class="table table-dark">
     <thead>
         <tr>
@@ -20,6 +22,10 @@
         <th scope="col">Nr</th>
         <th scope="col">Postal Code</th>
         <th scope="col">File(name)</th>
+        <th scope="col">EDIT</th>
+        <th scope="col">DELETE</th>
+
+
         </tr>
     </thead>
     <tbody>
@@ -32,7 +38,23 @@
             <td>{{ $location->street }}</td>
             <td>{{ $location->door_number }}</td>
             <td>{{ $location->zip_code }}</td>
-            <td>{{ $employee->file->name ?? 'no file'}}</td>
+            <td>{{ $location->file->name ?? 'no file'}}</td>
+
+            <td class="editBtn"> <a href="locations/{{ $location->id }}/edit"> Edit</a></td>
+            <td class="deleteBtn">
+                
+                
+                <form action="../api/locations/{{ $location->id }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit"
+                            class="hero-btn"
+                            onclick="return confirm('Are you sure?')" 
+                            > Delete </button>
+
+                </form>
+            
+            </td>
             </tr>
 
         @endforeach

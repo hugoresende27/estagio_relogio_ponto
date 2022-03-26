@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backoffice;
 
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -33,19 +34,20 @@ class AdminBackofficeController extends Controller
         return view ('backoffice.admin.create', compact ('companies'));
     }
 
-    // Fetch records
-    public function getDepartments($company_id=0)
-    {
-
-        // Fetch Departments by Company_id
-        $departsData['data'] = Department::orderby("company_id","asc")
-            ->select('id','company_id','name')
-            ->where('company_id',$company_id)
-            ->get();
-
-            
-        return response()->json($departsData);
-    }
+     // Fetch records////////////POPULATE SELECT WITH DEPARTMENTS RELATED TO COMPANY
+     public function getDepartments($company_id=0)
+     {
+ 
+         // Fetch Departments by Company_id
+         $departsData['data'] = Department::orderby("company_id","asc")
+             ->select('id','company_id','name')
+             ->where('company_id',$company_id)
+             ->get();
+ 
+             
+         return response()->json($departsData);
+ 
+     }
 
     /**
      * Store a newly created resource in storage.

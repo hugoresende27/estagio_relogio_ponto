@@ -61,7 +61,9 @@ class CompanyBackofficeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+       
+        return view ('backoffice.companies.edit', compact('company'));
     }
 
     /**

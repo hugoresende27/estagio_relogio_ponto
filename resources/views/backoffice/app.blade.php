@@ -17,12 +17,15 @@
   <body class=" text-white ">
 
 
-    <div class="mytitle text-center">
-      <h1>Relogio de Ponto </h1>
-      <h2 >BackOffice</h2>
-    
-    </div>
-
+    <a href="\">
+      <div class="mytitle text-center">
+        
+        
+        <h1>Relogio de Ponto </h1>
+        <h2 >BackOffice</h2>
+      
+      </div>
+    </a>
     @auth
       <a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
     @endauth

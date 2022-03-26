@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use App\Models\Location;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -40,7 +41,8 @@ class LocationController extends Controller
             'door_number'=>'required|string',
             'zip_code'=>'required|string',
            
-            
+            ////////////////FILE TABLE/////////////////////
+            'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
         ]);
         
         $tenantId = Auth::user()->tenant_id;
@@ -56,6 +58,25 @@ class LocationController extends Controller
           
 
         ]);
+
+        ///////////// FILE CREATE //////////////////
+        if (isset($fields['file'] ))
+        {
+            $file_name = $request->file('file')->getClientOriginalName();
+            $file_path = $request->file('file')->store('public/files');
+
+            $location_file = File::create([
+                'tenant_id'=>$tenantId,
+                'type'=>'LOCATION FILE',
+                'name'=>$file_name,
+                'path'=>$file_path,
+                'size'=>$request->file('file')->getSize(),
+            ]);
+            
+            $location->file_id = $location_file['id'];
+        };
+
+        $location->save();
         
         return response()->json($location, 201);
     }
@@ -96,9 +117,14 @@ class LocationController extends Controller
             'street'=>'required|string',
             'door_number'=>'required|string',
             'zip_code'=>'required|string',
+
+            ////////////////FILE TABLE/////////////////////
+            'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
             
          
         ]);
+
+ 
         
 
         $location->update($fields);

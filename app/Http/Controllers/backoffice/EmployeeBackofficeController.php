@@ -33,10 +33,11 @@ class EmployeeBackofficeController extends Controller
     public function create()
     {
 
-        $companies = Company::all();
+        $companies['data'] = Company::all();
       
         return view ('backoffice.employees.create', compact ('companies'));
     }
+
 
     /**
      * Store a newly created resource in storage.

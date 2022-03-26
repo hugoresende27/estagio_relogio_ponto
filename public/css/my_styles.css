@@ -1,3 +1,5 @@
+
+/**************** FONTS ******************************/
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
 /* font-family: 'Mukta', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
@@ -10,6 +12,9 @@
 /* font-family: 'Dela Gothic One', cursive; */
 @import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 /* font-family: 'Yomogi', cursive; */
+
+
+/**************** COLORS ******************************/
 :root
 {
     --primary-cor:#409C32;
@@ -21,6 +26,13 @@
     --charcoal-cor:#2E4052;
     --purple-cor:#412234;
     --green-cor:#BDD9BF;
+}
+
+
+/**************** MAIN ******************************/
+
+table{
+    text-align: center ;
 }
 *{
     box-sizing: border-box;
@@ -70,6 +82,51 @@ body
     max-width: 250px;
 }
 
+.myform{
+    margin-left: 10%;
+    margin-right: auto;
+  
+}
+
+.mycenter{
+    display: flex;  
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;
+    min-height: 50vh;
+}
+
+/**************** BUTTONS ******************************/
+
+.deleteBtn{
+    background-color: red !important;
+    text-align: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bolder;
+}
+
+.deleteBtn:hover{
+    background-color: black !important;
+}
+
+
+.editBtn{
+    background-color: yellowgreen !important;
+    text-align: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000;
+    font-weight: bolder;
+}
+
+.editBtn:hover{
+    background-color: yellow !important;
+}
+.editBtn a:hover{
+    color: #000 !important;
+}
 
 
 .btn{
@@ -97,40 +154,9 @@ a:hover{
 
 
 
-.myform{
-  margin-left: 10%;
-  margin-right: auto;
-
-}
-
 .homeBtn{
     min-width: 150px;
     margin-bottom: 10px;
-}
-
-.mylabels{
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: #000;
-    margin-bottom: 20px;
-}
-
-.mytimelabel{
-    display: flex;
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: #000;   
-    margin-right: 10px;
-    margin-bottom: 20px;
-    max-width: 200px;
-}
-
-.mycenter{
-    display: flex;  
-    flex-direction: column; 
-    align-items: center;    
-    justify-content: center;
-    min-height: 50vh;
 }
 
 .addBtn{
@@ -150,3 +176,24 @@ a:hover{
     background-color: darkgreen !important;
     color: #fff;
 }
+
+
+/**************** LABELS ******************************/
+.mylabels{
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.mytimelabel{
+    display: flex;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #000;   
+    margin-right: 10px;
+    margin-bottom: 20px;
+    max-width: 200px;
+}
+
+

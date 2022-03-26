@@ -9,7 +9,7 @@ $(document).ready(function(){
        // AJAX request 
        $.ajax({
         
-         url: '/addschedule/'+code,
+         url: '/populate/'+code,
          type: 'get',
          dataType: 'json',
          success: function(response){

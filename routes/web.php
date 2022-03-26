@@ -55,29 +55,26 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //////////////////////////ADMIN ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/admin', AdminBackofficeController::class);
-    Route::get('/admin/create', [AdminBackofficeController::class, 'create']);
+    Route::get('/populate/{code}', [AdminBackofficeController::class, 'getDepartments']);
 
 /////////////////////CLOCKPOINT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/clockpointentry', ClockpointBackofficeController::class);
-    Route::get('/clockpointentry/create', [ClockpointBackofficeController::class, 'create']);
+
     
 /////////////////////EMPLOYEE ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/employees', EmployeeBackofficeController::class);
-    Route::get('/employees/create', [EmployeeBackofficeController::class, 'create']);
    
-
 /////////////////////COMPANY ROUTES///////////////////////////////////////////////////////////////////
     Route::resource('/companies', CompanyBackofficeController::class);
-    Route::get('/companies/create', [CompanyBackofficeController::class, 'create']);
+  
 /////////////////////DEPARMENT ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/departments', DepartmentBackofficeController::class);
-    Route::get('/departments/create', [DepartmentBackofficeController::class, 'create']);
+   
 /////////////////////LOCATIONS ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/locations', LocationBackofficeController::class);
 /////////////////////SCHEDULES ROUTES////////////////////////////////////////////////////////////////
-    Route::resource('/schedules', ScheduleBackofficeController::class);
-    Route::get('/schedules/create', [ScheduleBackofficeController::class, 'create']);
-    Route::get('/addschedule/{code}', [ScheduleBackofficeController::class, 'getDepartments']);
+    Route::resource('/schedules', ScheduleBackofficeController::class); 
+  
 /////////////////////FILES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('/files', FileBackofficeController::class);
 

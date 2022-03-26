@@ -28,7 +28,7 @@ class LocationBackofficeController extends Controller
      */
     public function create()
     {
-        //
+        return view ('backoffice.locations.create');
     }
 
     /**
@@ -61,7 +61,9 @@ class LocationBackofficeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location = Location::find($id);
+       
+        return view ('backoffice.locations.edit', compact('location'));
     }
 
     /**

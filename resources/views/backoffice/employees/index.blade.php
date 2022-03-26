@@ -4,12 +4,13 @@
     
 <div class="container">
 <h1 class="display-4 text-center">All Employees</h1>
-
-<a href="/employees/create"><button class="btn btn-success addBtn">ADD</button></a>
-
 <div class="m-3">
     {{ $employees->links() }}
 </div>
+
+<a href="/employees/create"><button class="btn btn-success addBtn">ADD</button></a>
+
+
 
     <table class="table table-dark">
     <thead>

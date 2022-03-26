@@ -24,14 +24,6 @@
                             <img id="frame" src="" width="200px" height="100px" class="mt-3"/>
                    
                                
-                            <label for="company_id">Company</label>
-                            <select name="company_id" class="form-control mylabels" >
-                                @foreach ($companies as $company)
-                                    <option hidden disabled selected value> -- select an option -- </option>
-                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
-                                @endforeach
-                            
-                            </select>
                         
                         </div>
                         <div class="col-md-4">
@@ -62,6 +54,23 @@
                             <input type="text" name="door_number" class="form-control mylabels" placeholder="Door Nr" value="{{ old('door_number') }}">
                             <input type="text" name="zip_code" class="form-control mylabels" placeholder="Zip Code" value="{{ old('zip_code') }}">
                         
+                            <!-- companies Dropdown -->
+                            <label>Company Details:</label>
+                            <select id='company_id' name='company_id' class="form-control mylabels">
+                                <option value='0'>-- Select Company --</option>
+
+                                <!-- Read Departments -->
+                                @foreach($companies['data'] as $company)
+                                    <option value='{{ $company->id }}' >{{ $company->name }}</option>
+                                @endforeach
+
+                            </select>
+                        
+
+
+                            <select id='department_id' name='department_id' class="form-control mylabels">
+                                <option value=''>-- Select Department --</option>
+                            </select>
                         
                         
                         </div>
@@ -85,6 +94,8 @@
   
 </div>     
 
-
+ <!-- Scripts  populate selects companies and departments-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script src="{{ asset('js/comp_deps_populates.js') }}" type='text/javascript' ></script>
 
 @endsection

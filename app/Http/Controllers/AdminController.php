@@ -53,18 +53,7 @@ class AdminController extends Controller
             
         ]);
 
-        if ($request['company_id']!=0)
-        {
-            $fields['company_id'] = $request['company_id'];
-        }
-        if ($request['department_id']!=0)
-        {
-            $fields['department_id'] = $request['department_id'];
-        }
-        if ($request['schedule_id']!=0)
-        {
-            $fields['schedule_id'] = $request['schedule_id'];
-        }
+   
 
         $user_employee = User::create([
 
@@ -84,15 +73,25 @@ class AdminController extends Controller
             'role'=>'USER-TENANT-'.$tenantId,            //HARD CODED USER-EMPLOYEE ROLE
             'image'=>$request['image'],
             
-            
-            'company_id'=>$request['company_id'],
-            'department_id'=>$request['department_id'],
-            'schedule_id'=>$request['schedule_id'],
-          
-            
-            
-            
+
+ 
         ]);
+        if ($request['company_id']!=0)
+        {
+            $fields['company_id'] = $request['company_id'];
+        }
+        if ($request['department_id']!=0)
+        {
+            $fields['department_id'] = $request['department_id'];
+        }
+
+        //////////TODO///////////////////
+        // if ($request['schedule_id']!=0)
+        // {
+        //     $fields['schedule_id'] = $request['schedule_id'];
+        // }
+
+        $user_employee->update($fields);
         ///////////// IMAGE CREATE //////////////////
         if (isset($fields['image'] ))
         {
@@ -156,7 +155,7 @@ class AdminController extends Controller
         if (is_null($user_employee)){
             return response()->json(['message'=>'Employee-User not found',404] );
         }
-        // dd($employee);
+       
         $fields = $request->validate([
             
             'name'=>'required|string',
@@ -184,10 +183,11 @@ class AdminController extends Controller
         {
             $fields['department_id'] = $request['department_id'];
         }
-        if ($request['schedule_id']!=0)
-        {
-            $fields['schedule_id'] = $request['schedule_id'];
-        }
+        //////////TODO///////////////////
+        // if ($request['schedule_id']!=0)
+        // {
+        //     $fields['schedule_id'] = $request['schedule_id'];
+        // }
       
 
         
@@ -217,9 +217,6 @@ class AdminController extends Controller
                
         }
 
-            
-         
-        
 
         $user_employee->update($fields);
 

@@ -57,8 +57,8 @@
             <td>{{ $user->emer_contact }}</td>
             <td>{{ $user->bi_cc }}</td>
             <td>{{ $user->created_at }}</td>
-            <td> <a href="admin/{{ $user->id }}/edit"> Edit</a></td>
-            <td>
+            <td class="editBtn"> <a href="admin/{{ $user->id }}/edit"> Edit</a></td>
+            <td class="deleteBtn">
                 
                 
                 <form action="../api/admin/{{ $user->id }}" method="POST">

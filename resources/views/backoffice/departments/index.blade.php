@@ -22,7 +22,8 @@
         <th scope="col">Company</th>
         <th scope="col">File(name)</th>
         
-      
+        <th scope="col">EDIT</th>
+        <th scope="col">DELETE</th>
        
         </tr>
     </thead>
@@ -37,7 +38,22 @@
             <td>{{ $department->company->name }}</td>
             <td>{{ $department->file->name ?? 'no file'}}</td>
            
-                  
+                
+            <td class="editBtn"> <a href="departments/{{ $department->id }}/edit"> Edit</a></td>
+            <td class="deleteBtn">
+                
+                
+                <form action="../api/departments/{{ $department->id }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit"
+                            class="hero-btn"
+                            onclick="return confirm('Are you sure?')" 
+                            > Delete </button>
+
+                </form>
+            
+            </td>
             </tr>
 
         @endforeach

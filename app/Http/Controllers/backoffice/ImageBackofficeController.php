@@ -60,7 +60,9 @@ class ImageBackofficeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location = Location::find($id);
+       
+        return view ('backoffice.locations.edit', compact('location'));
     }
 
     /**
