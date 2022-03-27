@@ -41,7 +41,7 @@ class AdminController extends Controller
     {
         $tenantId = Auth::user()->tenant_id;
 
-        $fields = $request->validate([
+        $inputData = $request->validate([
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
             'password'=>'required|string|confirmed',
@@ -51,36 +51,41 @@ class AdminController extends Controller
       
         ]);
 
-  
-        $user_employee = User::create([
+        // $inputData = $request->all();
+        $inputData['password'] = bcrypt($request->password);
+        $user_employee = User::create($inputData);
 
-            'tenant_id'=>$tenantId,
+        // $user_employee = User::create([
 
-            'name' => $fields['name'],
-            'email'=>$fields['email'],
-            'password'=>Hash::make($fields['password']),          
-            // 'password'=>($fields['password']),          
-            'email_verified_at'=>now(),
+        //     'tenant_id'=>$tenantId,
 
-            //REQUEST NON REQUIRED
-            'nif'=>$request['nif'],       
+        //     'name' => $fields['name'],
+        //     'email'=>$fields['email'],
+        //     'password'=>$password,          
+        //     // 'password'=>($fields['password']),          
+        //     'email_verified_at'=>now(),
+
+        //     //REQUEST NON REQUIRED
+        //     'nif'=>$request['nif'],       
           
             
-            'emer_contact'=>$request['emer_contact'],
-            'bi_cc'=>$request['bi_cc'],
-            'role'=>'USER-TENANT-'.$tenantId,            //HARD CODED USER-EMPLOYEE ROLE
-            'image'=>$request['image'],
-            
-
+        //     'emer_contact'=>$request['emer_contact'],
+        //     'bi_cc'=>$request['bi_cc'],
+        //     'role'=>'USER-TENANT-'.$tenantId,            //HARD CODED USER-EMPLOYEE ROLE
+        //     'image'=>$request['image'],
  
-        ]);
+        // ]);
+
+        $user_employee->role = 'USER-TENANT-'.$tenantId;            //HARD CODED USER-EMPLOYEE ROLE
+        $user_employee->tenant_id = $tenantId;
+
         if ($request['company_id']!=0)
         {
-            $fields['company_id'] = $request['company_id'];
+            $inputData['company_id'] = $request['company_id'];
         }
         if ($request['department_id']!=0)
         {
-            $fields['department_id'] = $request['department_id'];
+            $inputData['department_id'] = $request['department_id'];
         }
 
         //////////TODO///////////////////
@@ -89,9 +94,9 @@ class AdminController extends Controller
         //     $fields['schedule_id'] = $request['schedule_id'];
         // }
 
-        $user_employee->update($fields);
+        $user_employee->update($inputData);
         ///////////// IMAGE CREATE //////////////////
-        if (isset($fields['image'] ))
+        if (isset($inputData['image'] ))
         {
             $image_name = $request->file('image')->getClientOriginalName();
             $image_path = $request->file('image')->store('public/images');
