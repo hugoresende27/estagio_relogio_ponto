@@ -48,21 +48,19 @@ class AdminController extends Controller
 
        
             'image'=>'mimes:png,jpg,jpeg',
-            
-         
-            
+      
         ]);
 
-   
-
+  
         $user_employee = User::create([
 
             'tenant_id'=>$tenantId,
 
             'name' => $fields['name'],
             'email'=>$fields['email'],
-            'password'=>bcrypt($fields['password']),          
-         
+            'password'=>Hash::make($fields['password']),          
+            // 'password'=>($fields['password']),          
+            'email_verified_at'=>now(),
 
             //REQUEST NON REQUIRED
             'nif'=>$request['nif'],       

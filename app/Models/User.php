@@ -56,7 +56,7 @@ class User extends Authenticatable
      
         //ENCRYPTED////////////
         'name' => 'encrypted',
-        
+        // 'password'=>'encrypted',
         'role' => 'encrypted',
         'nif' => 'encrypted',
        

@@ -20,27 +20,28 @@ class AuthController extends Controller
             'email'=>'required|string|unique:users,email',
             'password'=>'required|string|confirmed',
             
-            'role'=>'string',
-            'nif'=>'string',
-            'emer_contact'=>'string',
-            'bi_cc'=>'string',
+            // 'role'=>'string',
+            // 'nif'=>'string',
+            // 'emer_contact'=>'string',
+            // 'bi_cc'=>'string',
 
             'image'=>'mimes:png,jpg,jpeg',
             
             
         ]);
 
-
-       $tenant = Tenant::create([
+     
+        $tenant = Tenant::create([
             'name'=> $fields['name'].'.tenant'
         ]);
- 
-       
+        // $tenantId = $tenant['id'];
+     
         $user = User::create([
             'name' => $fields['name'],
             'email'=>$fields['email'],
-            'password'=>bcrypt($fields['password']),
-          
+            'password'=>Hash::make($fields['password']),
+            // 'password'=>($fields['password']),
+            'email_verified_at'=>now(),
 
             //REQUEST NON REQUIRED
             // 'role'=>$request['role'],  
@@ -51,14 +52,11 @@ class AuthController extends Controller
             'company_id'=>$request['company_id'],
             'department_id'=>$request['department_id'],
             'schedule_id'=>$request['schedule_id'],
-
-           
-
             'tenant_id'=>$tenant['id'],
        
             
         ]);
-
+        
         
          ///////////// IMAGE CREATE //////////////////
          if (isset($fields['image'] ))
@@ -105,6 +103,7 @@ class AuthController extends Controller
         
         if (!$user ||!Hash::check($request['password'], $user->password))
         {
+            // dd(get_defined_vars());
             return response([
                 'message' => 'Login not valid'
             ], 401);
