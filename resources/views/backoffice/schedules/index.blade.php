@@ -5,11 +5,14 @@
 <div class="container">
 <h1 class="display-4 text-center">All Schedulles</h1>
 
-<a href="/schedules/create"><button class="btn btn-success addBtn">ADD</button></a>
-
 <div class="m-3">
     {{ $schedules->links() }}
 </div>
+
+
+
+<a href="/schedules/create"><button class="btn btn-success addBtn">ADD</button></a>
+
 
     <table class="table table-dark">
     <thead>

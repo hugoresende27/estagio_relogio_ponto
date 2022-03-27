@@ -203,23 +203,37 @@ class EmployeeController extends Controller
             'niss'=>'required|string',
             'emercontact'=>'required|string',
             'bicc'=>'required|string',
-            'company_id'=>'required',      
+            // 'company_id'=>'required',      
            
             'role'=>'string',     
 
             'image'=>'mimes:png,jpg,jpeg',
 
-            'details'=>'string',   
+            // 'details'=>'string',   
            
         
            
 
         ]);
 
-        ////REQUEST ID'S/////////////
-        $fields['schedule_id'] = $request['schedule_id'];
-        $fields['department_id'] = $request['department_id'];
-        $fields['location_id'] = $request['location_id'];
+        ////FOREIGN ID'S/////////////
+        if ($request['company_id']!=0)
+        {
+            $fields['company_id'] = $request['company_id'];
+        }
+        if ($request['department_id']!=0)
+        {
+            $fields['department_id'] = $request['department_id'];
+        }
+        //////////TODO///////////////////
+        // if ($request['schedule_id']!=0)
+        // {
+        //     $fields['schedule_id'] = $request['schedule_id'];
+        // }
+
+        // $fields['schedule_id'] = $request['schedule_id'];
+        // $fields['department_id'] = $request['department_id'];
+        // $fields['location_id'] = $request['location_id'];
 
         ///////NON REQUIRED FIELDS ///////////////
         $fields['iban'] = $request['iban'];

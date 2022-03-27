@@ -14,7 +14,7 @@ class Clockpointentry extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
-    public $timestamps = false;
+    // public $timestamps = false;
 
     protected $guarded = ['id'];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\Clockpointentry;
@@ -41,11 +42,29 @@ class ClockpointentryController extends Controller
             'clock_out'=>'required',
         ]);
 
+        $in = \Carbon\Carbon::now()->format('Y-m-d')."T".$fields['clock_in'];
+        $out = \Carbon\Carbon::now()->format('Y-m-d')."T".$fields['clock_out'];
+
+        if($in > $out)
+        {
+            return response()->json(['message'=>'IN time cannot be after OUT',666] );
+        }
+
+
+        $shift_start = strtotime($fields['clock_in']);
+        $shift_end = strtotime($fields['clock_out']);
+
+        $total_shift = $shift_end - $shift_start; 
+        $time = date("His",$total_shift);
+
+
+
         $entry = Clockpointentry::create([
             'tenant_id'=>$tenantId,
             'employee_id'=>$fields['employee_id'],
-            'clock_in'=>$fields['clock_in'],
-            'clock_out'=>$fields['clock_out'],
+            'clock_in'=>$in,
+            'clock_out'=>$out,
+            'clock_total'=>$time,
             
         ]);
 

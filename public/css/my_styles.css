@@ -82,11 +82,6 @@ body
     max-width: 250px;
 }
 
-.myform{
-    margin-left: 10%;
-    margin-right: auto;
-  
-}
 
 .mycenter{
     display: flex;  
@@ -165,11 +160,11 @@ a:hover{
 }
 
 .submitBtn {
-    background-color: yellow !important;
+    background-color: darkred !important;
     padding: 5px;
     border-radius: 5px;
     min-width: 250px;
-    color: #000;
+    color: #fff;
 }
 
 .submitBtn:hover{
@@ -197,3 +192,15 @@ a:hover{
 }
 
 
+/**************** EXTRAS ******************************/
+
+.myclock{
+    
+    background-color: darkred;
+    padding: 25px;
+    border-radius: 5px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 25px;
+    width: fit-content;
+}

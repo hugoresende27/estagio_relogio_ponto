@@ -44,7 +44,7 @@ class AdminController extends Controller
         $inputData = $request->validate([
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
-            'password'=>'required|string|confirmed',
+            // 'password'=>'required|string|confirmed',
 
        
             'image'=>'mimes:png,jpg,jpeg',
@@ -163,10 +163,10 @@ class AdminController extends Controller
             
             'name'=>'required|string',
             'email'=>'string',
-            'password'=>'required|string|confirmed',
-            'nif'=>'string',     
-            'emer_contact'=>'string',
-            'bi_cc'=>'string',
+            // 'password'=>'required|string|confirmed',
+            // 'nif'=>'string',     
+            // 'emer_contact'=>'string',
+            // 'bi_cc'=>'string',
             'image'=>'mimes:png,jpg,jpeg',
         ]);
 

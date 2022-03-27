@@ -14,8 +14,7 @@
    <form action="{{ url('api/clockpointentry') }}" method="POST">
     @csrf
   
-     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+
             <div class="form-group">           
                
 
@@ -28,28 +27,27 @@
                    
                 </select>
 
-                <label for="clock_in">IN</label>
-                {{-- <input type="date" name="clock_in" class="mylabels m-3"> --}}
-                <input type="text" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" name="clock_in" class="mylabels">
-              <br>
-                <label for="clock_out">OUT</label>
-                {{-- <input type="time" name="clock_out" class=" mylabels m-3"> --}}
-                <input type="text" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" name="clock_out" class="mylabels">
-             
-            </div>
-        </div>
+            
+                <div class="myclock text-center">
+                    <label for="clock_in">IN</label>
+                    <input type="time" name="clock_in" class="mylabels m-3" value="{{ old('clock_in') }}">
+                    {{-- <input type="text" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" name="clock_in" class="mylabels"> --}}
+                    <br>
+                    <label for="clock_out">OUT</label>
+                    <input type="time" name="clock_out" class=" mylabels m-3" value="{{ old('clock_out') }}">
+                    {{-- <input type="text" value="{{Carbon\Carbon::now()->format('Y-m-d')."T".Carbon\Carbon::now()->format('H:i')}}" name="clock_out" class="mylabels"> --}}
+                    </div>
+                </div>
+        
+        
       
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="submitBtn">Submit</button>
         </div>
-    </div>
-   
-</form>
-   
-</div>
- 
-       
   
-</div>     
+   
+    </form>
+</div>
+</div>  
 
 @endsection

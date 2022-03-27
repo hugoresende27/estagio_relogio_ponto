@@ -70,7 +70,9 @@ class EmployeeBackofficeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+        $companies['data'] = Company::all();
+        return view ('backoffice.employees.edit', compact('employee','companies'));
     }
 
     /**

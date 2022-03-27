@@ -21,6 +21,9 @@
                     <input type="text" name="name" class="form-control mylabels" placeholder="Full Name" value="{{ old('name') }}">
                     <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
                     <input type="text" name="nif" class="form-control mylabels" placeholder="NIF" value="{{ old('nif') }}">
+                   
+                    <label for="file">Attach File</label>
+                    <input type="file" name="file" class="mb-3">
 
                 </div>
                 <div class="col-md-6"> 
@@ -31,9 +34,7 @@
                     <input type="text" name="door_number" class="form-control mylabels" placeholder="Door Nr" value="{{ old('door_number') }}">
                     <input type="text" name="zip_code" class="form-control mylabels" placeholder="Zip Code" value="{{ old('zip_code') }}">
 
-                   
-                    <label for="file">Attach File</label>
-                    <input type="file" name="file" class="mb-3">
+                 
                 </div>
             </div>
 

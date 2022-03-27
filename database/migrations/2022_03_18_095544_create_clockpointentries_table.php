@@ -27,12 +27,16 @@ return new class extends Migration
             $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             
              ///DATA//////
-            $table->timestamp ('clock_in')->nullable();
-            $table->timestamp ('clock_out')->nullable();
+            // $table->timestamp ('clock_in')->nullable();
+            // $table->timestamp ('clock_out')->nullable();
+            $table->datetime ('clock_in')->nullable();
+            $table->datetime ('clock_out')->nullable();
+            $table->time('clock_total')->nullable();
 
 
-             /////NO TIMESTAMPS+SOFTDELETE/////
-            $table->nullableTimestamps();
+             /////NO// TIMESTAMPS+SOFTDELETE/////
+            // $table->nullableTimestamps();
+            $table->timestamps();   
             $table->softDeletes();
             
         });

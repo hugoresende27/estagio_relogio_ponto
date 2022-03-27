@@ -43,8 +43,7 @@ class DepartmentController extends Controller
 
             'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
             'company_id'=>'required', 
-
-            
+           
         ]);
         
 

@@ -44,27 +44,17 @@ class ScheduleController extends Controller
             
         ]);
  
-        // if ($request['company_id']!=0)
-        // {
-        //     $fields['company_id'] = $request['company_id'];
-        // }
-        // if ($request['department_id']!=0)
-        // {
-        //     $fields['department_id'] = $request['department_id'];
-        // }
+ 
         
         $shift_start = strtotime($fields['shift_start']);
         $shift_end = strtotime($fields['shift_end']);
 
         $total_shift = $shift_end - $shift_start; 
-        $time = date("his",$total_shift);
+        $time = date("His",$total_shift);
     
         $schedule = Schedule::create([
                                  
             'tenant_id'=>$tenantId,          
-            
-            // 'company_id'=>$fields['company_id'],
-            // 'department_id'=>$fields['department_id'],
            
             'shift_start'=>$fields['shift_start'],
             'shift_end'=>$fields['shift_end'],
