@@ -69,7 +69,9 @@ class ScheduleBackofficeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $companies['data'] = Company::all();
+        $schedule = Schedule::find($id);
+        return view('backoffice.schedules.edit', compact('companies','schedule'));
     }
 
     /**

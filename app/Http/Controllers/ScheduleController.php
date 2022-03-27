@@ -125,17 +125,21 @@ class ScheduleController extends Controller
         if (is_null($schedule)){
             return response()->json(['message'=>'Schedulle not found',404] );
         }
-    
+
         $fields = $request->validate([
 
             'company_id'=>'required',
-            'department_id'=>'required',
             'shift_start'=>'required',
             'shift_end'=>'required',
-            'shift_type'=>'required'
-           
+            'shift_type'=>'required',       
          
         ]);
+
+        $shift_start = strtotime($fields['shift_start']);
+        $shift_end = strtotime($fields['shift_end']);
+
+        $total_shift = $shift_end - $shift_start; 
+        $fields['shift_total'] = date("His",$total_shift);
         
 
         $schedule->update($fields);

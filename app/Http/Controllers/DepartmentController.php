@@ -39,8 +39,6 @@ class DepartmentController extends Controller
         $fields = $request->validate([
             
             'name'=>'required|string',
-            'email'=>'string', 
-
             'file' => 'mimes:csv,txt,xlx,xls,xlsx,pdf|max:2048',
             'company_id'=>'required', 
            
@@ -50,10 +48,14 @@ class DepartmentController extends Controller
        
         $department = Department::create([
             'name'=>$fields['name'],
-            'email'=>$fields['email'],
             'company_id'=>$fields['company_id'],            
             'tenant_id'=>$tenantId
         ]);
+
+        if(isset($fields['email']))
+        {
+            $department->email = $request['email'];
+        }
 
         ///////////// FILE CREATE //////////////////
         if (isset($fields['file'] ))
