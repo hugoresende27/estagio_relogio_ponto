@@ -22,27 +22,6 @@
                             <label for="image">Photo</label>     
                             <input type="file" name="image" class="form-control" onchange="preview()">
                             <img id="frame" src="" width="200px" height="100px" class="mt-3"/>
-                   
-            
-                        
-                        </div>
-                        <div class="col-md-4">
-                            <label>Login details</label>  
-                            <input type="text" name="name" class="form-control mylabels" placeholder="Full Name" value="{{ old('name') }}">
-                            <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
-                            <input type="password" name="password" class="form-control mylabels" placeholder="Password">
-                            <input type="password" name="password_confirmation" class="form-control mylabels" placeholder="Password Confirmation" >
-                        
-                        
-                        </div>
-
-                        <div class="col-md-4">
-                            <label>Details</label>  
-                            <input type="text" name="nif" class="form-control mylabels" placeholder="NIF" value="{{ old('nif') }}">
-                            <input type="text" name="emer_contact" class="form-control mylabels" placeholder="Emergency Contact" value="{{ old('emer_contact') }}">
-                            <input type="text" name="bi_cc" class="form-control mylabels" placeholder="Identity Card Number" value="{{ old('bi_cc') }}">
-                  
-
                             <!-- companies Dropdown -->
                             <label>Company Details:</label>
                             <select id='company_id' name='company_id' class="form-control mylabels">
@@ -62,6 +41,27 @@
                             </select>
 
 
+            
+                        
+                        </div>
+                        <div class="col-md-4">
+                            <label>Login details</label>  
+                            <input type="text" name="name" class="form-control mylabels inputRequired" placeholder="Full Name" value="{{ old('name') }}">
+                            <input type="text" name="email" class="form-control mylabels inputRequired" placeholder="Email" value="{{ old('email') }}">
+                            <input type="password" name="password" class="form-control mylabels inputRequired" placeholder="Password">
+                            <input type="password" name="password_confirmation" class="form-control mylabels inputRequired" placeholder="Password Confirmation" >
+                        
+                        
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Details</label>  
+                            <input type="text" name="nif" class="form-control mylabels" placeholder="NIF" value="{{ old('nif') }}">
+                            <input type="text" name="emer_contact" class="form-control mylabels" placeholder="Emergency Contact" value="{{ old('emer_contact') }}">
+                            <input type="text" name="bi_cc" class="form-control mylabels" placeholder="Identity Card Number" value="{{ old('bi_cc') }}">
+                  
+
+                         
                         
                         </div>
                     </div>

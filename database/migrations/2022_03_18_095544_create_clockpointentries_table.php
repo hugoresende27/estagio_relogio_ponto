@@ -22,7 +22,7 @@ return new class extends Migration
 
             ////FOREIGN IDS//////////////
             $table->unsignedBigInteger('employee_id')->nullable()->index();
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->unsignedBigInteger('file_id')->nullable()->index();
             $table->foreign('file_id')->references('id')->on('files')->onDelete('set null');
             

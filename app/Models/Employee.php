@@ -3,10 +3,12 @@
 namespace App\Models;
 
 
+use App\Models\Clockpointentry;
 use App\Models\Traits\Tenantable;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Employee extends Model
@@ -14,6 +16,9 @@ class Employee extends Model
     use HasFactory;
     use Tenantable;
     use SoftDeletes;
+
+    use CascadeSoftDeletes;
+    protected $cascadeDeletes = ['image'];
  
 
 
@@ -110,11 +115,12 @@ class Employee extends Model
        {
            return $this-> hasOne(File::class, 'id', 'file_id');
        }
-       
-  
-        
-  
 
+    //    public function clockpoints()
+    //    {
+    //        return $this-> hasMany(Clockpointentry::class);
+    //    }
 
+ 
   
 }

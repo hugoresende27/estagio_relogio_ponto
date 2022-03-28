@@ -44,37 +44,23 @@ class AdminController extends Controller
         $inputData = $request->validate([
             'name'=>'required|string',
             'email'=>'required|string|unique:users,email',
-            // 'password'=>'required|string|confirmed',
+            'password'=>'required|string|confirmed',
 
        
             'image'=>'mimes:png,jpg,jpeg',
       
         ]);
 
-        // $inputData = $request->all();
+        ///////NON REQUIRED FIELDS ///////////////
+        $inputData['nif'] = $request['nif'];
+        $inputData['emer_contact'] = $request['emer_contact'];
+        $inputData['bi_cc'] = $request['bi_cc'];
+     
+     
         $inputData['password'] = bcrypt($request->password);
         $user_employee = User::create($inputData);
 
-        // $user_employee = User::create([
-
-        //     'tenant_id'=>$tenantId,
-
-        //     'name' => $fields['name'],
-        //     'email'=>$fields['email'],
-        //     'password'=>$password,          
-        //     // 'password'=>($fields['password']),          
-        //     'email_verified_at'=>now(),
-
-        //     //REQUEST NON REQUIRED
-        //     'nif'=>$request['nif'],       
-          
-            
-        //     'emer_contact'=>$request['emer_contact'],
-        //     'bi_cc'=>$request['bi_cc'],
-        //     'role'=>'USER-TENANT-'.$tenantId,            //HARD CODED USER-EMPLOYEE ROLE
-        //     'image'=>$request['image'],
- 
-        // ]);
+      
 
         $user_employee->role = 'USER-TENANT-'.$tenantId;            //HARD CODED USER-EMPLOYEE ROLE
         $user_employee->tenant_id = $tenantId;
@@ -163,10 +149,7 @@ class AdminController extends Controller
             
             'name'=>'required|string',
             'email'=>'string',
-            // 'password'=>'required|string|confirmed',
-            // 'nif'=>'string',     
-            // 'emer_contact'=>'string',
-            // 'bi_cc'=>'string',
+      
             'image'=>'mimes:png,jpg,jpeg',
         ]);
 

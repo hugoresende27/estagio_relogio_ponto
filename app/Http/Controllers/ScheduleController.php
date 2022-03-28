@@ -36,7 +36,6 @@ class ScheduleController extends Controller
         $fields = $request->validate([
             
             'company_id'=>'required',
-            // 'department_id'=>'required',
             'shift_start'=>'required',
             'shift_end'=>'required',
             'shift_type'=>'required',
@@ -54,8 +53,7 @@ class ScheduleController extends Controller
     
         $schedule = Schedule::create([
                                  
-            'tenant_id'=>$tenantId,          
-           
+            'tenant_id'=>$tenantId,                    
             'shift_start'=>$fields['shift_start'],
             'shift_end'=>$fields['shift_end'],
             'shift_type'=>$fields['shift_type'],
@@ -128,12 +126,21 @@ class ScheduleController extends Controller
 
         $fields = $request->validate([
 
-            'company_id'=>'required',
+            // 'company_id'=>'required',
             'shift_start'=>'required',
             'shift_end'=>'required',
             'shift_type'=>'required',       
          
         ]);
+
+        if ($request['company_id']!=0) 
+        {
+            $fields['company_id'] = $request['company_id'];
+        }
+        if ($request['department_id']!=0) 
+        {
+            $fields['department_id']  = $request['department_id'];
+        }
 
         $shift_start = strtotime($fields['shift_start']);
         $shift_end = strtotime($fields['shift_end']);

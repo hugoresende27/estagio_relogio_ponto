@@ -14,6 +14,8 @@ class Image extends Model
     use HasFactory;
     use Tenantable;
     use SoftDeletes;
+  
+
     protected $dates = ['deleted_at'];
 
     protected $guarded = ['id'];

@@ -30,7 +30,7 @@
              <div class="form-group">      
                  
                 <label for="company_id">Company</label>
-                <select name="company_id" class="form-control mylabels" >
+                <select name="company_id" class="form-control mylabels inputRequired" >
                     @foreach ($companies as $company)
                         <option hidden disabled selected value> -- select an option -- </option>
                         <option value="{{ $company->id }}">{{ $company->name }}</option>
@@ -38,7 +38,7 @@
                 
                 </select>
                 
-                 <input type="text" name="name" class="form-control mylabels" placeholder="Department Name" value="{{ old('name') }}">
+                 <input type="text" name="name" class="form-control mylabels inputRequired" placeholder="Department Name" value="{{ old('name') }}">
                  <input type="text" name="email" class="form-control mylabels" placeholder="Email" value="{{ old('email') }}">
                  <label for="file">Attach File</label>
                  <input type="file" name="file" class="mb-3"><br>

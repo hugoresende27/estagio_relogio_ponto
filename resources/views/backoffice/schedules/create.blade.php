@@ -58,10 +58,10 @@
                     <input type="file" name="file" class="mb-3">
 
                     <div class="mytimelabel">
-                        <input type="time" class="form-control " name="shift_start"  value="{{ old('shift_start') }}">&nbsp;
-                        <input type="time" class="form-control " name="shift_end"  value="{{ old('shift_end') }}">
+                        <input type="time" class="form-control inputRequired" name="shift_start"  value="{{ old('shift_start') }}">&nbsp;
+                        <input type="time" class="form-control inputRequired" name="shift_end"  value="{{ old('shift_end') }}">
                     </div>
-                    <input type="text" class="form-control mylabels" name="shift_type" placeholder="Shift Type" value="{{ old('shift_type') }}">
+                    <input type="text" class="form-control mylabels inputRequired" name="shift_type" placeholder="Shift Type" value="{{ old('shift_type') }}">
                     
                 </div>
                 

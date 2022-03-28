@@ -10,8 +10,10 @@
     @endguest
 
     @auth
-        
-    <h1 class="mycenter">Welcome  {{ Auth::user()->name }}, tenant ID {{ Auth::user()->tenant_id }} </h1>
+        <div class="mycenter">
+            <h1>Welcome  {{ Auth::user()->name }}, tenant ID {{ Auth::user()->tenant_id }} </h1>
+            <h3>Required fields are in <span style="background-color: rgb(240, 138, 131)">pink</span></h3>
+        </div>
     @endauth
         
      

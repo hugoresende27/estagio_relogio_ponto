@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Exports\EmployeeExport;
 use App\Imports\EmployeeImport;
 // use App\Models\Traits\Tenantable;
+use App\Models\Clockpointentry;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -202,17 +203,10 @@ class EmployeeController extends Controller
             'nif'=>'required|string',
             'niss'=>'required|string',
             'emercontact'=>'required|string',
-            'bicc'=>'required|string',
-            // 'company_id'=>'required',      
-           
-            'role'=>'string',     
-
+            'bicc'=>'required|string',     
+            'start_date'=>'required',  
             'image'=>'mimes:png,jpg,jpeg',
-
-            // 'details'=>'string',   
-           
-        
-           
+    
 
         ]);
 
@@ -231,14 +225,11 @@ class EmployeeController extends Controller
         //     $fields['schedule_id'] = $request['schedule_id'];
         // }
 
-        // $fields['schedule_id'] = $request['schedule_id'];
-        // $fields['department_id'] = $request['department_id'];
-        // $fields['location_id'] = $request['location_id'];
+
 
         ///////NON REQUIRED FIELDS ///////////////
         $fields['iban'] = $request['iban'];
         $fields['details'] = $request['details'];
-        $fields['role'] = $request['role'];
         $fields['image'] = $request['image'];
         $fields['start_date'] = $request['start_date'];
 
@@ -248,34 +239,26 @@ class EmployeeController extends Controller
         if (isset($fields['image'] ))
         {
             $image = Image::where('employee_id',$id)->first();
-            
-            if (empty($image)){
-               ///////////// IMAGE CREATE //////////////////
-                $image_name = $request->file('image')->getClientOriginalName();
-                $image_path = $request->file('image')->store('public/images');
 
-                $employee_image = Image::create([
-                    'tenant_id'=>$tenantId,
-                    'name'=>$image_name,
-                    'image_path'=>$image_path,
-                    'size'=>$request->file('image')->getSize(),
-                    'employee_id'=>$employee['id'],
-                ]);
-            } else{
+               
+            if(!empty($image))
+            {
                 $image->delete();
-                ///////////// IMAGE CREATE //////////////////
-                $image_name = $request->file('image')->getClientOriginalName();
-                $image_path = $request->file('image')->store('public/images');
+            }
+              
+            ///////////// IMAGE CREATE //////////////////
+            $image_name = $request->file('image')->getClientOriginalName();
+            $image_path = $request->file('image')->store('public/images');
 
-                $employee_image = Image::create([
-                    'tenant_id'=>$tenantId,
-                    'name'=>$image_name,
-                    'image_path'=>$image_path,
-                    'size'=>$request->file('image')->getSize(),
-                    'employee_id'=>$employee['id'],
-                ]);
-                }
-                $employee->image_id = $employee_image['id'];
+            $employee_image = Image::create([
+                'tenant_id'=>$tenantId,
+                'name'=>$image_name,
+                'image_path'=>$image_path,
+                'size'=>$request->file('image')->getSize(),
+                'employee_id'=>$employee['id'],
+            ]);
+        
+            $employee->image_id = $employee_image['id'];
          
         }
 
@@ -298,7 +281,13 @@ class EmployeeController extends Controller
         if (is_null($employee)){
             return response()->json(['message'=>'Employee not found',404] );
         }
+       $clockpoints = Clockpointentry::where('employee_id',$id);
+       $clockpoints->delete();
         $employee->delete();
+
+       
+
+       
         return response()->json($employee, 200);
     }
 

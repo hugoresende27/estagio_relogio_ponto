@@ -19,11 +19,11 @@
                 
             <div class="col-md-6">
                 <label>Address</label>  
-                <input type="text" name="country" class="form-control mylabels" placeholder="Country" value="{{ old('country') }}">
-                <input type="text" name="city" class="form-control mylabels" placeholder="City" value="{{ old('city') }}">
-                <input type="text" name="street" class="form-control mylabels" placeholder="Street" value="{{ old('street') }}">
-                <input type="text" name="door_number" class="form-control mylabels" placeholder="Door Nr" value="{{ old('door_number') }}">
-                <input type="text" name="zip_code" class="form-control mylabels" placeholder="Zip Code" value="{{ old('zip_code') }}">
+                <input type="text" name="country" class="form-control mylabels inputRequired" placeholder="Country" value="{{ old('country') }}">
+                <input type="text" name="city" class="form-control mylabels inputRequired" placeholder="City" value="{{ old('city') }}">
+                <input type="text" name="street" class="form-control mylabels inputRequired" placeholder="Street" value="{{ old('street') }}">
+                <input type="text" name="door_number" class="form-control mylabels inputRequired" placeholder="Door Nr" value="{{ old('door_number') }}">
+                <input type="text" name="zip_code" class="form-control mylabels inputRequired" placeholder="Zip Code" value="{{ old('zip_code') }}">
 
                 
                 <label for="file">Attach File</label>

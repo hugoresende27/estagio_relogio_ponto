@@ -22,9 +22,9 @@ return new class extends Migration
 
             ////FOREIGN IDS//////////////
             $table->unsignedBigInteger('employee_id')->nullable()->index();
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->nullable()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             ///DATA//////
             $table->string('name');
@@ -39,12 +39,12 @@ return new class extends Migration
 
         Schema::table('employees', function (Blueprint $table) {
             
-            $table->foreign('image_id')->references('id')->on('images')->onDelete('set null');
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
         });
 
         Schema::table('users', function (Blueprint $table) {
            
-            $table->foreign('image_id')->references('id')->on('images')->onDelete('set null');
+            $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
         });
     }
 

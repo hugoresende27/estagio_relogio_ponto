@@ -41,6 +41,7 @@ table{
 body
 {
     font-family: 'Yomogi', cursive; 
+    letter-spacing: 1px;
     font-size: 1.5rem;
     background-color: #000;
     display: flex;          /*coloca tudo em linha*/
@@ -89,6 +90,10 @@ body
     align-items: center;    
     justify-content: center;
     min-height: 50vh;
+}
+
+.mycenter h1{
+    line-height: 50pt;
 }
 
 /**************** BUTTONS ******************************/
@@ -188,11 +193,17 @@ a:hover{
     color: #000;   
     margin-right: 10px;
     margin-bottom: 20px;
-    max-width: 200px;
+    max-width: 300px;
 }
 
 
 /**************** EXTRAS ******************************/
+
+
+.inputRequired{
+    background-color: rgb(240, 138, 131);
+}
+
 
 .myclock{
     

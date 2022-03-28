@@ -32,8 +32,8 @@
             
             <tr class=" text-sm">
             <td>{{ $clockpoint->id }}</td>
-            <td>{{ $clockpoint->employee->name }}</td>
-            <td>{{ $clockpoint->employee->company->name }}</td>
+            <td>{{ $clockpoint->employee->name ?? ' ' }}</td>
+            <td>{{ $clockpoint->employee->company->name ?? ' ' }}</td>
 
             <td>{{ $clockpoint->file->name ?? 'no file'  }}</td>   
             <td>{{ $clockpoint->clock_in  }}</td>   
