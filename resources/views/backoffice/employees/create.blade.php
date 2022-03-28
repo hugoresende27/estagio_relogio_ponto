@@ -24,20 +24,27 @@
                             <img id="frame" src="" width="200px" height="100px" class="mt-3"/>
                                                 <!-- companies Dropdown -->
                             <label>Company Details:</label>
-                            <select id='company_id' name='company_id' class="form-control mylabels inputRequired">
-                                <option value='0'>-- Select Company --</option>
+                            <select id='company_id' name='company_id' class="form-control mylabels inputRequired" required>
+                                {{-- <option value='0'>-- Select Company --</option> --}}
 
                                 <!-- Read Departments -->
                                 @foreach($companies['data'] as $company)
                                     <option value='{{ $company->id }}' >{{ $company->name }}</option>
                                 @endforeach
-
-                            </select>
-
-
-
+                            </select> 
+                        
                             <select id='department_id' name='department_id' class="form-control mylabels">
                                 <option value=''>-- Select Department --</option>
+                            </select>
+
+                            
+                            <label>Schedule Details:</label>
+                                             
+                            <select name="schedule_id"  class="form-control mylabels">
+                                <option value=''>-- Select Schedule --</option>
+                                @foreach($schedules as $schedule)
+                                    <option value='{{ $schedule->id }}' >{{ $schedule->shift_type }}</option>
+                                @endforeach
                             </select>
                                
                         

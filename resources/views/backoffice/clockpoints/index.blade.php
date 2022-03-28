@@ -9,6 +9,11 @@
     {{ $clockpoints->links() }}
 </div>
 
+
+
+<a href="{{ url('api/clockpointentrysexportexcel') }}"><button class="btn btn-success addBtn">EXPORT XLSX</button></a>
+<a href="{{ url('api/clockpointentrysexportcsv') }}"><button class="btn btn-success addBtn">EXPORT CSV</button></a>
+
 <a href="/clockpointentry/create"><button class="btn btn-success addBtn">ADD</button></a>
 
 

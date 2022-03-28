@@ -12,7 +12,21 @@
     @auth
         <div class="mycenter">
             <h1>Welcome  {{ Auth::user()->name }}, tenant ID {{ Auth::user()->tenant_id }} </h1>
-            <h3>Required fields are in <span style="background-color: rgb(240, 138, 131)">pink</span></h3>
+           <ol class="list-group ">
+               <li class="list-group-item ">
+                Required fields are in <span style="background-color: rgb(240, 138, 131)">pink</span>
+               </li>
+               <li class="list-group-item ">
+                Regist a Company to start (need address)
+               </li>
+               <li class="list-group-item ">
+                Regist a Employee in the Company (need address)
+               </li>
+           </ol>
+
+       
+          
+           
         </div>
     @endauth
         

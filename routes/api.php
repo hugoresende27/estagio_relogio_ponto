@@ -50,8 +50,8 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 /////////////////////COMPANY ROUTES///////////////////////////////////////////////////////////////////
     Route::resource('/companies', CompanyController::class);
-    Route::post('/companies/{id}/showemployees', [CompanyController::class, 'showEmployees']);
-    Route::post('/companies/{id}/showdepartments',[CompanyController::class, 'showDepartments']);
+    Route::get('/companies/{id}/showemployees', [CompanyController::class, 'showEmployees']);
+    Route::get('/companies/{id}/showdepartments',[CompanyController::class, 'showDepartments']);
     Route::get('companiesexportexcel/', [CompanyController::class, 'export_xlsx']);
     Route::get('companiesexportcsv/', [CompanyController::class, 'export_csv']);
     Route::post('companiesimport/', [CompanyController::class, 'import']);
@@ -92,13 +92,10 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
 
 //////////////////////////SEARCH ROUTES////////////////////////////////////////////////////////////////
     Route::get('search', [SearchController::class, 'search']);
-    Route::get('searcht', [SearchController::class, 'searcht']);
-
 
 /////////////////////FILES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('files', FileController::class);
    
-
 /////////////////////IMAGES ROUTES////////////////////////////////////////////////////////////////
     Route::resource('images', ImageController::class);
     

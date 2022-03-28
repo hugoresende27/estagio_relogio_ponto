@@ -10,6 +10,10 @@
     {{ $locations->links() }}
 </div>
 
+
+<a href="{{ url('api/locationsexportexcel') }}"><button class="btn btn-success addBtn">EXPORT XLSX</button></a>
+<a href="{{ url('api/locationsexportcsv') }}"><button class="btn btn-success addBtn">EXPORT CSV</button></a>
+
 <a href="/locations/create"><button class="btn btn-success addBtn">ADD</button></a>
 
     <table class="table table-dark">

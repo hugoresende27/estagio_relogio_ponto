@@ -89,7 +89,7 @@ class EmployeeController extends Controller
             'emercontact'=>$fields['emercontact'],
             'bicc'=>$fields['bicc'],
             'start_date'=>$fields['start_date'],
-            'company_id'=>$fields['company_id'],
+            // 'company_id'=>$fields['company_id'],
 
             //REQUEST NON REQUIRED
             
@@ -100,10 +100,14 @@ class EmployeeController extends Controller
             
             // 'role'=>$request['role'],  
             'role'=>'EMPLOYEE',                 //HARD CODED ROLE EMPLOYEE  
-            
-            
+        
             
         ]);
+
+        if($fields['company_id'] != 0)
+        {
+            $employee->company_id = $fields['company_id'];
+        }
         
         ///////////// IMAGE CREATE //////////////////
         if (isset($fields['image'] ))
@@ -219,11 +223,10 @@ class EmployeeController extends Controller
         {
             $fields['department_id'] = $request['department_id'];
         }
-        //////////TODO///////////////////
-        // if ($request['schedule_id']!=0)
-        // {
-        //     $fields['schedule_id'] = $request['schedule_id'];
-        // }
+        if ($request['schedule_id']!=0)
+        {
+            $fields['schedule_id'] = $request['schedule_id'];
+        }
 
 
 

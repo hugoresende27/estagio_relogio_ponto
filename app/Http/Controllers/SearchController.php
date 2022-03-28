@@ -12,105 +12,78 @@ class SearchController extends Controller
 {
 
 
-    public function searcht (Request $request)
-    {
-        $haystack = Employee::all();
-        $needle   = $request->s;
 
-        $pos      = strripos($haystack, $needle);
 
-        if ($pos === false) {
-            echo "Not found";
-        } else {
+
+    public function search(Request $request){
+
+       
+        $searchValue = $request->input('search');
+     
+        
+        $search_employees_table = Employee::all()->filter(function(Employee $employee) use($searchValue) {
          
-            echo "Nós encontramos a última ($needle)  na posição ($pos)";
-        }
-        return response()->json($needle, 200);
+         if(str_contains( $employee->name, $searchValue)) {          
+            return $employee;        
+         }
+         if(str_contains($employee->nif , $searchValue)) {          
+            return $employee;     
+         }
+         if(str_contains($employee->niss , $searchValue)) {          
+            return $employee;     
+         }
+         if(str_contains($employee->location->country , $searchValue)) {          
+            return $employee;     
+         }
+         if(str_contains($employee->company->name , $searchValue)) {          
+            return $employee;     
+         }
+        
+   
+       });
+
+        $search_companies_table = Company::all()->filter(function(Company $company) use($searchValue) {
+         
+         if(str_contains( $company->name, $searchValue)) {          
+            return $company;        
+         }
+         if(str_contains($company->nif , $searchValue)) {          
+            return $company;     
+         }
+         if(str_contains($company->location->country , $searchValue)) {          
+            return $company;     
+         }
+        
+   
+       });
+
+        $search_locations_table = Location::all()->filter(function(Location $location) use($searchValue) {
+         
+         if(str_contains( $location->country, $searchValue)) {          
+            return $location;        
+         }
+         if(str_contains( $location->city, $searchValue)) {          
+            return $location;        
+         }
+         if(str_contains($location->street , $searchValue)) {          
+            return $location;     
+         }
+         if(str_contains($location->zip_code, $searchValue)) {          
+            return $location;     
+         }
+        
+   
+       });
+
+
+       $results = collect([$search_employees_table, $search_companies_table, $search_locations_table ]);
+       return response()->json($results, 200);
+      
     }
+
     
-    public function search(Request $request)
-    {
-        
-
-        $search_employees_table = Employee::all()->filter(function($record) 
-        
-        use($request) 
-        {
-            // dd($request->s);
-
-            if (str_contains($record->name, ($request->s))){
-                return $record;
-           
-            }
-            if (str_contains($record->email, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->details, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->nif, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->niss, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->bicc, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->emercontact, ($request->s))){
-                return $record;
-            }
-
-        });
-
-        $search_companies_table = Company::all()->filter(function($record) 
-        
-        use($request) 
-        {
-            // dd($request->s);
-
-            if (str_contains($record->name, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->email, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->nif, ($request->s))){
-                return $record;
-            }
-            
-
-        });
-
-        $search_locations_table = Location::all()->filter(function($record) 
-        
-        use($request) 
-        {
-            // dd($request->s);
-
-            if (str_contains($record->country, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->city, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->street, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->door_number, ($request->s))){
-                return $record;
-            }
-            if (str_contains($record->zip_code, ($request->s))){
-                return $record;
-            }
-            
-
-        });
-
-
-        $record = collect([$search_employees_table, $search_companies_table, $search_locations_table]);
-        return response()->json($record, 200);
-    }
+   
+    
 
  
 

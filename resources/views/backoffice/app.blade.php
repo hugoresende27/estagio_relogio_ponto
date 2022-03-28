@@ -27,7 +27,16 @@
       </div>
     </a>
     @auth
-      <a href="/"><button class="btn btn-success homeBtn">HOME</button></a>
+      {{-- <a href="/"><button class="btn btn-success homeBtn">HOME</button></a> --}}
+
+      <div class="text-center" >
+        <form action="{{ url('api/search') }}" method="GET">
+            {{ csrf_field() }}
+            <input type="text" name="search" class="inputSearch" required/>
+            <button type="submit" class="submitBtn">Search</button>
+        </form>
+       </div>
+
     @endauth
   
     

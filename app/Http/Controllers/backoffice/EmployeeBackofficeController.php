@@ -5,6 +5,8 @@ namespace App\Http\Controllers\backoffice;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Location;
+use App\Models\Schedule;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +36,9 @@ class EmployeeBackofficeController extends Controller
     {
 
         $companies['data'] = Company::all();
-      
-        return view ('backoffice.employees.create', compact ('companies'));
+        $schedules = Schedule::all();
+       
+        return view ('backoffice.employees.create', compact ('companies','schedules'));
     }
 
 
@@ -72,7 +75,8 @@ class EmployeeBackofficeController extends Controller
     {
         $employee = Employee::find($id);
         $companies['data'] = Company::all();
-        return view ('backoffice.employees.edit', compact('employee','companies'));
+        $schedules = Schedule::all();
+        return view ('backoffice.employees.edit', compact('employee','companies','schedules'));
     }
 
     /**

@@ -70,6 +70,16 @@
                                 <option value=''>-- Select Department --</option>
                             </select>
 
+                                 
+                            <label>Schedule Details:</label>
+                                             
+                            <select name="schedule_id"  class="form-control mylabels">
+                                <option value=''>-- Select Schedule --</option>
+                                @foreach($schedules as $schedule)
+                                    <option value='{{ $schedule->id }}' >{{ $schedule->shift_type }}</option>
+                                @endforeach
+                            </select>
+
                         
                         </div>
                     </div>

@@ -5,6 +5,7 @@
 <div class="container">
 <h1 class="display-4 text-center">All Departments</h1>
 
+
 <a href="/departments/create"><button class="btn btn-success addBtn">ADD</button></a>
 
 <div class="m-3">

@@ -8,6 +8,10 @@
     {{ $employees->links() }}
 </div>
 
+
+<a href="{{ url('api/employeesexportexcel') }}"><button class="btn btn-success addBtn">EXPORT XLSX</button></a>
+<a href="{{ url('api/employeesexportcsv') }}"><button class="btn btn-success addBtn">EXPORT CSV</button></a>
+
 <a href="/employees/create"><button class="btn btn-success addBtn">ADD</button></a>
 
 
@@ -28,7 +32,7 @@
       
         {{-- <th scope="col">Email</th> --}}
         <th scope="col">Role</th>
-        {{-- <th scope="col">NIF</th> --}}
+        <th scope="col">NIF</th>
         {{-- <th scope="col">NISS</th> --}}
         {{-- <th scope="col">IBAN</th> --}}
         {{-- <th scope="col">Details</th> --}}
@@ -59,7 +63,7 @@
            
             {{-- <td>{{ $employee->email }}</td> --}}
             <td>{{ $employee->role }}</td>
-            {{-- <td>{{ $employee->nif }}</td> --}}
+            <td>{{ $employee->nif }}</td>
             {{-- <td>{{ $employee->niss }}</td> --}}
             {{-- <td>{{ $employee->iban }}</td> --}}
             {{-- <td>{{ $employee->details }}</td> --}}
