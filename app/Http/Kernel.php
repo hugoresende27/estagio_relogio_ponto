@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use Fruitcake\Cors\HandleCors;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
@@ -45,6 +46,7 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             // \App\Http\Middleware\EncryptCookies::class,
+            HandleCors::class,
         ],
     ];
 
