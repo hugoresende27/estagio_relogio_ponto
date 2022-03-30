@@ -129,6 +129,12 @@ class AuthController extends Controller
     }
 
 
-   
+   ////////////teste frontend///////////
+   public function me(Request $request)
+   {
+       return response()->json([
+           'data'=>$request->user
+       ]);
+   }
  
 }

@@ -36,7 +36,7 @@
             <td>{{ $department->name }}</td>
             <td>{{ $department->email }}</td>
             
-            <td>{{ $department->company->name }}</td>
+            <td>{{ $department->company->name ?? 'no company' }}</td>
             <td>{{ $department->file->name ?? 'no file'}}</td>
            
                 

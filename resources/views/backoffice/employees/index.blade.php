@@ -53,7 +53,7 @@
             <td>{{ Auth::user()->tenant_id }}</td>
             <td>{{ $employee->name }}</td>
 
-            <td>{{ $employee->company->name }}</td>   
+            <td>{{ $employee->company->name ?? 'no company' }}</td>   
             <td>{{ $employee->department->name ?? 'no department' }}</td>
             <td>{{ $employee->schedule->shift_type ?? 'no shift'}}</td>        
             <td>{{ $employee->location->city ?? 'no address' }}</td>

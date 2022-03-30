@@ -39,6 +39,9 @@ Route::post('login', [AuthController::class,'login']);
 
 Route::group(['middleware'=>['auth:sanctum']], function () {
 
+    ////////////teste frontend///////////
+    Route::get('user', [AuthController::class,'me']);
+
 
     Route::post('logout', [AuthController::class,'logout']);
 
