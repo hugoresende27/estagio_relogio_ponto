@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -89,10 +90,23 @@ class AuthController extends Controller
         return response()->json($response, 201);
     }
 
+    /*
     public function login(Request $request)
     {
       
+        // $credentials = $request->only('email','password');
+
+        // if (!auth()->attempt($credentials)){
+        //     throw ValidationException::withMessages([
+        //         'email'=>'Invalid Credentials'
+        //     ]);
+        // }
+
+        // $user = User::where('email', $request['email'])->first();
+      
+        // return response()->json($user,201);
        
+        
         $fields = $request->validate([
             
             'email'=>'required|string',
@@ -106,7 +120,7 @@ class AuthController extends Controller
             // dd(get_defined_vars());
             return response([
                 'message' => 'Login not valid'
-            ], 401);
+            ], 402);
         }
 
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -117,6 +131,8 @@ class AuthController extends Controller
         ];
         
         return response()->json($response, 200);
+
+        
     }
 
     public function logout(Request $request)
@@ -127,7 +143,7 @@ class AuthController extends Controller
             'message' => 'Logged out'
         ];
     }
-
+*/
 
    ////////////teste frontend///////////
    public function me(Request $request)
@@ -135,6 +151,42 @@ class AuthController extends Controller
        return response()->json([
            'data'=>$request->user
        ]);
+   }
+
+   public function login(Request $request)
+   {
+       $request->validate([
+               'email' => ['required', 'string', 'max:255'],
+               'password' => ['required', 'string'],
+           ]);
+
+       $credentials = $request->only('email', 'password');
+       if (Auth::attempt($credentials)) {
+           
+           // Authentication passed...
+           $user = User::where('email', $request['email'])->first();
+           $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user'=> $user,
+            'token' => $token
+        ];
+        
+        return response()->json($response, 200);
+     
+       }
+       else{
+           throw ValidationException::withMessages([
+               'email' => 'Invalid Credentials'
+           ]);
+       }
+   }
+   public function logout()
+   {
+      if(auth()->check()){
+       auth()->logout();
+       return "Logged Out";
+      }
    }
  
 }
