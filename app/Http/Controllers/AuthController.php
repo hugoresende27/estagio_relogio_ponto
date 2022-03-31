@@ -134,16 +134,17 @@ class AuthController extends Controller
 
         
     }
-
+*/
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
+        
         
         return [
             'message' => 'Logged out'
         ];
     }
-*/
+
 
    ////////////teste frontend///////////
    public function me(Request $request)
@@ -164,6 +165,7 @@ class AuthController extends Controller
        if (Auth::attempt($credentials)) {
            
            // Authentication passed...
+           
            $user = User::where('email', $request['email'])->first();
            $token = $user->createToken('myapptoken')->plainTextToken;
 
@@ -181,12 +183,12 @@ class AuthController extends Controller
            ]);
        }
    }
-   public function logout()
-   {
-      if(auth()->check()){
-       auth()->logout();
-       return "Logged Out";
-      }
-   }
+//    public function logout()
+//    {
+//       if(auth()->check()){
+//        auth()->logout();
+//        return "Logged Out";
+//       }
+//    }
  
 }

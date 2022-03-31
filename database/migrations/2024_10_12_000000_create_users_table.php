@@ -33,6 +33,7 @@ return new class extends Migration
 
              ///DATA//////
             $table->text('name');
+            $table->string('username')->nullable();
             $table->text('email')->unique();
             $table->text('role')->nullable();
             $table->text('nif')->nullable();
