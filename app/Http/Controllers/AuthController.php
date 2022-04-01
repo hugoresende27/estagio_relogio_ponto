@@ -87,7 +87,8 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        return response()->json($response, 201);
+        // return response()->json($response, 201);
+        return response()->json($user,201);
     }
 
     /*
@@ -134,12 +135,14 @@ class AuthController extends Controller
 
         
     }
-*/
+
+    */
+
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
-        
-        
+        Auth::guard('web')->logout();
+        auth()->logout();
         return [
             'message' => 'Logged out'
         ];
@@ -183,6 +186,7 @@ class AuthController extends Controller
            ]);
        }
    }
+
 //    public function logout()
 //    {
 //       if(auth()->check()){
