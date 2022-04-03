@@ -36,22 +36,8 @@ Route::post('register', [AuthController::class,'register']);
 
 Route::post('login', [AuthController::class,'login']);
 
-////////////teste frontend///////////
-// Route::post('login', function(Request $request)
-// {
-//     $credentials = $request->only('email','password');
 
-//     if (!auth()->attempt($credentials)){
-//         throw ValidationException::withMessages([
-//             'email'=>'Invalid Credentials'
-//         ]);
-//     }
 
-//     // $request->session()->regenerate();
-
-//     return response()->json(null,201);
-
-// });
 
 Route::group(['middleware'=>['auth:sanctum']], function () {
 

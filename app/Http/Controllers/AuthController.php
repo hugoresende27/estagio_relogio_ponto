@@ -82,32 +82,20 @@ class AuthController extends Controller
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
-        $response = [
+        $data = [
             'user'=> $user,
             'token' => $token
         ];
 
         // return response()->json($response, 201);
-        return response()->json($user,201);
+        return response()->json($data,201);
     }
 
     /*
     public function login(Request $request)
     {
       
-        // $credentials = $request->only('email','password');
-
-        // if (!auth()->attempt($credentials)){
-        //     throw ValidationException::withMessages([
-        //         'email'=>'Invalid Credentials'
-        //     ]);
-        // }
-
-        // $user = User::where('email', $request['email'])->first();
-      
-        // return response()->json($user,201);
-       
-        
+   
         $fields = $request->validate([
             
             'email'=>'required|string',
@@ -153,10 +141,11 @@ class AuthController extends Controller
    public function me(Request $request)
    {
        return response()->json([
-           'data'=>$request->user
+           'user'=>$request->user
        ]);
    }
 
+   
    public function login(Request $request)
    {
        $request->validate([
@@ -174,7 +163,8 @@ class AuthController extends Controller
 
         $response = [
             'user'=> $user,
-            'token' => $token
+            'token' => $token,
+            
         ];
         
         return response()->json($response, 200);
