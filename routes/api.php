@@ -16,6 +16,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DepartmentController;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\ClockpointentryController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,22 @@ use App\Http\Controllers\ClockpointentryController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
+// Route::post('/login', [AuthenticatedSessionController::class, 'create'])
+//                 ->middleware('guest')
+//                 ->name('login');
+
+// Route::middleware('auth:sanctum')->group(function () {
+
+//     Route::get('/user', function (Request $request) {
+//         return request()->user();
+//     });
+    
 // });
 
 Route::post('register', [AuthController::class,'register']);
 
 Route::post('login', [AuthController::class,'login']);
+
 
 
 

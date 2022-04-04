@@ -32,6 +32,8 @@ use App\Http\Controllers\backoffice\DepartmentBackofficeController;
 */
 
 
+// Route::post('login', [AuthController::class,'login']);
+
 Auth::routes();
 
 Route::get('/', function () { 
